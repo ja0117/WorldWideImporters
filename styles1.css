@@ -2,8 +2,6 @@ h1 {
     color: red;
 }
 
-.div1 {
-    background: green;
-    color: white;
-    width: 50%;
+footer {
+    border: 1px solid crimson;
 }

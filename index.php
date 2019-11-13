@@ -6,11 +6,11 @@
 </head>
 <body>
 
-<div class="div1">
+<header> <h1>Welkom bij WWI!</h1> </header>
 
-</div>
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+<p>Koop onze spullen aub</p>
+
+<footer> Copyright &copy; 2019, World Wide Importers</footer>
 
 </body>
 </html>
