@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Niks</title>
+    <title>World Wide Importers</title>
     <link rel="stylesheet" href="styles1.css">
 </head>
 <body>
