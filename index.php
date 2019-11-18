@@ -16,10 +16,10 @@ include_once("databasecon.php");
     <a href="#news">News</a>
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
-    <div id="search">
+    <form id="search" action="us3.php">
         <input type="text" name="searchBox" placeholder="Search for anything">
         <input type="submit" name="searchButton" value="Search" id="searchButton">
-    </div>
+    </form>
 </div>
 
 
