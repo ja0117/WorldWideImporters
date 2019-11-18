@@ -17,7 +17,8 @@ include_once("databasecon.php");
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
     <div id="search">
-        <input type="text" name="searchBox" placeholder="search"> <input type="button" value="search" name="searchBtn">
+        <input type="text" name="searchBox" placeholder="Search for anything">
+        <input type="submit" name="searchButton" value="Search" id="searchButton">
     </div>
 </div>
 
