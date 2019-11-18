@@ -66,17 +66,20 @@ body {
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 10px;
-    
-    
-  }
-  
-  /* On mouse-over, add a deeper shadow */
-  .card:hover {
+    width: 250px;
+    height: 150px;
+
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-  
-  /* Add some padding inside the card container */
-  .container {
+}
+
+/* Add some padding inside the card container */
+.container {
+    background-color: #dddddd;
+    margin: 0px 10px 10px 10px;
     padding: 2px 16px;
-    
-  }
+
+}

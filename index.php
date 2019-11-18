@@ -18,7 +18,7 @@ include_once("databasecon.php");
     <a href="#about">About</a>
     <form id="search" action="us3.php">
         <input type="text" name="searchBox" placeholder="Search for anything">
-        <input type="submit" name="searchButton" value="Search" id="searchButton">
+        <input type="submit" value="Search" id="searchButton">
     </form>
 </div>
 
