@@ -4,27 +4,29 @@
     $isset = true;
     if (isset($_GET["searchBox"])) {
 
-        $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemName LIKE ?");
+        // Check if searchbox is numeric, If so: it's a Articlenumber
+        if (!is_numeric($_GET["searchBox"])) {
 
-        $likevar = "%" . $_GET["searchBox"] . "%";
+            $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemName LIKE ?");
 
-        mysqli_stmt_bind_param($statement, 's', $likevar);
-        mysqli_stmt_execute($statement);
-        $result = mysqli_stmt_get_result($statement);
+            $likevar = "%" . $_GET["searchBox"] . "%";
+
+            mysqli_stmt_bind_param($statement, 's', $likevar);
+            mysqli_stmt_execute($statement);
+            $result = mysqli_stmt_get_result($statement);
+        }
+        else {
+            $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemID = ?");
+
+            mysqli_stmt_bind_param($statement, 's', $_GET["searchBox"]);
+            mysqli_stmt_execute($statement);
+            $result = mysqli_stmt_get_result($statement);
+        }
     }
     else
     {
         $isset = false;
     }
-//        $result = mysqli_query($conn, $sql);
-//
-//        if (mysqli_num_rows($result) > 0)
-//        {
-//            while ($row = mysqli_fetch_assoc($result))
-//            {
-//                echo("name: " . $row["StockItemName"]);
-//            }
-//        }
 ?>
 
 <!DOCTYPE html>
@@ -48,24 +50,32 @@
 </div>
 
 
-<header> <h1>Items die op </h1> </header>
+<header> <h1></h1> </header>
 
 <div>
     <?php
         if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            ?>
-    <div class="card">
-        <img style="width:250px; height:250px" src="https://i.imgur.com/oxcR3dI.jpg">
-        <div class="container">
-            <?php print($row["StockItemName"]); ?>
-        </div>
-    </div>
+            while ($row = mysqli_fetch_assoc($result)) {
+                ?>
 
-    <?php
+                <div class="card">
+                    <img style="width:250px; height:250px" src="https://i.imgur.com/oxcR3dI.jpg">
+                    <div class="container">
+                        <?php print($row["StockItemName"]); ?> <br>
+                        <div id="itemPrice">
+                            <?php print("&#8364;" . $row["RecommendedRetailPrice"] . ",-"); ?>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+            }
         }
-    }
+        else {
+            ?>
+            <h1>No search results.</h1>
+            <?php
+        }
         ?>
 </div>
 
