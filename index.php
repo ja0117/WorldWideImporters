@@ -13,11 +13,11 @@ include_once("databasecon.php");
 <!-- Top navigation bar -->
 <div class="topnav">
     <a class="active" href="#home">Home</a>
-    <a href="#news">News</a>
+    <a href="#news">Search</a>
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
     <form id="search" action="us3.php">
-        <input type="text" name="searchBox" placeholder="Search for anything">
+        <input type="text" name="searchBox" placeholder="Search for anything" id="searchBox">
         <input type="submit" value="Search" id="searchButton">
     </form>
 </div>

@@ -39,7 +39,7 @@
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
     <form id="search" action="us3.php">
-        <input type="text" name="searchBox" placeholder="Search for anything">
+        <input type="text" name="searchBox" placeholder="Search for anything" id="searchBox">
         <input type="submit" value="Search" id="searchButton">
     </form>
 </div>
