@@ -1,17 +1,18 @@
-<?php
-include_once("databasecon.php");
-?>
+<?php include_once("databasecon.php"); ?>
+
+<!DOCTYPE html>
+<html>
 
 <!-- HTML head -->
 <?php include 'includes/head.php'; ?>
 
-<body>
 <!-- Nav bar -->
-<?php include 'includes/nav.php'; ?>
+<?php include 'includes/headernav.php'; ?>
+
+<body>
 
 <div id="page-container">
    <div id="content-wrap">
-
 
    <!-- Displaying all categories -->
     <?php
@@ -24,26 +25,25 @@ include_once("databasecon.php");
     JOIN stockitemstockgroups Cat ON Product.StockItemID = Cat.StockItemID
     WHERE StockGroupID = $category";
 
-
-
     $result = mysqli_query($conn, $products);
     $nameQuery = mysqli_query($conn, $categoryName);
 
-
     foreach ($result as $row) { ?>
         <div class="card">
-        <img src="img_avatar.jpg" alt="Avatar" style="width:100%">
-        <div class="container">
-        <h4><b><?= $row["StockItemName"]; ?></b></h4>
-        <p><?= $row["RecommendedRetailPrice"]; ?>
-        </div>
+            <img src="images/img_avatar.jpg" alt="Avatar" style="width:100%">
+            <div class="container">
+                <h4><b><?= $row["StockItemName"]; ?></b></h4>
+                <p><?= $row["RecommendedRetailPrice"]; ?>
+            </div>
         </div>
 
     <?php }; ?>
     </div>
 </div>
 
-<footer> Copyright &copy; 2019, Wide World Importers</footer>
-
 </body>
+
+<!-- Footer -->
+<?php include 'includes/footer.php'; ?>
+
 </html>
