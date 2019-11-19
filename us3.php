@@ -28,7 +28,7 @@
 <html>
 
 <!-- HTML head -->
-<?php include 'includes/head.php'; ?>
+<?php include 'includes/searchHead.html'; ?>
 
 <!-- Header & Nav bar -->
 <?php include 'includes/headernav.php'; ?>
@@ -41,7 +41,7 @@
             while ($row = mysqli_fetch_assoc($result)) {
                 ?>
                 <div class="card">
-                    <img style="width:250px; height:250px" src="https://i.imgur.com/oxcR3dI.jpg">
+                    <img style="width:250px; height:250px" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg">
                     <div class="container">
                         <?php print($row["StockItemName"]); ?> <br>
                         <div id="itemPrice">

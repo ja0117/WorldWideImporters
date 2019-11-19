@@ -4,7 +4,7 @@
 <html>
 
 <!-- HTML head -->
-<?php include 'includes/head.php'; ?>
+<?php include 'includes/searchHead.html'; ?>
 
 <!-- Nav bar -->
 <?php include 'includes/headernav.php'; ?>
@@ -30,10 +30,12 @@
 
     foreach ($result as $row) { ?>
         <div class="card">
-            <img src="images/img_avatar.jpg" alt="Avatar" style="width:100%">
+            <img style="width:250px; height:250px" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg">
             <div class="container">
                 <h4><b><?= $row["StockItemName"]; ?></b></h4>
-                <p><?= $row["RecommendedRetailPrice"]; ?>
+                <div id="itemPrice">
+                    <?php print("&#8364;" . $row["RecommendedRetailPrice"] . ",-"); ?>
+                </div>
             </div>
         </div>
 

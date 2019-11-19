@@ -4,7 +4,7 @@
 <html>
 
 <!-- HTML head -->
-<?php include 'includes/head.php'; ?>
+<?php include 'includes/searchHead.html'; ?>
 
 <!-- Header & Nav bar -->
 <?php include 'includes/headernav.php'; ?>
@@ -23,8 +23,9 @@
         foreach ($result as $row) { ?>
             <div class="card">
                 <a href="./CategoryPage.php?category=<?= $row['StockGroupID'];?>">
-                <img src="images/img_avatar.jpg" alt="Avatar" style="width:100%">
-                <div class="container">
+                    <img style="width:250px; height:250px" src="images/<?php print substr($row["StockGroupName"], 0, 3) ?>.jpg">
+
+                    <div class="container">
                     <h4><b><?= $row["StockGroupName"]; ?></b></h4>
                 </div>
             </div>

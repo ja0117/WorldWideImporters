@@ -1,7 +1,6 @@
 <header>
     <div class="topnav">
         <a class="active" href="index.php">Home</a>
-        <a href="#search">Search</a>
         <a href="categories.php">Categories</a>
         <a href="#about">About</a>
         <form id="search" action="us3.php">
