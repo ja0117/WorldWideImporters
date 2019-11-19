@@ -27,5 +27,6 @@
 }
 
 .button{
-    float: right;
+    align: right;
+    padding-top: 50px;
 }
