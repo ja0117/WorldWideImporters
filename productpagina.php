@@ -61,9 +61,9 @@ print($name)
     ?>
 </div>
 
-
-<button type="button" onclick="alert('dit is helaas nog niet af')">Add to cart</button>
-
+<div align="right">
+    <button class="button" onclick="alert('dit is helaas nog niet af')">Add to cart</button>
+</div>
 
 </body>
 
