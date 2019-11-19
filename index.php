@@ -1,31 +1,18 @@
-<?php
-include_once("databasecon.php");
+<?php include_once("databasecon.php"); ?>
 
-?>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style/indexStyle.css">
-    <title>World Wide Importers</title>
-</head>
+
+<!-- HTML head -->
+<?php include 'includes/head.php'; ?>
+
+<!-- Header & Nav bar -->
+<?php include 'includes/headernav.php'; ?>
+
 <body>
-<!-- Top navigation bar -->
-<div class="topnav">
-    <a class="active" href="#home">Home</a>
-    <a href="#news">News</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">About</a>
-    <form id="search" action="us3.php">
-        <input type="text" name="searchBox" placeholder="Search for anything">
-        <input type="submit" name="searchButton" value="Search" id="searchButton">
-    </form>
-</div>
-
-
-<header> <h1>Welkom bij WWI!</h1> </header>
 
 <div>
+    <h1> Welkom bij WWI!</h1>
     <!--
 
     $sql = 'SELECT * FROM customers';
@@ -39,8 +26,9 @@ include_once("databasecon.php");
     -->
 </div>
 
-<footer> Copyright &copy; 2019, Wide World Importers</footer>
-
 </body>
-</html>
 
+<!-- Footer -->
+<?php include 'includes/footer.php'; ?>
+
+</html>
