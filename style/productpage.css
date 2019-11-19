@@ -1,0 +1,27 @@
+.naam{
+    text-align: right;
+    font-size: 200%;
+    padding-right: 75px;
+    padding-top: 50px;
+
+}
+
+.prijs{
+    text-align: right;
+    font-size: 200%;
+    padding-right: 75px;
+}
+
+.desc{
+    text-align: right;
+    font-size: 150%;
+    padding-right: 75px;
+}
+
+.image{
+    border: 5px solid #000000;
+    margin-top: 50px;
+    margin-bottom: 1px;
+    margin-left: 25px;
+    float: left;
+}

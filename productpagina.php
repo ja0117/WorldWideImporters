@@ -33,7 +33,7 @@ else{
 <!-- Header & Nav bar -->
 <?php include 'includes/headernav.php'; ?>
 <head>
-    <link rel="stylesheet" href="productpage.css">
+    <link rel="stylesheet" href="style/productpage.css">
 </head>
 
 <body>
