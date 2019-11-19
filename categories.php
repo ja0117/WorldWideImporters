@@ -15,15 +15,15 @@ include_once("databasecon.php");
 
    <!-- Displaying all categories -->
     <?php
-    $sql = 'SELECT * FROM stockgroups';
+    $sql = "SELECT StockGroupID, StockGroupName FROM stockgroups ORDER BY StockGroupID";
     $result = mysqli_query($conn, $sql);
 
     foreach ($result as $row) { ?>
         <div class="card">
+        <a href="./CategoryPage.php?category=<?= $row['StockGroupID'];?>">
         <img src="img_avatar.jpg" alt="Avatar" style="width:100%">
         <div class="container">
         <h4><b><?= $row["StockGroupName"]; ?></b></h4>
-        <a href="./CategoryPage.php?category=<?= $row['StockGroupID'] ?>">
         </div>
         </div>
 

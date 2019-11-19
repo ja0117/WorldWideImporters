@@ -16,7 +16,9 @@ include_once("databasecon.php");
    <!-- Displaying all categories -->
     <?php
     $category = $_GET['category'];
-    $categoryName = 'SELECT StockGroupName FROM stockgroups WHERE StockGroupID = $category';
+
+    $categoryName = "SELECT StockGroupName FROM stockgroups WHERE StockGroupID = $category";
+
     $products = "SELECT Product.StockItemID, StockItemName, RecommendedRetailPrice
     FROM stockitems Product
     JOIN stockitemstockgroups Cat ON Product.StockItemID = Cat.StockItemID
@@ -25,6 +27,7 @@ include_once("databasecon.php");
 
 
     $result = mysqli_query($conn, $products);
+    $nameQuery = mysqli_query($conn, $categoryName);
 
 
     foreach ($result as $row) { ?>
