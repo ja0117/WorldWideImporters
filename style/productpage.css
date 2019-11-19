@@ -26,7 +26,15 @@
     float: left;
 }
 
-.button{
-    align: right;
-    padding-top: 50px;
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  margin-right: 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-size:20px;
+}
 }
