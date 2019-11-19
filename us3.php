@@ -1,7 +1,6 @@
 <?php
     include("databasecon.php");
 
-    $isset = true;
     if (isset($_GET["searchBox"])) {
 
         // Check if searchbox is numeric, If so: it's a Articlenumber
@@ -22,10 +21,6 @@
             mysqli_stmt_execute($statement);
             $result = mysqli_stmt_get_result($statement);
         }
-    }
-    else
-    {
-        $isset = false;
     }
 ?>
 
@@ -54,7 +49,7 @@
 
 <div>
     <?php
-        if (mysqli_num_rows($result) > 0) {
+        if (isset($_GET["searchBox"]) && mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 ?>
 
