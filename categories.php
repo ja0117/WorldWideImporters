@@ -11,7 +11,7 @@
 
 <body>
 
-<div id="page-container">
+<div class="page-container">
    <div id="content-wrap">
        <h2> Categorieën </h2>
 
