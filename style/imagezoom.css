@@ -1,0 +1,10 @@
+.image {
+    transition: transform .25s; /* Animation */
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.image:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
