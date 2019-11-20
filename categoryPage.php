@@ -41,7 +41,7 @@
     }
     //Checking if the user has chosen a display limit. Otherwise it uses a default value of 25
 
-    $loadAmount = isLimitSet();
+    $loadAmount = isLoadLimitSet();
 
     $category = $_GET['category'];
 
