@@ -25,6 +25,9 @@
     margin-bottom: 1px;
     margin-left: 25px;
     float: left;
+    width: 500px;
+    height: 500px;
+    background-image: url("../images/default.jpg");
 }
 
 .button {

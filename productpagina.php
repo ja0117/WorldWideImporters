@@ -37,33 +37,39 @@ else{
 </head>
 
 <body>
+<?php if (isset($_GET["product"]) && mysqli_num_rows($result) > 0) { ?>
 
-<div class="image">
-    <img src="images/<?php print(substr($name, 0, 3)); ?>.jpg" alt="Avatar" style="width:100%">
+    <div class="image">
+        <img src="images/<?php print(substr($name, 0, 3)); ?>.jpg" alt="Avatar" style="width:100%">
 
-</div>
+    </div>
 
-<div class="naam">
-<?php
-print($name)
-?>
-</div>
-
-<div class="prijs">
+    <div class="naam">
     <?php
-    print(  "€" .$price * $btw)
+    print($name)
     ?>
-</div>
+    </div>
 
-<div class="desc">
-    <?php
-    print($description)
-    ?>
-</div>
+    <div class="prijs">
+        <?php
+        print(  "€" .$price * $btw)
+        ?>
+    </div>
 
-<div align="right">
-    <button class="button" onclick="alert('dit is helaas nog niet af')">Add to cart</button>
-</div>
+    <div class="desc">
+        <?php
+        print($description)
+        ?>
+    </div>
+
+    <div align="right">
+        <button class="button" onclick="alert('dit is helaas nog niet af')">Add to cart</button>
+    </div>
+<?php }
+else { ?>
+
+<h1>Dit product bestaat helaas niet.</h1>
+<?php } ?>
 
 </body>
 
