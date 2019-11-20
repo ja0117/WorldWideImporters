@@ -15,7 +15,21 @@
   </div>
 </div>
 
-<?php
+<form method="post">
+
+  <select class="select-css" name="load" onchange='this.form.submit()'>>
+    <option value= "25" <?php if ($_POST['load'] == "25") echo 'selected="selected" '; ?>>25</option>
+    <option value="50" <?php if ($_POST['load'] == "50") echo 'selected="selected" '; ?>>50</option>
+    <option value="100" <?php if ($_POST['load'] == "100") echo 'selected="selected" '; ?>>100</option>
+  </select>
+  <noscript><input type="submit" value="Submit"></noscript>
+</form>
+
+
+
+   <!-- Displaying all categories -->
+   <?php
+
     
     function isLoadLimitSet()
     {
@@ -28,26 +42,11 @@
             }
             
     }
-    //Checking if the user has chosen a display limit. Otherwise it uses a default value of 25
+//Checking if the user has chosen a display limit. Otherwise it uses a default value of 25
 
-    $loadAmount = isLoadLimitSet();
-
-    ?>
-
-<form method="post">
-
-  <select class="select-css" name="load">
-    <option value= "25" <?php if ($loadAmount == "25") echo 'selected="selected" '; ?>>25</option>
-    <option value="50" <?php if ($loadAmount == "50") echo 'selected="selected" '; ?>>50</option>
-    <option value="100" <?php if ($loadAmount == "100") echo 'selected="selected" '; ?>>100</option>
-  </select>
-  <input type="submit" value="Submit">
-</form>
+$loadAmount = isLoadLimitSet();
 
 
-
-   <!-- Displaying all categories -->
-   <?php
 
     $category = $_GET['category'];
 
