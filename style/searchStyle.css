@@ -10,8 +10,6 @@
     color: white;
     width: 175px;
     height: 75px;
-
-
 }
 
 .click{
@@ -21,7 +19,6 @@
     width: 75px;
     height: 75px;
     padding-top: 20px;
-
 }
 
 
@@ -32,7 +29,6 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-
 }
 
 .topnav a:hover {
@@ -89,11 +85,17 @@ footer {
     text-align: center;
     padding: 10px;
     bottom: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
 }
 
 body {
-    margin:0px;
+    margin:0;
+}
+
+#page-container{
+    padding: 30px;
+    margin-bottom: 10px;
 }
 
 .card {
@@ -116,7 +118,7 @@ body {
     margin: 0px 10px 10px 10px;
     padding: 2px 16px 8px 8px;
     border: 1px solid black;
-
+    display: inline-block;
 }
 
 #itemPrice {
