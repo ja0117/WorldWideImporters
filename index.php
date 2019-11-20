@@ -12,7 +12,7 @@
 <body>
 
 <div>
-    <h1> Welkom bij WWI!</h1>
+    <h1><Marquee>Populaire producten - 24/7 geopend!</Marquee></h1>
 
     <?php
     $statement = mysqli_prepare($conn, "SELECT T.StockItemID, StockItemName, TaxRate, COUNT(T.StockItemID), UnitPrice 
