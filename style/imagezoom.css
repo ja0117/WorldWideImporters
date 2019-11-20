@@ -1,8 +1,5 @@
 .image {
     transition: transform .25s; /* Animation */
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
 }
 
 .image:hover {
