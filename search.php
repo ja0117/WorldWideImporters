@@ -35,6 +35,12 @@
 
 <body>
 
+<div style="font-size: 150%">
+<?php
+print("Je hebt gezocht op: " . $_GET["searchBox"]);
+?>
+</div>
+
 <div>
     <?php
         if (isset($_GET["searchBox"]) && mysqli_num_rows($result) > 0) {
