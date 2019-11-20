@@ -26,8 +26,9 @@
                     <img style="width:250px; height:250px" src="images/<?php print substr($row["StockGroupName"], 0, 3) ?>.jpg">
 
                     <div class="container">
-                    <h4><b><?= $row["StockGroupName"]; ?></b></h4>
-                </div>
+                        <h4><b><?= $row["StockGroupName"]; ?></b></h4>
+                    </div>
+                </a>
             </div>
 
         <?php }; ?>
