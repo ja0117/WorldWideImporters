@@ -16,13 +16,15 @@
 </div>
 
 <form method="post">
-  <select name="load">
-    <option value=25>25</option>
-    <option value=50>50</option>
-    <option value=100>100</option>
+
+  <select class="select-css" name="load" onchange='this.form.submit()'>
+    <option value=25 <?php if ($_POST['load'] == "25") echo 'selected="selected" '; ?>>25</option>
+    <option value=50 <?php if ($_POST['load'] == "50") echo 'selected="selected" '; ?>>50</option>
+    <option value=100 <?php if ($_POST['load'] == "100") echo 'selected="selected" '; ?>>100</option>
   </select>
-  <input type="submit" value="Submit">
+  <noscript><input type="submit" value="Submit"></noscript>
 </form>
+
 
 
    <!-- Displaying all categories -->
@@ -41,7 +43,7 @@
     }
     //Checking if the user has chosen a display limit. Otherwise it uses a default value of 25
 
-    $loadAmount = isLimitSet();
+    $loadAmount = isLoadLimitSet();
 
     $category = $_GET['category'];
 
