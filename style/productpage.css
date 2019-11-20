@@ -23,8 +23,11 @@
     border: 5px solid #000000;
     margin-top: 50px;
     margin-bottom: 1px;
-    margin-left: 25px;
+    margin-left: 200px;
     float: left;
+    width: 400px;
+    height: 400px;
+    background-image: url("../images/default.jpg");
 }
 
 .button {
