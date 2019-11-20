@@ -46,7 +46,7 @@
                     <div class="container">
                         <?php print($row["StockItemName"]); ?> <br>
                         <div id="itemPrice">
-                            <?php print("&#8364;" . $row["RecommendedRetailPrice"] . ",-"); ?>
+                            <?php print("&#8364;" . $row["UnitPrice"] . ",-"); ?>
                         </div>
                     </div>
                 </div>
