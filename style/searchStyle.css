@@ -82,15 +82,13 @@ h1 {
 }
 
 footer {
-    position: relative;
+    position: fixed;
     background: #333;
     color: #fff;
     text-align: center;
     padding: 10px;
-    margin-top: 40px;
-    bottom: 0px;
-    overflow: hidden;
-    width: calc(100% - 20px);
+    bottom: 0;
+    width: 100%;
 }
 
 body {

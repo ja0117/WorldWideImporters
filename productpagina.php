@@ -34,6 +34,7 @@ else{
 <?php include 'includes/headernav.php'; ?>
 <head>
     <link rel="stylesheet" href="style/productpage.css">
+    <link rel="stylesheet" href="style/imagezoom.css">
 </head>
 
 <body>

@@ -7,15 +7,42 @@
 <?php include 'includes/searchHead.html'; ?>
 
 <!-- Nav bar -->
-<?php include 'includes/headernav.php'; ?>
+<?php include 'includes/headernav.php';
+?>
 
 <body>
 
-<div id="page-container">
-   <div id="content-wrap">
+  </div>
+</div>
+
+<form method="post">
+  <select name="load">
+    <option value=25>25</option>
+    <option value=50>50</option>
+    <option value=100>100</option>
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
 
    <!-- Displaying all categories -->
     <?php
+    
+    function isLoadLimitSet()
+    {
+            if(isset($_POST['load']))
+            {
+                return $_POST['load'] ;
+            }
+            else{
+                return 25 ;
+            }
+            
+    }
+    //Checking if the user has chosen a display limit. Otherwise it uses a default value of 25
+
+    $loadAmount = isLoadLimitSet();
+
     $category = $_GET['category'];
 
     $categoryName = "SELECT StockGroupName FROM stockgroups WHERE StockGroupID = $category";
@@ -23,7 +50,7 @@
     $products = "SELECT Product.StockItemID, StockItemName, RecommendedRetailPrice
     FROM stockitems Product
     JOIN stockitemstockgroups Cat ON Product.StockItemID = Cat.StockItemID
-    WHERE StockGroupID = $category";
+    WHERE StockGroupID = $category LIMIT $loadAmount";
 
     $result = mysqli_query($conn, $products);
     $nameQuery = mysqli_query($conn, $categoryName);
