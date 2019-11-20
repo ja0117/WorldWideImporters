@@ -1,15 +1,15 @@
 <?php
-include_once("databasecon.php");
+include("databasecon.php");
 
 
-if (isset($_GET["test"])) {
+if (isset($_GET["product"])) {
     $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemID = ?");
 
-    mysqli_stmt_bind_param($statement, 'i', $_GET["test"]);
+    mysqli_stmt_bind_param($statement, 'i', $_GET["product"]);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
 
-    if (isset($_GET["test"])) {
+    if (isset($_GET["product"])) {
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $name = $row["StockItemName"];
@@ -39,7 +39,7 @@ else{
 <body>
 
 <div class="image">
-    <img src="images/img_avatar.jpg" alt="Avatar" style="width:100%">
+    <img src="images/<?php print(substr($name, 0, 3)); ?>.jpg" alt="Avatar" style="width:100%">
 
 </div>
 

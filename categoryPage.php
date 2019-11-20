@@ -29,6 +29,7 @@
     $nameQuery = mysqli_query($conn, $categoryName);
 
     foreach ($result as $row) { ?>
+        <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
         <div class="card">
             <img style="width:250px; height:250px" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg">
             <div class="container">
@@ -38,7 +39,7 @@
                 </div>
             </div>
         </div>
-
+        </a>
     <?php }; ?>
     </div>
 </div>

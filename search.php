@@ -40,6 +40,7 @@
         if (isset($_GET["searchBox"]) && mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 ?>
+                <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
                 <div class="card">
                     <img style="width:250px; height:250px" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg">
                     <div class="container">
@@ -49,6 +50,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
                 <?php
             }
         }
