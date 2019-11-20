@@ -22,7 +22,6 @@ if (isset($_GET["product"])) {
 
 }
 else{
-    print("Product niet gevonden!");
 }
 ?>
 <!DOCTYPE html>
