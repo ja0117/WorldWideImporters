@@ -15,16 +15,19 @@
     <h1> Welkom bij WWI!</h1>
 
     <?php
-    $statement = mysqli_prepare($conn, "SELECT StockItemName, RecommendedRetailPrice, COUNT(T.StockItemID) FROM stockitems S JOIN stockitemtransactions T ON S.StockItemID = T.StockItemID  GROUP BY T.StockItemID ORDER BY COUNT(T.StockItemID) desc LIMIT 5");
+    $statement = mysqli_prepare($conn, "SELECT StockItemName, TaxRate, COUNT(T.StockItemID), UnitPrice 
+FROM stockitems S JOIN stockitemtransactions T ON S.StockItemID = T.StockItemID  
+GROUP BY T.StockItemID ORDER BY COUNT(T.StockItemID) desc LIMIT 5");
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
     foreach ($result as $row) {
+        $btw = $row["TaxRate"] / 100 + 1;
         ?>
-        <div class="card"?>
-        <img style="Width: 250px; height: 250px;" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg">
+        <div class="card">
+        <i><img style="Width: 250px; height: 250px;" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg"></i>
         <div class="container">
             <h4><b><?php print($row["StockItemName"]); ?></b></h4>
-            <p><?php print("Prijs: ".$row["RecommendedRetailPrice"]); ?></p>
+            <p><?php print("Prijs: ".$row["UnitPrice"] * $btw); ?></p>
         </div>
         </div><?php } ?>
 
