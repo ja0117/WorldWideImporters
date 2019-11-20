@@ -22,9 +22,8 @@
     <option value="50" <?php if ($_POST['load'] == "50") echo 'selected="selected" '; ?>>50</option>
     <option value="100" <?php if ($_POST['load'] == "100") echo 'selected="selected" '; ?>>100</option>
   </select>
-  <noscript><input type="submit" value="Submit"></noscript>
+  <input type="submit" value="Submit">
 </form>
-
 
 
    <!-- Displaying all categories -->
