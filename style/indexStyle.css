@@ -2,8 +2,28 @@
 
 .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: #00ADEF;
 }
+
+.home{
+    background-color: #00ADEF;
+    color: white;
+    width: 175px;
+    height: 75px;
+
+
+}
+
+.click{
+
+    background-color: #00ADEF;
+    color: white;
+    width: 75px;
+    height: 75px;
+    padding-top: 20px;
+
+}
+
 
 .topnav a {
     float: left;
@@ -12,6 +32,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+
 }
 
 .topnav a:hover {
@@ -20,27 +41,32 @@
 }
 
 .topnav a.active {
-    background-color: #4CAF50;
+    background-color: #00ADEF;
     color: white;
 }
 
+
 #search {
-    float: left;
+    float: right;
+    color: #64656A;
 }
 
 #searchBox {
-    margin-top: 1px;
+    margin-top: 25px;
+    margin-right: 10px;
     padding: 15px 16px;
-    color: #000000;
-    width: 500px;
+    color: #64656A;
+    width: 250px;
+    height: 20px;
     border: none;
 }
 
 #searchButton {
-    float: right;
-    background: #333;
-    color: #f2f2f2;
-    padding: 14px 16px;
+    float: left;
+    background: #f2f2f2;
+    color: #4e4f54;
+    padding: 15px 16px;
+    margin-top: 25px;
     text-decoration: none;
     font-size: 17px;
     border: none;
@@ -52,16 +78,7 @@
 }
 
 footer {
-    position: sticky;
-    background: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    margin-top: 40px;
-    bottom: 0px;
-    overflow: hidden;
-    width: calc(100% - 20px);
-}
+    position: absolute; bottom: 0; left: 0; right: 0;}
 
 body {
     margin: 0px;
