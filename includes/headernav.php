@@ -4,9 +4,9 @@
         <a class="click" href="categories.php">Categories</a>
         <a class="click" href="#about">About</a>
         <a class="click" href="#search">Mijn Account</a>
-        <form id="search" action="us3.php">
+        <form id="search" action="search.php">
             <input type="text" name="searchBox" placeholder="Search for anything" id="searchBox">
-            <input type="image" src="images/searchbutton.png" height="20px"; width="20px"; name="searchButton" id="searchButton">
+            <input type="submit" style="width: 50px; height: 50px; background-color: aliceblue" id="searchButton" value="Go">
         </form>
     </div>
 </header>
