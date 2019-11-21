@@ -58,7 +58,6 @@ $loadAmount = isLoadLimitSet();
     WHERE StockGroupID = $category LIMIT $loadAmount";
 
     $result = mysqli_query($conn, $products);
-    $nameQuery = mysqli_query($conn, $categoryName);
 
     foreach ($result as $row) { ?>
         <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
