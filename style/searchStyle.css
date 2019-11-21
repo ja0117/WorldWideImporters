@@ -83,10 +83,11 @@ h1 {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     background: #333;
     color: #fff;
     text-align: center;
+    margin-top: 25vw;
     padding: 10px;
     bottom: 0;
     width: 100%;
@@ -103,6 +104,7 @@ body {
     display: inline-block;
     margin-top: 2vh;
     margin-left: 2vw;
+    margin-bottom: 50px;
     width: 250px;
     height: 150px;
 }
@@ -117,6 +119,7 @@ body {
     margin: 0px 10px 10px 10px;
     padding: 2px 16px 8px 8px;
     border: 1px solid black;
+    display: inline-block;
 
 }
 
