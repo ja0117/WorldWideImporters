@@ -1,6 +1,6 @@
 .naam{
     text-align: right;
-    font-size: 200%;
+    font-size: 250%;
     padding-right: 75px;
     padding-top: 50px;
 
@@ -31,7 +31,7 @@
 }
 
 .button {
-    background-color: #4CAF50;
+    background-color: #00ADEF;
     border: none;
     color: white;
     margin-right: 75px;
@@ -40,5 +40,5 @@
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    font-size:20px;
+    font-size:40px;
 }

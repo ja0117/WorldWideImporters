@@ -15,7 +15,7 @@
    <div id="content-wrap">
        <h2> Categorieën </h2>
 
-       <!-- Displaying all categories -->
+       <!-- Displaying all categories and their page links -->
         <?php
         $sql = "SELECT StockGroupID, StockGroupName FROM stockgroups ORDER BY StockGroupID";
         $result = mysqli_query($conn, $sql);
