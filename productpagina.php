@@ -16,6 +16,8 @@ if (isset($_GET["product"])) {
                 $price = $row["UnitPrice"];
                 $description = $row["MarketingComments"];
                 $btw = 1 + $row["TaxRate"] / 100;
+                $gewicht = $row["TypicalWeightPerUnit"];
+                $prijselders = $row["RecommendedRetailPrice"];
             }
         }
     }
@@ -52,12 +54,14 @@ else{
 
     <div class="prijs">
         <?php
-        print(  "€" .$price * $btw)
+        print("Adviesprijs: €" . $prijselders . "<br>");
+        print("Onze prijs: €" .$price * $btw ."<br>");
         ?>
     </div>
 
     <div class="desc">
         <?php
+        print("Gewicht: " .$gewicht ."kg <br>" );
         print($description)
         ?>
     </div>
