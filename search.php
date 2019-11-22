@@ -7,8 +7,8 @@
         if (!is_numeric($_GET["searchBox"])) {
 
             $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemName LIKE ?");
-
-            $likevar = "%" . $_GET["searchBox"] . "%";
+            $trimmed = trim($_GET["searchBox"]);
+            $likevar = "%" . $trimmed . "%";
 
             mysqli_stmt_bind_param($statement, 's', $likevar);
             mysqli_stmt_execute($statement);
