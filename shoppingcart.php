@@ -12,6 +12,9 @@
 
 <!-- Header & Nav bar -->
 <?php include 'includes/headernav.php'; ?>
+<head>
+    <link rel="stylesheet" href="style/shoppingcart.css">
+</head>
 
 <body>
 
