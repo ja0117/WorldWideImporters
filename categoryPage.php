@@ -4,7 +4,7 @@
 <html>
 
 <!-- HTML head -->
-<?php include 'includes/searchHead.html'; ?>
+<?php include 'includes/head.php'; ?>
 
 <!-- Nav bar -->
 <?php include 'includes/headernav.php';

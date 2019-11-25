@@ -1,3 +1,9 @@
+<?php
+
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -6,19 +12,12 @@
 
 <!-- Header & Nav bar -->
 <?php include 'includes/headernav.php'; ?>
+<head>
+    <link rel="stylesheet" href="style/shoppingcart.css">
+</head>
 
 <body>
 
-<div><h2> Over ons </h2></div>
-
-<div>
-</div>
-
-<div>
-</div>
-
-<div>
-</div>
 
 </body>
 

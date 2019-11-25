@@ -25,6 +25,12 @@
     padding-top: 20px;
 }
 
+.shoppingCart{
+    float: left;
+    margin-top: 30px;
+    background-color: #00ADEF;
+}
+
 .topnav a {
     float: left;
     color: #f2f2f2;
