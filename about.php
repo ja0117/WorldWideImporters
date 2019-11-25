@@ -2,7 +2,7 @@
 <html>
 
 <!-- HTML head -->
-<?php include 'includes/searchHead.html'; ?>
+<?php include 'includes/head.php'; ?>
 
 <!-- Header & Nav bar -->
 <?php include 'includes/headernav.php'; ?>
