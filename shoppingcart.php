@@ -5,8 +5,8 @@
 
     if (isset($_POST["add_to_cart"])) {
          if (isset($_SESSION["shopping_cart"])) {
-               $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-               if (!in_array($_GET["id"], $item_array_id)) {
+               $item_array_id = array_push($_SESSION["shopping_cart"], "item_id", "item_name", "item_price", "item_quantity");
+               if (in_array($_GET["id"], $item_array_id)) {
                    $count = count($_SESSION["shopping_cart"]);
                    $item_array = array(
                        'item_id'             =>     $_GET["id"],
@@ -38,9 +38,10 @@
             {
                 print_r($_SESSION["shopping_cart"]);
 
-                if($values["item_id"] == $_POST["id"])
+                if($values["item_id"] == $_POST["remove_from_cart"])
                 {
                     unset($_SESSION["shopping_cart"][$keys]);
+                    return;
                 }
             }
 
@@ -116,7 +117,6 @@
                             <td><?php echo $values["item_quantity"]; ?></td>
                             <td>$ <?php echo $values["item_price"]; ?></td>
                             <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
-                            <td><a href="shoppingcart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span>Remove</span></a></td>
                             <td> <input type="submit" name="remove_from_cart" value="<?php echo $values["item_id"]; ?>"> </td>
                         </tr>
                     </form>
