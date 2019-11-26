@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <input type="text" name="quantity" value="1" >
+            <input type="text" name="quantity" value="1">
             <input type="hidden" name="hidden_id" value="<?php print $row["StockItemID"]; ?>" >
             <input type="submit" name="add_to_cart" value="<?php print $row["StockItemID"]; ?>" >
             <input type="submit" name="remove_to_cart" value="<?php print $row["StockItemID"]; ?>" >
