@@ -1,11 +1,12 @@
 <?php
 
     include_once("databasecon.php");
+    session_start();
 
     if (isset($_POST["add_to_cart"])) {
          if (isset($_SESSION["shopping_cart"])) {
                $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-               if (!in_array($_GET["StockItemId"], $item_array_id)) {
+               if (!in_array($_GET["id"], $item_array_id)) {
                    $count = count($_SESSION["shopping_cart"]);
                    $item_array = array(
                        'item_id'             =>     $_GET["id"],
@@ -16,8 +17,6 @@
                    $_SESSION["shopping_cart"][$count] = $item_array;
                }
                else {
-                   echo '<script>alert("Item Already Added")</script>';
-                   echo '<script>window.location="shoppingcart.php"</script>';
                }
          }
          else {
@@ -40,8 +39,6 @@
                 if($values["item_id"] == $_GET["id"])
                 {
                     unset($_SESSION["shopping_cart"][$keys]);
-                    echo '<script>alert("Item Removed")</script>';
-                    echo '<script>window.location="index.php"</script>';
                 }
             }
         }
@@ -64,10 +61,13 @@
 
 <div class="page-container">
 
-    <?php $products = "SELECT Product.StockItemID, StockItemName, RecommendedRetailPrice
+    <?php
+    $rand = rand(1,240);
+
+    $products = "SELECT Product.StockItemID, StockItemName, RecommendedRetailPrice
     FROM stockitems Product
     JOIN stockitemstockgroups Cat ON Product.StockItemID = Cat.StockItemID
-    LIMIT 4";
+    WHERE Product.StockItemID= $rand LIMIT 5";
 
     $result = mysqli_query($conn, $products);
 
@@ -120,7 +120,7 @@
                 }
                 ?>
                 <tr>
-                    <td colspan="3" align="right">Total</td>
+                    <td align="right">Total</td>
                     <td align="right">$ <?php echo number_format($total, 2); ?></td>
                     <td></td>
                 </tr>
