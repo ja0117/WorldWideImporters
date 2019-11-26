@@ -30,18 +30,20 @@
          }
     }
 
-    if(isset($_GET["action"]))
+    if(isset($_POST["remove_from_cart"]))
     {
-        if($_GET["action"] == "delete")
-        {
+
+
             foreach($_SESSION["shopping_cart"] as $keys => $values)
             {
-                if($values["item_id"] == $_GET["id"])
+                print_r($_SESSION["shopping_cart"]);
+
+                if($values["item_id"] == $_POST["id"])
                 {
                     unset($_SESSION["shopping_cart"][$keys]);
                 }
             }
-        }
+
     }
 ?>
 
@@ -108,13 +110,16 @@
                 foreach($_SESSION["shopping_cart"] as $keys => $values)
                 {
                     ?>
-                    <tr>
-                        <td><?php echo $values["item_name"]; ?></td>
-                        <td><?php echo $values["item_quantity"]; ?></td>
-                        <td>$ <?php echo $values["item_price"]; ?></td>
-                        <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
-                        <td><a href="shoppingcart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span>Remove</span></a></td>
-                    </tr>
+                    <form method="post" action="">
+                        <tr>
+                            <td><?php echo $values["item_name"]; ?></td>
+                            <td><?php echo $values["item_quantity"]; ?></td>
+                            <td>$ <?php echo $values["item_price"]; ?></td>
+                            <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
+                            <td><a href="shoppingcart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span>Remove</span></a></td>
+                            <td> <input type="submit" name="remove_from_cart" value="<?php echo $values["item_id"]; ?>"> </td>
+                        </tr>
+                    </form>
                     <?php
                     $total = $total + ($values["item_quantity"] * $values["item_price"]);
                 }
