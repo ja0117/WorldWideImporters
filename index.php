@@ -12,7 +12,7 @@
 <body>
 
 <div>
-    <h1><Marquee>Populaire producten - 24/7 geopend!</Marquee></h1>
+    <h1><marquee behavior="alternate">Populaire producten - Webshop 24/7 geopend! - De aller goedkoopste!</marquee></h1>
 <!--This fetches the products with the most sales and orders them by quantity starting at the highest one. Limiting the query at 5        -->
     <?php
     $statement = mysqli_prepare($conn, "SELECT T.StockItemID, StockItemName, TaxRate, COUNT(T.StockItemID), UnitPrice 
@@ -32,7 +32,7 @@ GROUP BY T.StockItemID ORDER BY COUNT(T.StockItemID) desc LIMIT 5");
         </a>
                 <p>
                     <?php print("Prijs: ".$row["UnitPrice"] * $btw); ?> <br>
-                    <input id="addToCartButton" type="button" value="Add to cart +">
+                    <input id="addToCartButton" type="button" value="Toevoegen +">
                 </p>
             </div>
             </div>
