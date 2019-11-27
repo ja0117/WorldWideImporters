@@ -4,7 +4,7 @@
 <html>
 
 <!-- HTML head -->
-<?php include 'includes/searchHead.html'; ?>
+<?php include 'includes/head.php'; ?>
 
 <!-- Nav bar -->
 <?php include 'includes/headernav.php';
@@ -40,9 +40,11 @@
             else{
                 return 25 ;
             }
-            
+
     }
 
+
+    //print substr($row["StockItemName"], 0, 3)
 $loadAmount = isLoadLimitSet();
 
 
@@ -62,9 +64,9 @@ $loadAmount = isLoadLimitSet();
     foreach ($result as $row) { ?>
         <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
         <div class="card">
-            <img style="width:250px; height:250px" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg">
+            <img style="width:250px; height:250px" src="images/<?=$category?>.jpg">
             <div class="container">
-                <h4><b><?= $row["StockItemName"]; ?></b></h4>
+                <h4><b><?= $row["StockItemName"];?></b></h4>
                 <div id="itemPrice">
                     <?php print("&#8364;" . $row["RecommendedRetailPrice"] . ",-"); ?>
                 </div>

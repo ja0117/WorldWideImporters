@@ -1,34 +1,43 @@
-
-
 .topnav {
     overflow: hidden;
     background-color: #00ADEF;
 }
 
-.home{
-    background-color: #00ADEF;
-    color: white;
+.rounded-corners{
     width: 175px;
     height: 75px;
+    border: 2px solid black;
+    border-radius: 15px
+}
+.rounded-corners-left{
+    border-radius: 15px 0 0 15px;
+}
+.rounded-corners-right{
+    border-radius: 0 15px 15px 0;
 }
 
 .click{
-
+    margin-top: 25px;
     background-color: #00ADEF;
     color: white;
-    width: 75px;
-    height: 75px;
+    width: fit-content;
+    height: fit-content;
     padding-top: 20px;
 }
 
+.shoppingCart{
+    float: left;
+    margin-top: 30px;
+    background-color: #00ADEF;
+}
 
 .topnav a {
     float: left;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 .topnav a:hover {
@@ -50,22 +59,24 @@
 #searchBox {
     margin-top: 25px;
     margin-right: 10px;
+    text-align: center;
     padding: 15px 16px;
-    color: #64656A;
-    width: 250px;
+    width: 150px;
     height: 20px;
     border: none;
+    border-top:2px solid black;    
+    border-right: 2px solid black; 
+    border-bottom: 2px solid black;
 }
 
 #searchButton {
     float: left;
-    background: #f2f2f2;
-    color: #4e4f54;
-    padding: 15px 16px;
     margin-top: 25px;
-    text-decoration: none;
-    font-size: 17px;
-    border: none;
+    width: 50px;
+    height: 50px;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
 }
 
 #searchButton:hover {
@@ -117,7 +128,7 @@ body {
 /* Add some padding inside the card container */
 .container {
     margin: 0px 10px 10px 10px;
-    padding: 2px 16px 8px 8px;
+    padding: 2px 8px 8px 8px;
     border: 1px solid black;
     display: inline-block;
 }
@@ -170,4 +181,14 @@ img {
 }
 .select-css option {
     font-weight:normal;
+}
+
+#addToCartButton {
+    float: right;
+    background-color: limegreen;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    cursor: pointer;
 }

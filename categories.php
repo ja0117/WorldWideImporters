@@ -4,7 +4,7 @@
 <html>
 
 <!-- HTML head -->
-<?php include 'includes/searchHead.html'; ?>
+<?php include 'includes/head.php'; ?>
 
 <!-- Header & Nav bar -->
 <?php include 'includes/headernav.php'; ?>
@@ -24,7 +24,7 @@
         <div class="container">
             <div class="card">
                 <a href="./CategoryPage.php?category=<?= $row['StockGroupID'];?>">
-                    <img style="width:250px; height:250px" src="images/<?php print substr($row["StockGroupName"], 0, 3) ?>.jpg">
+                    <img style="width:250px; height:250px" src="images/<?php print ($row['StockGroupID']) ?>.jpg">
 
                     
                     <h4><b><?= $row["StockGroupName"]; ?></b></h4></a>

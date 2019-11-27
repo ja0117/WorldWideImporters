@@ -29,10 +29,14 @@ GROUP BY T.StockItemID ORDER BY COUNT(T.StockItemID) desc LIMIT 5");
             <i><img style="Width: 250px; height: 250px;" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg"></i>
             <div class="container">
                 <h4><b><?php print($row["StockItemName"]); ?></b></h4>
-                <p><?php print("Prijs: ".$row["UnitPrice"] * $btw); ?></p>
-            </div>
-            </div>
         </a>
+                <p>
+                    <?php print("Prijs: ".$row["UnitPrice"] * $btw); ?> <br>
+                    <input id="addToCartButton" type="button" value="Add to cart +">
+                </p>
+            </div>
+            </div>
+
             <?php } ?>
 
 </div>
