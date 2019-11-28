@@ -1,8 +1,9 @@
 <?php
 
     include_once("databasecon.php");
-    if(session_status() == PHP_SESSION_NONE)
+    if(session_status() === PHP_SESSION_NONE) {
         session_start();
+    }
 
     if (empty($_SESSION["shoppingCart"])) {
         $_SESSION["shoppingCart"] = array();
@@ -15,24 +16,18 @@
             "item_quantity"     =>    $_POST["quantity"],
             "item_productprice" =>    $_POST["hidden_productprice"]
         );
-        foreach ($_SESSION["shoppingCart"] as $itemdata) {
-            if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
-                $itemdata["item_quantity"] += 1;
-            }
-        }
         array_push($_SESSION["shoppingCart"], $itemdata);
     }
 
-    if (isset($_POST["remove_to_cart"])) {
-        foreach ($_SESSION["shoppingCart"] as $keys => $itemdata) {
+    if (isset($_POST["remove_from_cart"])) {
+        foreach ($_SESSION["shoppingCart"] as $itemdata) {
             if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
-                unset($itemdata["item_id"]);
+                unset($itemdata["item_productid"]);
             }
         }
     }
 
     print_r($_SESSION["shoppingCart"]);
-
 
 ?>
 
@@ -54,9 +49,9 @@
 
     <?php
 
-    $products = "SELECT Product.StockItemID, StockItemName, RecommendedRetailPrice, StockGroupID
-    FROM stockitems Product
-    JOIN stockitemstockgroups Cat ON Product.StockItemID = Cat.StockItemID
+    $products = "SELECT si.StockItemID, StockItemName, UnitPrice, StockGroupID
+    FROM stockitems si
+    JOIN stockitemstockgroups sisg ON si.StockItemID = sisg.StockItemID
     LIMIT 5";
 
     $result = mysqli_query($conn, $products);
@@ -65,20 +60,20 @@
     <div class="card">
         <form method="post" action="">
             <div>
-                <img style="width:250px; height:250px" src="images/<?= $row['StockGroupID'] ?>.jpg">
+                <img style="width:250px; height:250px" src="images/.jpg">
                 <div class="container">
                     <h4><b><?= $row["StockItemName"]; ?></b></h4>
                     <div id="itemPrice">
-                        <?php print("&#8364;" . $row["RecommendedRetailPrice"] . ",-"); ?>
+                        <?php print("&#8364;" . $row["UnitPrice"] . ",-"); ?>
                     </div>
                 </div>
             </div>
             <input type="text" name="quantity" value="1">
-            <input type="hidden" name="hidden_productid" value="<?php print $row['StockGroupID']; ?>" >
-            <input type="hidden" name="hidden_productname" value="<?php print $row['StockItemName']; ?>">
-            <input type="hidden" name="hidden_productprice" value="<?php print $row['RecommendedRetailPrice']; ?>">
+            <input type="hidden" name="hidden_productid" value="<?php print $row["StockItemID"]; ?>" >
+            <input type="hidden" name="hidden_productname" value="<?php print $row["StockItemName"]; ?>">
+            <input type="hidden" name="hidden_productprice" value="<?php print $row["UnitPrice"]; ?>">
             <input type="submit" name="add_to_cart" value="+" >
-            <input type="submit" name="remove_to_cart" value="-" >
+            <input type="submit" name="remove_from_cart" value="-" >
         </form>
     </div>
     <?php }; ?>
@@ -87,7 +82,7 @@
             <tr>
                 <th>Artikelnummer</th>
                 <th>Product naam</th>
-                <th>Quantity</th>
+                <th>Hoeveelheid</th>
                 <th>Prijs</th>
             </tr>
             <?php
