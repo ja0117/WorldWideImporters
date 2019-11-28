@@ -9,7 +9,7 @@
 
     if (isset($_POST["add_to_cart"])) {
         $itemdata = array (
-            "item_id"    =>    $_POST["add_to_cart"],
+            "item_id"    =>    $_POST["hidden_id"],
             "quantity"   =>    $_POST["quantity"]
         );
         array_push($_SESSION["shoppingCart"], $itemdata);
@@ -18,7 +18,7 @@
     if (isset($_POST["remove_to_cart"])) {
         foreach ($_SESSION["shoppingCart"] as $keySession => $itemdata) {
             foreach ($itemdata as $keyData => $valueData) {
-                if ($keyData === $_POST["remove_to_cart"]) {
+                if ($keyData === $_POST["hidden_id"]) {
                     unset($_SESSION["shoppingCart"] ["item_id"]);
                 }
             }
@@ -68,8 +68,8 @@
             </div>
             <input type="text" name="quantity" value="1">
             <input type="hidden" name="hidden_id" value="<?php print $row["StockItemID"]; ?>" >
-            <input type="submit" name="add_to_cart" value="<?php print $row["StockItemID"]; ?>" >
-            <input type="submit" name="remove_to_cart" value="<?php print $row["StockItemID"]; ?>" >
+            <input type="submit" name="add_to_cart" value="+" >
+            <input type="submit" name="remove_to_cart" value="-" >
         </form>
     </div>
     <?php }; ?>
