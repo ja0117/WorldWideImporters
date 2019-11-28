@@ -1,7 +1,8 @@
 <?php
 
     include_once("databasecon.php");
-    session_start();
+    if(session_status() == PHP_SESSION_NONE)
+        session_start();
 
     if (empty($_SESSION["shoppingCart"])) {
         $_SESSION["shoppingCart"] = array();
@@ -9,8 +10,10 @@
 
     if (isset($_POST["add_to_cart"])) {
         $itemdata = array (
-            "item_id"    =>    $_POST["hidden_id"],
-            "quantity"   =>    $_POST["quantity"]
+            "item_productid"    =>    $_POST["hidden_productid"],
+            "item_productname"  =>    $_POST["hidden_productname"],
+            "item_quantity"     =>    $_POST["quantity"],
+            "item_productprice" =>    $_POST["hidden_productprice"]
         );
         array_push($_SESSION["shoppingCart"], $itemdata);
     }
@@ -65,13 +68,36 @@
                 </div>
             </div>
             <input type="text" name="quantity" value="1">
-            <input type="hidden" name="hidden_id" value="<?php print $row["StockItemID"]; ?>" >
+            <input type="hidden" name="hidden_productid" value="<?php print $row['StockGroupID']; ?>" >
+            <input type="hidden" name="hidden_productname" value="<?php print $row['StockItemName']; ?>">
+            <input type="hidden" name="hidden_productprice" value="<?php print $row['RecommendedRetailPrice']; ?>">
             <input type="submit" name="add_to_cart" value="+" >
             <input type="submit" name="remove_to_cart" value="-" >
         </form>
     </div>
     <?php }; ?>
+    <div id="cartOverview">
+        <table border="1px solid black">
+            <tr>
+                <th>Artikelnummer</th>
+                <th>Product naam</th>
+                <th>Quantity</th>
+                <th>Prijs</th>
+            </tr>
+            <?php
+            foreach ($_SESSION['shoppingCart'] as $key=>$value) { ?>
+            <tr>
+                <?php
+                foreach ($value as $key2 => $value2) { ?>
 
+                        <td><?php echo $value2; ?></td>
+                    <?php
+                }
+            }
+            ?>
+            </tr>
+        </table>
+    </div>
 </div>
 
 </body>
