@@ -15,6 +15,11 @@
             "item_quantity"     =>    $_POST["quantity"],
             "item_productprice" =>    $_POST["hidden_productprice"]
         );
+        foreach ($_SESSION["shoppingCart"] as $itemdata) {
+            if ($itemdata["item_id"] === $_POST["hidden_id"]) {
+                $itemdata["quantity"] += 1;
+            }
+        }
         array_push($_SESSION["shoppingCart"], $itemdata);
     }
 
