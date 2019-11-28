@@ -16,11 +16,9 @@
     }
 
     if (isset($_POST["remove_to_cart"])) {
-        foreach ($_SESSION["shoppingCart"] as $keySession => $itemdata) {
-            foreach ($itemdata as $keyData => $valueData) {
-                if ($keyData === $_POST["hidden_id"]) {
-                    unset($_SESSION["shoppingCart"] ["item_id"]);
-                }
+        foreach ($_SESSION["shoppingCart"] as $keys => $itemdata) {
+            if ($itemdata["item_id"] === $_POST["hidden_id"]); {
+                unset($itemdata["item_id"]);
             }
         }
     }
