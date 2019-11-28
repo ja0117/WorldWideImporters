@@ -16,8 +16,8 @@
             "item_productprice" =>    $_POST["hidden_productprice"]
         );
         foreach ($_SESSION["shoppingCart"] as $itemdata) {
-            if ($itemdata["item_id"] === $_POST["hidden_id"]) {
-                $itemdata["quantity"] += 1;
+            if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
+                $itemdata["item_quantity"] += 1;
             }
         }
         array_push($_SESSION["shoppingCart"], $itemdata);
@@ -25,13 +25,14 @@
 
     if (isset($_POST["remove_to_cart"])) {
         foreach ($_SESSION["shoppingCart"] as $keys => $itemdata) {
-            if ($itemdata["item_id"] === $_POST["hidden_id"]); {
+            if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
                 unset($itemdata["item_id"]);
             }
         }
     }
 
     print_r($_SESSION["shoppingCart"]);
+
 
 ?>
 
