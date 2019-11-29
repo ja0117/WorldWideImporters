@@ -4,10 +4,24 @@ include("databasecon.php");
 
 if (isset($_GET["product"])) {
     $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemID = ?");
+    $statement2 = mysqli_prepare($conn, "SELECT QuantityOnHand FROM stockitemholdings WHERE StockItemID = ?");
 
     mysqli_stmt_bind_param($statement, 'i', $_GET["product"]);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
+
+    mysqli_stmt_bind_param($statement2, 'i', $_GET["product"]);
+    mysqli_stmt_execute($statement2);
+    $result2 = mysqli_stmt_get_result($statement2);
+
+    if (isset($_GET["product"])) {
+        if (mysqli_num_rows($result2) > 0) {
+            while ($row2 = mysqli_fetch_assoc($result2)) {
+                $voorraad = $row2["QuantityOnHand"];
+            }
+        }
+    }
+
 
     if (isset($_GET["product"])) {
         if (mysqli_num_rows($result) > 0) {
@@ -48,13 +62,22 @@ else{
 
     <div class="naam">
     <?php
-    print($name)
+    print($name . "<br>")
     ?>
+        <span style="font-size: 75%">
+            <?php        if($voorraad >= 1){
+            print($voorraad . " stuks op voorraad! <br>");
+             }
+              else{
+            print("Product niet meer op voorraad! <br>");
+        }
+        ?>
+        </span>
     </div>
 
     <div class="prijs">
         <?php
-        print("Adviesprijs: €" . $prijselders . "<br>");
+        print("<br> Adviesprijs: €" . $prijselders . "<br>");
         print("Onze prijs: €" .$price * $btw ."<br>");
         ?>
     </div>
@@ -62,7 +85,7 @@ else{
     <div class="desc">
         <?php
         print("Gewicht: " .$gewicht ."kg <br>" );
-        print($description)
+        print($description);
         ?>
     </div>
 
