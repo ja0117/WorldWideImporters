@@ -5,6 +5,7 @@ include("databasecon.php");
 if (isset($_GET["product"])) {
     $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemID = ?");
     $statement2 = mysqli_prepare($conn, "SELECT QuantityOnHand FROM stockitemholdings WHERE StockItemID = ?");
+    $statement3 = mysqli_prepare($conn, "SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ?");
 
     mysqli_stmt_bind_param($statement, 'i', $_GET["product"]);
     mysqli_stmt_execute($statement);
@@ -13,6 +14,21 @@ if (isset($_GET["product"])) {
     mysqli_stmt_bind_param($statement2, 'i', $_GET["product"]);
     mysqli_stmt_execute($statement2);
     $result2 = mysqli_stmt_get_result($statement2);
+
+     mysqli_stmt_bind_param($statement3, 'i', $_GET["product"]);
+     mysqli_stmt_execute($statement3);
+     $result3 = mysqli_stmt_get_result($statement3);
+
+    if (isset($_GET["product"])) {
+        if (mysqli_num_rows($result3) > 0) {
+            while ($row3 = mysqli_fetch_assoc($result3)) {
+                $category = $row3["StockGroupID"];
+            }
+        }
+    }
+
+
+
 
     if (isset($_GET["product"])) {
         if (mysqli_num_rows($result2) > 0) {
@@ -56,7 +72,7 @@ else{
 <?php if (isset($_GET["product"]) && mysqli_num_rows($result) > 0) { ?>
 
     <div class="image">
-        <img src="images/<?php print(substr($name, 0, 3)); ?>.jpg" alt="Avatar" style="width:100%">
+        <img style="width:400px; height:400px" src="images/<?=$category?>.jpg">
 
     </div>
 
