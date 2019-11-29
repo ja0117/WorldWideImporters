@@ -9,13 +9,22 @@
         $_SESSION["shoppingCart"] = array();
     }
 
+    $itemdata = array (
+        "item_productid"    =>    $_POST["hidden_productid"],
+        "item_productname"  =>    $_POST["hidden_productname"],
+        "item_quantity"     =>    $_POST["quantity"],
+        "item_productprice" =>    $_POST["hidden_productprice"] * $_POST["quantity"]
+    );
+
     if (isset($_POST["add_to_cart"])) {
-        $itemdata = array (
-            "item_productid"    =>    $_POST["hidden_productid"],
-            "item_productname"  =>    $_POST["hidden_productname"],
-            "item_quantity"     =>    $_POST["quantity"],
-            "item_productprice" =>    $_POST["hidden_productprice"]
-        );
+        foreach ($_SESSION["shoppingCart"] as $itemdata) {
+            foreach ($itemdata as $keys => $values) {
+                if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
+                    $itemdata["item_quantity"] += $_POST["quantity"];
+                }
+            }
+        }
+
         array_push($_SESSION["shoppingCart"], $itemdata);
     }
 
