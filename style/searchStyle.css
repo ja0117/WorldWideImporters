@@ -127,7 +127,7 @@ body {
 /* Add some padding inside the card container */
 .container {
     margin: 0px 10px 10px 10px;
-    padding: 2px 16px 8px 8px;
+    padding: 2px 8px 8px 8px;
     border: 1px solid black;
     display: inline-block;
 }
@@ -180,4 +180,14 @@ img {
 }
 .select-css option {
     font-weight:normal;
+}
+
+#addToCartButton {
+    float: right;
+    background-color: limegreen;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    cursor: pointer;
 }

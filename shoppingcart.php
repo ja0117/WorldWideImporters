@@ -1,48 +1,43 @@
 <?php
 
     include_once("databasecon.php");
-    session_start();
-
-    if (isset($_POST["add_to_cart"])) {
-         if (isset($_SESSION["shopping_cart"])) {
-               $item_array_id = array_column($_SESSION["shopping_cart"], "item_id");
-               if (!in_array($_GET["id"], $item_array_id)) {
-                   $count = count($_SESSION["shopping_cart"]);
-                   $item_array = array(
-                       'item_id'             =>     $_GET["id"],
-                       'item_name'           =>     $_POST["hidden_name"],
-                       'item_price'          =>     $_POST["hidden_price"],
-                       'item_quantity'       =>     $_POST["quantity"]
-                   );
-                   $_SESSION["shopping_cart"][$count] = $item_array;
-               }
-               else {
-               }
-         }
-         else {
-             $item_array = array (
-                 'item_id'          => $_GET["id"],
-                 'item_name'        => $_POST["hidden_name"],
-                 'item_price'       => $_POST["hidden_price"],
-                 'item_quantity'    => $_POST["quantity"]
-             );
-             $_SESSION["shopping_cart"] [0] = $item_array;
-         }
+    if(session_status() === PHP_SESSION_NONE) {
+        session_start();
     }
 
-    if(isset($_GET["action"]))
-    {
-        if($_GET["action"] == "delete")
-        {
-            foreach($_SESSION["shopping_cart"] as $keys => $values)
-            {
-                if($values["item_id"] == $_GET["id"])
-                {
-                    unset($_SESSION["shopping_cart"][$keys]);
+    if (empty($_SESSION["shoppingCart"])) {
+        $_SESSION["shoppingCart"] = array();
+    }
+
+    $itemdata = array (
+        "item_productid"    =>    $_POST["hidden_productid"],
+        "item_productname"  =>    $_POST["hidden_productname"],
+        "item_quantity"     =>    $_POST["quantity"],
+        "item_productprice" =>    $_POST["hidden_productprice"] * $_POST["quantity"]
+    );
+
+    if (isset($_POST["add_to_cart"])) {
+        foreach ($_SESSION["shoppingCart"] as $itemdata) {
+            foreach ($itemdata as $keys => $values) {
+                if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
+                    $itemdata["item_quantity"] += $_POST["quantity"];
                 }
             }
         }
+
+        array_push($_SESSION["shoppingCart"], $itemdata);
     }
+
+    if (isset($_POST["remove_from_cart"])) {
+        foreach ($_SESSION["shoppingCart"] as $itemdata) {
+            if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
+                unset($itemdata["item_productid"]);
+            }
+        }
+    }
+
+    print_r($_SESSION["shoppingCart"]);
+
 ?>
 
 <!DOCTYPE html>
@@ -62,71 +57,55 @@
 <div class="page-container">
 
     <?php
-    $rand = rand(1,240);
 
-    $products = "SELECT Product.StockItemID, StockItemName, RecommendedRetailPrice
-    FROM stockitems Product
-    JOIN stockitemstockgroups Cat ON Product.StockItemID = Cat.StockItemID
-    WHERE Product.StockItemID= $rand LIMIT 5";
+    $products = "SELECT si.StockItemID, StockItemName, UnitPrice, StockGroupID
+    FROM stockitems si
+    JOIN stockitemstockgroups sisg ON si.StockItemID = sisg.StockItemID
+    LIMIT 5";
 
     $result = mysqli_query($conn, $products);
 
     foreach ($result as $row) { ?>
     <div class="card">
-        <form method="post" action="shoppingcart.php?action=add&id="<?php print $row["StockItemID"]; ?> >
+        <form method="post" action="">
             <div>
-                <img style="width:250px; height:250px" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg">
+                <img style="width:250px; height:250px" src="images/.jpg">
                 <div class="container">
                     <h4><b><?= $row["StockItemName"]; ?></b></h4>
                     <div id="itemPrice">
-                        <?php print("&#8364;" . $row["RecommendedRetailPrice"] . ",-"); ?>
+                        <?php print("&#8364;" . $row["UnitPrice"] . ",-"); ?>
                     </div>
                 </div>
             </div>
-            <input type="text" name="quantity" value="1" >
-            <input type="hidden" name="hidden_name" value="<?php print $row["StockItemName"]; ?>" >
-            <input type="hidden" name="hidden_price" value="<?php print $row["RecommendedRetailPrice"]; ?>" >
-            <input type="submit" name="add_to_cart" value="Voeg toe aan winkelmand">
+            <input type="text" name="quantity" value="1">
+            <input type="hidden" name="hidden_productid" value="<?php print $row["StockItemID"]; ?>" >
+            <input type="hidden" name="hidden_productname" value="<?php print $row["StockItemName"]; ?>">
+            <input type="hidden" name="hidden_productprice" value="<?php print $row["UnitPrice"]; ?>">
+            <input type="submit" name="add_to_cart" value="+" >
+            <input type="submit" name="remove_from_cart" value="-" >
         </form>
     </div>
     <?php }; ?>
-
-    <h3>Order Details</h3>
-    <div>
-        <table>
+    <div id="cartOverview">
+        <table border="1px solid black">
             <tr>
-                <th width="40%">Item Name</th>
-                <th width="10%">Quantity</th>
-                <th width="20%">Price</th>
-                <th width="15%">Total</th>
-                <th width="5%">Action</th>
+                <th>Artikelnummer</th>
+                <th>Product naam</th>
+                <th>Hoeveelheid</th>
+                <th>Prijs</th>
             </tr>
             <?php
-            if(!empty($_SESSION["shopping_cart"]))
-            {
-                $total = 0;
-                foreach($_SESSION["shopping_cart"] as $keys => $values)
-                {
-                    ?>
-                    <tr>
-                        <td><?php echo $values["item_name"]; ?></td>
-                        <td><?php echo $values["item_quantity"]; ?></td>
-                        <td>$ <?php echo $values["item_price"]; ?></td>
-                        <td>$ <?php echo number_format($values["item_quantity"] * $values["item_price"], 2); ?></td>
-                        <td><a href="shoppingcart.php?action=delete&id=<?php echo $values["item_id"]; ?>"><span>Remove</span></a></td>
-                    </tr>
-                    <?php
-                    $total = $total + ($values["item_quantity"] * $values["item_price"]);
-                }
-                ?>
-                <tr>
-                    <td align="right">Total</td>
-                    <td align="right">$ <?php echo number_format($total, 2); ?></td>
-                    <td></td>
-                </tr>
+            foreach ($_SESSION['shoppingCart'] as $key=>$value) { ?>
+            <tr>
                 <?php
+                foreach ($value as $key2 => $value2) { ?>
+
+                        <td><?php echo $value2; ?></td>
+                    <?php
+                }
             }
             ?>
+            </tr>
         </table>
     </div>
 </div>
