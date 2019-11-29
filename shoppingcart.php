@@ -1,43 +1,53 @@
 <?php
 
-    include_once("databasecon.php");
-    if(session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+include_once("databasecon.php");
+if(session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-    if (empty($_SESSION["shoppingCart"])) {
-        $_SESSION["shoppingCart"] = array();
-    }
+if (empty($_SESSION["shoppingCart"])) {
+    $_SESSION["shoppingCart"] = array();
+}
 
+if (isset($_POST["add_to_cart"])) {
     $itemdata = array (
         "item_productid"    =>    $_POST["hidden_productid"],
         "item_productname"  =>    $_POST["hidden_productname"],
         "item_quantity"     =>    $_POST["quantity"],
         "item_productprice" =>    $_POST["hidden_productprice"] * $_POST["quantity"]
     );
+    $exists=false;
 
-    if (isset($_POST["add_to_cart"])) {
-        foreach ($_SESSION["shoppingCart"] as $itemdata) {
-            foreach ($itemdata as $keys => $values) {
-                if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
-                    $itemdata["item_quantity"] += $_POST["quantity"];
-                }
+    if (empty($_SESSION["shoppingCart"])) {
+        array_push($_SESSION["shoppingCart"], $itemdata);
+        $exists=true;
+    }  else {
+        foreach ($_SESSION["shoppingCart"] as $index => $values) {
+            if ($values["item_productid"] === $_POST["hidden_productid"]) {
+                $values["item_quantity"] = $_POST["quantity"] + $values["item_quantity"];
+                $_SESSION["shoppingCart"][$index]=$values;
+                $exists = true;
+                break;
             }
         }
+    }
 
+    if(!$exists) {
         array_push($_SESSION["shoppingCart"], $itemdata);
     }
+}
 
-    if (isset($_POST["remove_from_cart"])) {
-        foreach ($_SESSION["shoppingCart"] as $itemdata) {
-            if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
-                unset($itemdata["item_productid"]);
-            }
+
+if (isset($_POST["remove_from_cart"])) {
+    foreach ($_SESSION["shoppingCart"] as $itemdata) {
+        if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
+            unset($itemdata["item_productid"]);
         }
     }
+}
 
-    print_r($_SESSION["shoppingCart"]);
-
+print_r($_SESSION["shoppingCart"]);
+//          unset($_SESSION["shoppingCart"]);
 ?>
 
 <!DOCTYPE html>
@@ -66,25 +76,25 @@
     $result = mysqli_query($conn, $products);
 
     foreach ($result as $row) { ?>
-    <div class="card">
-        <form method="post" action="">
-            <div>
-                <img style="width:250px; height:250px" src="images/.jpg">
-                <div class="container">
-                    <h4><b><?= $row["StockItemName"]; ?></b></h4>
-                    <div id="itemPrice">
-                        <?php print("&#8364;" . $row["UnitPrice"] . ",-"); ?>
+        <div class="card">
+            <form method="post" action="">
+                <div>
+                    <img style="width:250px; height:250px" src="images/.jpg">
+                    <div class="container">
+                        <h4><b><?= $row["StockItemName"]; ?></b></h4>
+                        <div id="itemPrice">
+                            <?php print("&#8364;" . $row["UnitPrice"] . ",-"); ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <input type="text" name="quantity" value="1">
-            <input type="hidden" name="hidden_productid" value="<?php print $row["StockItemID"]; ?>" >
-            <input type="hidden" name="hidden_productname" value="<?php print $row["StockItemName"]; ?>">
-            <input type="hidden" name="hidden_productprice" value="<?php print $row["UnitPrice"]; ?>">
-            <input type="submit" name="add_to_cart" value="+" >
-            <input type="submit" name="remove_from_cart" value="-" >
-        </form>
-    </div>
+                <input type="number" name="quantity" value=1>
+                <input type="hidden" name="hidden_productid" value="<?php print $row["StockItemID"]; ?>" >
+                <input type="hidden" name="hidden_productname" value="<?php print $row["StockItemName"]; ?>">
+                <input type="hidden" name="hidden_productprice" value="<?php print $row["UnitPrice"]; ?>">
+                <input type="submit" name="add_to_cart" value="+" >
+                <input type="submit" name="remove_from_cart" value="-" >
+            </form>
+        </div>
     <?php }; ?>
     <div id="cartOverview">
         <table border="1px solid black">
@@ -100,11 +110,11 @@
                 <?php
                 foreach ($value as $key2 => $value2) { ?>
 
-                        <td><?php echo $value2; ?></td>
+                    <td><?php echo $value2; ?></td>
                     <?php
                 }
-            }
-            ?>
+                }
+                ?>
             </tr>
         </table>
     </div>
