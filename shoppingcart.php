@@ -39,9 +39,9 @@ if (isset($_POST["add_to_cart"])) {
 
 
 if (isset($_POST["remove_from_cart"])) {
-    foreach ($_SESSION["shoppingCart"] as $itemdata) {
-        if ($itemdata["item_productid"] === $_POST["hidden_productid"]) {
-            unset($itemdata["item_productid"]);
+    foreach ($_SESSION["shoppingCart"] as $index => $values) {
+        if ($values["item_productid"] === $_POST["hidden_productid"]) {
+            unset($_SESSION["shoppingCart"][$index]);
         }
     }
 }
