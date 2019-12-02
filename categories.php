@@ -21,12 +21,12 @@
         $result = mysqli_query($conn, $sql);
 
         foreach ($result as $row) { ?>
-            <div class="container">
-                <div class="card">
+        <div class="container">
+            <div class="card">
                 <a href="./CategoryPage.php?category=<?= $row['StockGroupID'];?>">
                     <img style="width:250px; height:250px" src="images/<?php print ($row['StockGroupID']) ?>.jpg">
 
-
+                    
                     <h4><b><?= $row["StockGroupName"]; ?></b></h4></a>
                 </div>
             </div>

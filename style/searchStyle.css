@@ -90,10 +90,11 @@ h1 {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     background: #333;
     color: #fff;
     text-align: center;
+    margin-top: 25vw;
     padding: 10px;
     bottom: 0;
     left: 0;
