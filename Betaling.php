@@ -14,7 +14,7 @@
 
 <div class="page-container">
 
-<form method="post" action="ideal/idealbetaling.php">
+<form method="post" action="idealbetaling.php">
     <div class="factuur"><h2>Factuurgegevens</h2><br>
         <span class="Voornaam">Voornaam:<br>
         <input class="links" type="text" name="Vnaam" required></span>
