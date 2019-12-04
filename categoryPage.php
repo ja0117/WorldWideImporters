@@ -59,19 +59,28 @@ function starterAmount($loadAmount){
     if(!isset($_POST["page"])){
         return $startAmount = 0;
     }
-
     if($_POST["page"] == 1) {
         return $startAmount = 0;
 
     }
-
     if($_POST["page"] == 2) {
         return $startAmount = $loadAmount;
 
     }
-
     if($_POST["page"] == 3) {
         return $startAmount = $loadAmount + $loadAmount;
+
+    }
+    if($_POST["page"] == 4) {
+        return $startAmount = $loadAmount + $loadAmount + $loadAmount;
+
+    }
+    if($_POST["page"] == 5) {
+        return $startAmount = $loadAmount + $loadAmount + $loadAmount + $loadAmount;
+
+    }
+    if($_POST["page"] == 6) {
+        return $startAmount = $loadAmount + $loadAmount + $loadAmount + $loadAmount + $loadAmount;
 
     }
 }
@@ -91,7 +100,20 @@ $products = "SELECT  Product.StockItemID, Product.UnitPrice, Product.TaxRate, St
     JOIN stockitemstockgroups Cat ON Product.StockItemID = Cat.StockItemID
     WHERE StockGroupID = $category LIMIT $startAmount, $loadAmount";
 
+$products2 = "SELECT stockitems.StockItemID
+    FROM stockitems 
+    JOIN stockitemstockgroups  ON stockitems.StockItemID = stockitemstockgroups.StockItemID
+    WHERE StockGroupID = $category";
+
 $result = mysqli_query($conn, $products);
+$result2 = mysqli_query($conn, $products2);
+
+
+$totaalgeladen = 0;
+foreach ($result2 as $loadedItem){
+    $totaalgeladen = $totaalgeladen + 1;
+}
+$paginas = ceil($totaalgeladen / $loadAmount);
 foreach ($result as $row) { ?>
     <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
         <div class="card">
@@ -116,14 +138,25 @@ foreach ($result as $row) { ?>
 
 <div style="margin-bottom: 45px; margin-top: 15px; text-align: center">
     <form method="POST">
-        <input type="submit" name="page" value="1">
-        <input type="submit" name="page" value="2">
-        <input type="submit" name="page" value="3">
+        <?php
+
+        for($i = 1; $i <= $paginas; $i++){ ?>
+
+            <input type="submit" name="page" value="<?php print($i); ?>">
+
+            <?php
+        }
+
+        ?>
         <input type="hidden" name="load" value="<?php echo $loadAmount ?>"/>
 
     </form>
-    <?php print_r($result);
-    echo $loadAmount . " " . $startAmount
+
+
+
+
+    <?php
+    echo $loadAmount . " " . $startAmount . " " . $totaalgeladen . " " . $paginas
     ?>
 </div>
 
