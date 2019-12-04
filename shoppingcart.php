@@ -20,28 +20,18 @@ include("shoppingCartCode.php");
 <body>
 
 <div class="page-container">
-    <div id="cartOverview">
-        <table border="1px solid black">
-            <tr>
-                <th>Artikelnummer</th>
-                <th>Product naam</th>
-                <th>Hoeveelheid</th>
-                <th>Prijs</th>
-            </tr>
-            <?php
-            foreach ($_SESSION['shoppingCart'] as $key=>$value) { ?>
-            <tr>
-                <?php
-                foreach ($value as $key2 => $value2) { ?>
+    <form class="cartOverview" method="post">
+        <?php
 
-                    <td><?php echo $value2; ?></td>
-                    <?php
-                }
-                }
-                ?>
-            </tr>
-        </table>
-    </div>
+        foreach ($_SESSION["shoppingCart"] as $keys => $values) {
+            echo $values["item_productid"];
+            echo $values["item_productname"];
+            echo $values["item_quantity"];
+            echo $values["item_productprice"];
+            }
+            "<br>"; ?>
+            <input type="submit" name="remove_from_cart" value="-">
+    </form>
 </div>
 
 </body>

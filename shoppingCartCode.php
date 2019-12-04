@@ -64,5 +64,6 @@ if (isset($_POST["remove"])) {
         }
     }
 }
+print_r($_SESSION["shoppingCart"]);
 //unset($_SESSION["shoppingCart"]);
 ?>
