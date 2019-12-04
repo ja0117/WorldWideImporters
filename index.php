@@ -11,6 +11,7 @@
 
 <body>
 
+<div class="page-container">
 <div>
     <h1><marquee behavior="alternate">Populaire producten - Webshop 24/7 geopend! - De aller goedkoopste!</marquee></h1>
 <!--This fetches the products with the most sales and orders them by quantity starting at the highest one. Limiting the query at 5        -->
@@ -39,6 +40,7 @@ GROUP BY T.StockItemID ORDER BY COUNT(T.StockItemID) desc LIMIT 5");
 
             <?php } ?>
 
+</div>
 </div>
 
 </body>

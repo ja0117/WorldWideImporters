@@ -1,5 +1,6 @@
 <?php
 include("databasecon.php");
+include("shoppingCartCode.php");
 
 
 if (isset($_GET["product"])) {
@@ -42,6 +43,7 @@ if (isset($_GET["product"])) {
     if (isset($_GET["product"])) {
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
+                $itemID = $row["StockItemID"];
                 $name = $row["StockItemName"];
                 $price = $row["UnitPrice"];
                 $description = $row["MarketingComments"];
@@ -55,6 +57,7 @@ if (isset($_GET["product"])) {
 }
 else{
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,6 +70,14 @@ else{
     <link rel="stylesheet" href="style/productpage.css">
     <link rel="stylesheet" href="style/imagezoom.css">
 </head>
+
+<?php
+$products = "SELECT si.StockItemID, StockItemName, UnitPrice, StockGroupID
+    FROM stockitems si
+    JOIN stockitemstockgroups sisg ON si.StockItemID = sisg.StockItemID";
+
+$resultProducts = mysqli_query($conn, $products);
+?>
 
 <body>
 <?php if (isset($_GET["product"]) && mysqli_num_rows($result) > 0) { ?>
@@ -106,7 +117,13 @@ else{
     </div>
 
     <div align="right">
-        <button class="button" onclick="alert('dit is helaas nog niet af')">Add to cart</button>
+        <form method="post" action="">
+            <input type="hidden" name="quantity" value=1>
+            <input type="hidden" name="hidden_productid" value="<?php echo $itemID; ?>" >
+            <input type="hidden" name="hidden_productname" value="<?php echo $name; ?>">
+            <input type="hidden" name="hidden_productprice" value="<?php echo $price * $btw; ?>">
+            <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="button">
+        </form>
     </div>
 <?php }
 else { ?>
