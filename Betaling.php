@@ -60,7 +60,7 @@
     ?>
 
     <div class="bestelling"><h2>Uw bestelling</h2><br>
-        <table style="width:225px">
+        <table>
             <tr>
                 <th><u>Product</u></th>
                 <th><u>Totaal</u></th>
@@ -89,7 +89,7 @@
 
         </table><br>
 
-                <input class="Voorwaarden" type="checkbox" value="checkbox" required> Ik heb de algemene<br>voorwaarden gelezen en<br>ga ermee akkoord<br><br>
+                <input class="Voorwaarden" type="checkbox" value="checkbox" required> Ik heb de algemene<br>voorwaarden gelezen<br>en ga ermee akkoord<br><br>
                 <input class="Betalen" type="button" value="Bestelling plaatsen">
     </div>
 </div>

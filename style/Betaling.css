@@ -11,7 +11,6 @@ h2 {
     font-size: 140%;
     float: left;
 }
-
 .links {
     padding: 10px;
     border: solid #00ADEF;
@@ -25,7 +24,6 @@ h2 {
     padding: 10px;
     border: solid #00ADEF;
 }
-
 .Voornaam {
     float: left;
 }
@@ -61,18 +59,11 @@ h2 {
     font-size: 140%;
     float: left;
 }
-.Product {
-    float: left;
-}
-.Totaal {
-    float: left;
-    margin-left: 40px;
-}
 .Betalen {
     background-color: #00ADEF;
     padding: 6px;
     border: 2px solid black;
-    width: 225px;
+    width: 240px;
     font-size:20px;
 }
 th {
@@ -80,4 +71,9 @@ th {
 }
 td {
     padding: 3px;
+}
+table {
+    border: 2px solid #00ADEF;
+    padding: 2px 0 2px 2px;
+    width: 240px;
 }
