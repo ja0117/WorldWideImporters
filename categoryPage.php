@@ -79,13 +79,12 @@ $category = $_GET['category'];
 //$categoryName = "SELECT StockGroupName FROM stockgroups WHERE StockGroupID = $category";
 
 // It then fetches all products that are in the category with the ID fetched from the URL
-$products = "SELECT Product.StockItemID, StockItemName, RecommendedRetailPrice
+$products = "SELECT  Product.StockItemID, Product.UnitPrice, Product.TaxRate, StockItemName, RecommendedRetailPrice
     FROM stockitems Product
     JOIN stockitemstockgroups Cat ON Product.StockItemID = Cat.StockItemID
     WHERE StockGroupID = $category LIMIT $startAmount, $loadAmount";
 
 $result = mysqli_query($conn, $products);
-
 foreach ($result as $row) { ?>
     <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
         <div class="card">
@@ -93,7 +92,9 @@ foreach ($result as $row) { ?>
             <div class="container">
                 <h4><b><?= $row["StockItemName"];?></b></h4>
                 <div id="itemPrice">
-                    <?php print("&#8364;" . $row["RecommendedRetailPrice"] . ",-"); ?>
+                    <?php
+                    $btw = 1 + $row["TaxRate"] / 100;
+                    print("&#8364;" . $row["UnitPrice"] * $btw . ",-"); ?>
                 </div>
             </div>
         </div>
@@ -110,7 +111,9 @@ foreach ($result as $row) { ?>
         <input type="submit" name="page" value="3">
 
     </form>
-    <?php print_r($result);?>
+    <?php print_r($result);
+    echo $loadAmount . " " . $startAmount
+    ?>
 </div>
 
 </body>
