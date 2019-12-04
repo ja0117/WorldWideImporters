@@ -14,7 +14,7 @@
 
 <div class="page-container">
 
-<form method="post">
+<form method="post" action="idealbetaling.php">
     <div class="factuur"><h2>Factuurgegevens</h2><br>
         <span class="Voornaam">Voornaam:<br>
         <input class="links" type="text" name="Vnaam" required></span>
@@ -55,9 +55,11 @@
     $prijsproduct2=3;
     $btwproduct1=$prijsproduct1*($btw/100+1)-$prijsproduct1;
     $btwproduct2=$prijsproduct2*($btw/100+1)-$prijsproduct2;
+    $btwtotaal=$btwproduct1+$btwproduct2;
     $subtotaal=$prijsproduct1+$prijsproduct2;
-    $Totaal=$btwproduct1+$btwproduct2;
+    $totaal=$subtotaal+$btwtotaal;
     ?>
+    <input type="hidden" name="totaalPrijs" value="<?php echo $totaal ?>">
 
     <div class="bestelling"><h2>Uw bestelling</h2><br>
         <table>
@@ -80,17 +82,17 @@
             </tr>
             <tr>
                 <td><b><u><?php print($btw."% "."BTW") ?></u></b></td>
-                <td><b><u><?php print("€ ".($btwproduct1+$btwproduct2)) ?></u></b></td>
+                <td><b><u><?php print("€ ".($btwtotaal)) ?></u></b></td>
             </tr>
             <tr>
                 <td><b><u>Totaal</u></b></td>
-                <td><b><u><?php print("€ ".($btwproduct1+$btwproduct2+$prijsproduct1+$prijsproduct2)) ?></u></b></td>
+                <td><b><u><?php print("€ ".($totaal)) ?></u></b></td>
             </tr>
 
         </table><br>
 
-                <input class="Voorwaarden" type="checkbox" value="checkbox" required> Ik heb de algemene<br>voorwaarden gelezen<br>en ga ermee akkoord<br><br>
-                <input class="Betalen" type="button" value="Bestelling plaatsen">
+            <input class="Voorwaarden" type="checkbox" value="checkbox" required> Ik heb nogmaals naar<br>mijn producten gekeken<br>en wil ze echt bestellen<br><br>
+            <input type="submit" value="Bestelling plaatsen" class="Betalen">
     </div>
 </div>
 
