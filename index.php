@@ -13,7 +13,7 @@
 
 <div class="page-container">
 <div>
-    <h1><marquee behavior="alternate">Populaire producten - Webshop 24/7 geopend! - De aller goedkoopste!</marquee></h1>
+    <h1><marquee behavior="alternate">Populaire producten - Webshop 24/7 geopend! - De goedkoopste!</marquee></h1>
 <!--This fetches the products with the most sales and orders them by quantity starting at the highest one. Limiting the query at 5        -->
     <?php
     $statement = mysqli_prepare($conn, "SELECT T.StockItemID, StockItemName, TaxRate, COUNT(T.StockItemID), UnitPrice 

@@ -94,7 +94,10 @@ foreach ($result as $row) { ?>
                 <div id="itemPrice">
                     <?php
                     $btw = 1 + $row["TaxRate"] / 100;
-                    print("&#8364;" . $row["UnitPrice"] * $btw . ",-"); ?>
+                    ?>
+                    <span style="text-decoration: line-through;"><?php print("€" . $row["RecommendedRetailPrice"] . "<br>");?></span>
+                    <?php
+                    print("&#8364;" . $row["UnitPrice"] * $btw); ?>
                 </div>
             </div>
         </div>
