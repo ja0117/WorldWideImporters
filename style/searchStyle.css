@@ -181,7 +181,7 @@ img {
     font-weight:normal;
 }
 
-#addToCartButton {
+.addToCartButton {
     float: right;
     background-color: limegreen;
     border: none;
