@@ -1,0 +1,79 @@
+h2 {
+    text-align: center;
+    border: 2px solid #00ADEF;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.factuur {
+    border: 2px solid #00ADEF;
+    margin-left: 0px;
+    padding: 10px;
+    font-size: 140%;
+    float: left;
+}
+.links {
+    padding: 10px;
+    border: solid #00ADEF;
+}
+.midden {
+    padding: 10px;
+    border: solid #00ADEF;
+    width: 393px;
+}
+.rechts {
+    padding: 10px;
+    border: solid #00ADEF;
+}
+.Voornaam {
+    float: left;
+}
+.Achternaam {
+    float: left;
+    margin-left: 30px;
+}
+.Straatnaam {
+    float: left;
+}
+.Huisnummer {
+    float: left;
+    margin-left: 30px;
+}
+.Plaatsnaam {
+    float: left;
+}
+.Postcode {
+    float: left;
+    margin-left: 30px;
+}
+.Email-adres {
+    float: left;
+}
+.Telefoonnummer {
+    float: left;
+    margin-left: 30px;
+}
+.bestelling {
+    border: 2px solid #00ADEF;
+    margin-left: 50px;
+    padding: 10px;
+    font-size: 140%;
+    float: left;
+}
+.Betalen {
+    background-color: #00ADEF;
+    padding: 6px;
+    border: 2px solid black;
+    width: 240px;
+    font-size:20px;
+}
+th {
+    text-align: left;
+}
+td {
+    padding: 3px;
+}
+table {
+    border: 2px solid #00ADEF;
+    padding: 2px 0 2px 2px;
+    width: 240px;
+}

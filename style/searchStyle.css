@@ -59,7 +59,6 @@
 #searchBox {
     margin-top: 25px;
     margin-right: 10px;
-    text-align: center;
     padding: 15px 16px;
     width: 150px;
     height: 20px;
@@ -90,11 +89,10 @@ h1 {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     background: #333;
     color: #fff;
     text-align: center;
-    margin-top: 25vw;
     padding: 10px;
     bottom: 0;
     left: 0;

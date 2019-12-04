@@ -45,14 +45,16 @@ print("Je hebt gezocht op: " . $_GET["searchBox"]);
     <?php
         if (isset($_GET["searchBox"]) && mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
+                $btw = 1 + $row["TaxRate"] / 100;
                 ?>
+
                 <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
                 <div class="card">
                     <img style="width:250px; height:250px" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg">
                     <div class="container">
                         <?php print($row["StockItemName"]); ?> <br>
                         <div id="itemPrice">
-                            <?php print("&#8364;" . $row["UnitPrice"] . ",-"); ?>
+                            <?php print("&#8364;" . $row["UnitPrice"] * $btw. ",-"); ?>
                         </div>
                     </div>
                 </div>
