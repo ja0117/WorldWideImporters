@@ -19,7 +19,7 @@ h2 {
 .midden {
     padding: 10px;
     border: solid #00ADEF;
-    width: 403px;
+    width: 393px;
 }
 .rechts {
     padding: 10px;
@@ -67,4 +67,17 @@ h2 {
 .Totaal {
     float: left;
     margin-left: 40px;
+}
+.Betalen {
+    background-color: #00ADEF;
+    padding: 6px;
+    border: 2px solid black;
+    width: 225px;
+    font-size:20px;
+}
+th {
+    text-align: left;
+}
+td {
+    padding: 3px;
 }

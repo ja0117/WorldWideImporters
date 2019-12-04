@@ -7,7 +7,7 @@
 <!-- Header & Nav bar -->
 <?php include 'includes/headernav.php'; ?>
 <head>
-    <link rel="stylesheet" href="style/Betaling.css">
+    <link rel="stylesheet" href="style/betaling.css">
 </head>
 
 <body>
@@ -42,15 +42,55 @@
                 <span class="Postcode">Postcode:<br>
                 <input class="rechts" type="text" name="Pcode" required></span><br>
             <span class="Email-adres">Email-adres:<br>
-            <input class="links" type="text" name="Email" required></span>
+            <input class="links" type="email" name="Email" required></span>
         <span class="Telefoonnummer">Telefoonnummer:<br>
         <input class="rechts" type="number" name="Telnr" required></span>
     </div>
 
+    <?php
+    $btw=21;
+    $product1="boter";
+    $product2="kaas";
+    $prijsproduct1=4;
+    $prijsproduct2=3;
+    $btwproduct1=$prijsproduct1*($btw/100+1)-$prijsproduct1;
+    $btwproduct2=$prijsproduct2*($btw/100+1)-$prijsproduct2;
+    $subtotaal=$prijsproduct1+$prijsproduct2;
+    $Totaal=$btwproduct1+$btwproduct2;
+    ?>
+
     <div class="bestelling"><h2>Uw bestelling</h2><br>
-        <span class="Product"><b>Product</b></span>
-        <span class="Totaal"><b>Totaal</b></span><br>
-            <span class
+        <table style="width:225px">
+            <tr>
+                <th><u>Product</u></th>
+                <th><u>Totaal</u></th>
+            </tr>
+            <tr>
+                <td><?php print($product1) ?></td>
+                <td><?php print("€ ".$prijsproduct1) ?></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><?php print($product2) ?></td>
+                <td><?php print("€ ".$prijsproduct2) ?></td>
+            </tr>
+            <tr>
+                <td><b><u>Subtotaal</u></b></td>
+                <td><b><u><?php print("€ ". ($prijsproduct1+$prijsproduct2)) ?></u></b></td>
+            </tr>
+            <tr>
+                <td><b><u><?php print($btw."% "."BTW") ?></u></b></td>
+                <td><b><u><?php print("€ ".($btwproduct1+$btwproduct2)) ?></u></b></td>
+            </tr>
+            <tr>
+                <td><b><u>Totaal</u></b></td>
+                <td><b><u><?php print("€ ".($btwproduct1+$btwproduct2+$prijsproduct1+$prijsproduct2)) ?></u></b></td>
+            </tr>
+
+        </table><br>
+
+                <input class="Voorwaarden" type="checkbox" value="checkbox" required> Ik heb de algemene<br>voorwaarden gelezen en<br>ga ermee akkoord<br><br>
+                <input class="Betalen" type="button" value="Bestelling plaatsen">
     </div>
 </div>
 
