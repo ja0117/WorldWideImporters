@@ -119,6 +119,7 @@ foreach ($result as $row) { ?>
         <input type="submit" name="page" value="1">
         <input type="submit" name="page" value="2">
         <input type="submit" name="page" value="3">
+        <input type="hidden" name="load" value="<?php echo $loadAmount ?>"/>
 
     </form>
     <?php print_r($result);
