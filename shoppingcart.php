@@ -20,8 +20,6 @@ include("shoppingCartCode.php");
 
 <body>
 
-  <div class="page-container">
-
     <div class="shopping-cart">
       <!-- Title -->
       <div class="title">
@@ -30,7 +28,11 @@ include("shoppingCartCode.php");
       </div>
 
         <?php
-        foreach ($_SESSION["shoppingCart"] as $values) { ?>
+        $subtotaal = 0;
+
+        foreach ($_SESSION["shoppingCart"] as $values) {
+        $subtotaal = $subtotaal + $values["item_productprice"];
+        ?>
         <form method="post">
           <!-- Product #1 -->
           <table width="100%">
@@ -64,19 +66,25 @@ include("shoppingCartCode.php");
                   <input type="submit" name="decreaseQuantity" value="-">
                 </th>
                 <th>
-                <input type="text" size="2" value="€<?= $values["item_productprice"] ?>" readonly>
+                <input type="text" size="6" value="€<?= $values["item_productprice"] ?>" readonly>
                 <input type="hidden" name="hidden_productprice" value="$<?= $values["item_singlePrice"] ?>">
                 </th>
               </div>
-    </div>
+    
     </tr>
-
+    </table>
 
   </form>
+  
+
+
   <?php } ?>
+  </div>
 </body>
+<hr>
 
 <!-- Footer -->
 <?php include 'includes/footer.php'; ?>
+
 
 </html>
