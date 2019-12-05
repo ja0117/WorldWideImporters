@@ -20,7 +20,7 @@ include("shoppingCartCode.php");
 
 <body>
 
-  <div class="page-container">
+  <tr class="page-container">
 
     <div class="shopping-cart">
       <!-- Title -->
@@ -30,51 +30,65 @@ include("shoppingCartCode.php");
       </div>
 
         <?php
-        foreach ($_SESSION["shoppingCart"] as $values) { ?>
+        $subtotaal = 0;
+
+        foreach ($_SESSION["shoppingCart"] as $values) {
+        $subtotaal = $subtotaal + $values["item_productprice"];
+        ?>
         <form method="post">
-          <!-- Product #1 -->
-          <table width="100%">
-            <tr>
-                <input type="hidden" name="hidden_productid" value="<?= $values["item_productid"] ?>">
-                <div class="image">
-                <th>
-                  <img src="images/<?php print substr($values["item_productname"], 0, 3) ?>.jpg" width="128" height="128" />
-                  </th>
-                </div>
+            <!-- Product #1 -->
+            <table width="100%">
+                <tr>
+                    <input type="hidden" name="hidden_productid" value="<?= $values["item_productid"] ?>">
+                    <div class="image">
+                        <th>
+                            <img src="images/<?php print substr($values["item_productname"], 0, 3) ?>.jpg" width="128"
+                                 height="128"/>
+                        </th>
+                    </div>
 
 
-
-                <div class="description">
-                <th>
-                  <input type="text" size="45" value="<?= $values["item_productname"] ?>" readonly>
-                  </th>
-                </div>
-
+                    <div class="description">
+                        <th>
+                            <input type="text" size="45" value="<?= $values["item_productname"] ?>" readonly>
+                        </th>
+                    </div>
 
 
-              <div class="quantity">
+                    <div class="quantity">
 
-                <th>
-                  <input type="submit" name="increaseQuantity" value="+">
-                </th>
-                <th>
-                  <input type="text" size="2" name="name" value="<?= $values["item_quantity"] ?>" readonly>
-                </th>
-                <th>
-                  <input type="submit" name="decreaseQuantity" value="-">
-                </th>
-                <th>
-                <input type="text" size="2" value="€<?= $values["item_productprice"] ?>" readonly>
-                <input type="hidden" name="hidden_productprice" value="$<?= $values["item_singlePrice"] ?>">
-                </th>
-              </div>
+                        <th>
+                            <input type="submit" name="increaseQuantity" value="+">
+                        </th>
+                        <th>
+                            <input type="text" size="2" name="name" value="<?= $values["item_quantity"] ?>" readonly>
+                        </th>
+                        <th>
+                            <input type="submit" name="decreaseQuantity" value="-">
+                        </th>
+                        <th>
+                            <input type="text" size="2" value="€<?= $values["item_productprice"] ?>" readonly>
+                            <input type="hidden" name="hidden_productprice" value="$<?= $values["item_singlePrice"] ?>">
+                        </th>
+                    </div>
     </div>
-    </tr>
+
+  </div>
+  </tr>
 
 
-  </form>
-  <?php } ?>
+      </form>
+      <?php
+      }
+        if ($subtotaal == 0){ ?>
+      <span style="text-align: center; font-size: 200%"> Uw mandje is nog leeg! </span> <?php
+        }
+        else{
+            echo $subtotaal;
+        }
+        ?>
 </body>
+<hr>
 
 <!-- Footer -->
 <?php include 'includes/footer.php'; ?>
