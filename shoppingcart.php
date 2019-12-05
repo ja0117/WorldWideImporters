@@ -29,7 +29,6 @@ include("shoppingCartCode.php");
 
         <?php
         $subtotaal = 0;
-
         foreach ($_SESSION["shoppingCart"] as $values) {
         $subtotaal = $subtotaal + $values["item_productprice"];
         ?>
