@@ -56,7 +56,7 @@ if (isset($_POST["decreaseQuantity"])) {
     }
 }
 
-// If "-" button is pressed, remove by the specified quantity. If quantity gets below 1, remove the item from shoppingCart
+// If "+" button is pressed, remove by the specified quantity. If quantity gets below 1, remove the item from shoppingCart
 if (isset($_POST["increaseQuantity"])) {
     foreach ($_SESSION["shoppingCart"] as $index => $values) {
         if ($values["item_productid"] === $_POST["hidden_productid"]) {
