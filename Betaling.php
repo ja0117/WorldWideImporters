@@ -9,6 +9,7 @@
 <head>
     <link rel="stylesheet" href="style/betaling.css">
 </head>
+<?php include 'shoppingCartCode.php'; ?>
 
 <body>
 
@@ -47,54 +48,34 @@
         <input class="rechts" type="number" name="Telnr" required></span>
     </div>
 
-    <?php
-    $btw=21;
-    $product1="boter";
-    $product2="kaas";
-    $prijsproduct1=4;
-    $prijsproduct2=3;
-    $btwproduct1=$prijsproduct1*($btw/100+1)-$prijsproduct1;
-    $btwproduct2=$prijsproduct2*($btw/100+1)-$prijsproduct2;
-    $btwtotaal=$btwproduct1+$btwproduct2;
-    $subtotaal=$prijsproduct1+$prijsproduct2;
-    $totaal=$subtotaal+$btwtotaal;
-    ?>
-    <input type="hidden" name="totaalPrijs" value="<?php echo $totaal ?>">
 
     <div class="bestelling"><h2>Uw bestelling</h2><br>
-        <table class="table">
+        <table class="table" >
             <tr>
                 <th class="head"><u>Product</u></th>
                 <th class="head"><u>Totaal</u></th>
             </tr>
-            <tr>
-                <td><?php print($product1) ?></td>
-                <td><?php print("€ ".$prijsproduct1) ?></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><?php print($product2) ?></td>
-                <td><?php print("€ ".$prijsproduct2) ?></td>
-            </tr>
-            <tr>
-                <td><b><u>Subtotaal</u></b></td>
-                <td><b><u><?php print("€ ". ($prijsproduct1+$prijsproduct2)) ?></u></b></td>
-            </tr>
-            <tr>
-                <td><b><u><?php print($btw."% "."BTW") ?></u></b></td>
-                <td><b><u><?php print("€ ".($btwtotaal)) ?></u></b></td>
-            </tr>
-            <tr>
-                <td><b><u>Totaal</u></b></td>
-                <td><b><u><?php print("€ ".($totaal)) ?></u></b></td>
-            </tr>
 
+            <?php
+            $totaal=0;
+            foreach ($_SESSION["shoppingCart"] as $values) {
+                $totaal=$totaal+$values["item_productprice"]
+                ?>
+            <tr>
+                <td><?php print($values["item_productname"]) ?></td>
+                <td><?php print("€ ".$values["item_productprice"]) ?></td>
+            </tr>
+            <?php } ?>
+                <td><b><u>Totaal</u></b></td>
+                <td><b><u><?php print("€ ". ($totaal)) ?></u></b></td>
+            </tr>
         </table><br>
 
-            <input class="Voorwaarden" type="checkbox" value="checkbox" required> Ik heb nogmaals naar<br>mijn producten gekeken<br>en wil ze echt bestellen<br><br>
             <input type="submit" value="Bestelling plaatsen" class="Betalen">
     </div>
 </div>
+
+<input type="hidden" name="totaalPrijs" value="<?php echo $totaal ?>">
 
 </form>
 

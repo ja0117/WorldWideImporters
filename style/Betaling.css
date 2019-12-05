@@ -65,6 +65,7 @@ h2 {
     border: 2px solid black;
     width: 240px;
     font-size:20px;
+    float: right;
 }
 .head {
     text-align: left;
@@ -75,5 +76,5 @@ td {
 .table {
     border: 2px solid #00ADEF;
     padding: 2px 0 2px 2px;
-    width: 240px;
+    width: auto;
 }
