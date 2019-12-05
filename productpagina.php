@@ -85,6 +85,17 @@ $resultProducts = mysqli_query($conn, $products);
     <div class="image">
         <img style="width:400px; height:400px" src="images/<?=$category?>.jpg">
 
+        <?php
+        $url = 'https://www.youtube.com/watch?v=sNwKjnKgB8s';
+        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+        $id = $matches[1];
+        $width = '400px';
+        $height = '250px';
+        ?>
+        <iframe id="ytplayer" type="text/html" width="<?php echo $width ?>" height="<?php echo $height ?>"
+                src="https://www.youtube.com/embed/<?php echo $id ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                frameborder="0" allowfullscreen></iframe>
+
     </div>
 
     <div class="naam">
@@ -134,4 +145,6 @@ else { ?>
 </body>
 
 <?php include 'includes/footer.php'; ?>
+
+
 </html>
