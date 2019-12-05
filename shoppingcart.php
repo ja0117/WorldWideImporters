@@ -83,13 +83,13 @@ include("shoppingCartCode.php");
         <hr>
             <div style="text-align: right">
         <span style= "text-align right; font-size: 250%">Subtotaal:   </span>
-        <span style="text-align: right; font-size: 300%">€ <?php echo number_format((float)$subtotaal, 2, '.', '');;?> </span>
+        <span style="text-align: right; font-size: 300%">€ <?php echo number_format((float)$subtotaal, 2, ',', '');;?> </span>
             </div>
 
 
             <form method="post" action="Betaling.php">
                 <input type="submit" name="order" value="Door naar bestelpagina">
-                <input type="hidden" name="load" value="<?php echo $subtotaal?>"/>
+                <input class="button" type="hidden" name="load" value="<?php echo $subtotaal?>"/>
             </form>
         <?php
 
