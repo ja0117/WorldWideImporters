@@ -62,7 +62,7 @@
                 $totaal=$totaal+$values["item_productprice"]
                 ?>
             <tr>
-                <td><?php print ($values["item_productname"]) ?></td>
+                <td><?php print ($values["item_quantity"]." ".$values["item_productname"]) ?></td>
                 <td><?php print("€ ".number_format((float)$values["item_productprice"], 2, '.', ''));;?></td>
             </tr>
             <?php } ?>
