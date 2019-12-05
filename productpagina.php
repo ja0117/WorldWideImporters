@@ -81,23 +81,13 @@ $resultProducts = mysqli_query($conn, $products);
 
 <body>
 <?php if (isset($_GET["product"]) && mysqli_num_rows($result) > 0) { ?>
-
+    <div class="row">
+    <div class="column">
     <div class="image">
         <img style="width:400px; height:400px" src="images/<?=$category?>.jpg">
-
-        <?php
-        $url = 'https://www.youtube.com/watch?v=sNwKjnKgB8s';
-        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
-        $id = $matches[1];
-        $width = '400px';
-        $height = '250px';
-        ?>
-        <iframe id="ytplayer" type="text/html" width="<?php echo $width ?>" height="<?php echo $height ?>"
-                src="https://www.youtube.com/embed/<?php echo $id ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
-                frameborder="0" allowfullscreen></iframe>
-
     </div>
-
+    </div>
+    <div class="column">
     <div class="naam">
     <?php
     print($name . "<br>")
@@ -126,7 +116,6 @@ $resultProducts = mysqli_query($conn, $products);
         print($description);
         ?>
     </div>
-
     <div align="right">
         <form method="post" action="">
             <input type="hidden" name="quantity" value=1>
@@ -136,6 +125,22 @@ $resultProducts = mysqli_query($conn, $products);
             <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="button">
         </form>
     </div>
+    </div>
+    </div>
+    
+
+    <div class="row">
+    <div class="column">
+    <div class="image">
+        <img style="width:400px; height:400px" src="images/<?=$category?>.jpg">
+    </div>
+    </div>
+    </div>
+    </div>
+
+    
+
+    
 <?php }
 else { ?>
 
