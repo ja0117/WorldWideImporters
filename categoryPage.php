@@ -12,8 +12,8 @@
 
 <body>
 
-</div>
-</div>
+<div class="page-container">
+<div>
 <!-- The dropdown from which you can select how many products you want to load per page. Form is submitted upon selection  -->
 <form method="post">
     <!--The PHP compares each option with the current display amount setting and displays the corresponding one as selected  -->
