@@ -87,8 +87,8 @@ include("shoppingCartCode.php");
 
 
             <form method="post" action="Betaling.php">
-                <input type="submit" name="order" value="Door naar bestelpagina">
                 <input class="button" type="hidden" name="load" value="<?php echo $subtotaal?>"/>
+                <input class="naarbestpag" type="submit" name="order" value="Door naar bestelpagina">
             </form>
         <?php
 
