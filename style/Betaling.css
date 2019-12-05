@@ -66,13 +66,13 @@ h2 {
     width: 240px;
     font-size:20px;
 }
-th {
+.head {
     text-align: left;
 }
 td {
     padding: 3px;
 }
-table {
+.table {
     border: 2px solid #00ADEF;
     padding: 2px 0 2px 2px;
     width: 240px;

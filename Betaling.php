@@ -62,10 +62,10 @@
     <input type="hidden" name="totaalPrijs" value="<?php echo $totaal ?>">
 
     <div class="bestelling"><h2>Uw bestelling</h2><br>
-        <table>
+        <table class="table">
             <tr>
-                <th><u>Product</u></th>
-                <th><u>Totaal</u></th>
+                <th class="head"><u>Product</u></th>
+                <th class="head"><u>Totaal</u></th>
             </tr>
             <tr>
                 <td><?php print($product1) ?></td>
