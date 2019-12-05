@@ -194,8 +194,8 @@ img {
 }
 
 .shopping-cart {
-    width: 750px;
-    height: 423px;
+    width: auto;
+    height: auto;
     margin: 80px auto;
     background: #FFFFFF;
     box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
