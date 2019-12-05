@@ -40,7 +40,7 @@
 
 $loadAmount = isLoadLimitSet();
 $startAmount = starterAmount($loadAmount);
-
+$paginaNu = currentPage();
 
 function isLoadLimitSet()
 {
@@ -53,6 +53,8 @@ function isLoadLimitSet()
     }
 
 }
+
+
 
 function starterAmount($loadAmount){
 
@@ -85,6 +87,36 @@ function starterAmount($loadAmount){
     }
 }
 
+function currentPage(){
+    if(!isset($_POST["page"])){
+        return $paginaNu = 1;
+    }
+
+    if($_POST["page"] == 1) {
+        return $paginaNu = 1;
+
+    }
+    if($_POST["page"] == 2) {
+        return $paginaNu = 2;
+
+    }
+    if($_POST["page"] == 3) {
+        return $paginaNu = 3;
+
+    }
+    if($_POST["page"] == 4) {
+        return $paginaNu = 4;
+
+    }
+    if($_POST["page"] == 5) {
+        return $paginaNu = 5;
+
+    }
+    if($_POST["page"] == 6) {
+        return $paginaNu = 6;
+
+    }
+}
 
 //print substr($row["StockItemName"], 0, 3)
 
@@ -139,7 +171,7 @@ foreach ($result as $row) { ?>
 <div style="margin-bottom: 45px; margin-top: 15px; text-align: center">
     <form method="POST">
         <?php
-
+        print("Je zit nu op pagina ". $paginaNu . " van " . $paginas . "<br>");
         for($i = 1; $i <= $paginas; $i++){ ?>
 
             <input type="submit" name="page" value="<?php print($i); ?>">
