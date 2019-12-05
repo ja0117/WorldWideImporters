@@ -28,7 +28,11 @@ include("shoppingCartCode.php");
       </div>
 
         <?php
-        foreach ($_SESSION["shoppingCart"] as $values) { ?>
+        $subtotaal = 0;
+
+        foreach ($_SESSION["shoppingCart"] as $values) {
+        $subtotaal = $subtotaal + $values["item_productprice"];
+        ?>
         <form method="post">
           <!-- Product #1 -->
           <table width="100%">
@@ -77,6 +81,7 @@ include("shoppingCartCode.php");
   <?php } ?>
   </div>
 </body>
+<hr>
 
 <!-- Footer -->
 <?php include 'includes/footer.php'; ?>
