@@ -151,13 +151,6 @@ foreach ($result as $row) { ?>
         <input type="hidden" name="load" value="<?php echo $loadAmount ?>"/>
 
     </form>
-
-
-
-
-    <?php
-    echo $loadAmount . " " . $startAmount . " " . $totaalgeladen . " " . $paginas
-    ?>
 </div>
 
 </body>
