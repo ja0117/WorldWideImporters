@@ -42,3 +42,15 @@
     cursor: pointer;
     font-size:40px;
 }
+
+.video{
+    border: 5px solid #000000;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    float: left;
+    width: auto;
+    height: auto;
+
+
+}
