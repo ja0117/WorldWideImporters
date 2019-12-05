@@ -64,7 +64,7 @@ include("shoppingCartCode.php");
                   <input type="submit" name="decreaseQuantity" value="-">
                 </th>
                 <th>
-                <input type="text" size="2" value="€<?= $values["item_productprice"] ?>">
+                <input type="text" size="2" value="€<?= $values["item_productprice"] ?>" readonly>
                 <input type="hidden" name="hidden_productprice" value="$<?= $values["item_singlePrice"] ?>">
                 </th>
               </div>
