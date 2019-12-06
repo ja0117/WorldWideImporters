@@ -1,6 +1,6 @@
 .naam{
     text-align: right;
-    font-size: 200%;
+    font-size: 250%;
     padding-right: 75px;
     padding-top: 50px;
 
@@ -21,9 +21,9 @@
 
 .image{
     border: 5px solid #000000;
-    margin-top: 50px;
+    margin-top: 60px;
     margin-bottom: 1px;
-    margin-left: 200px;
+    margin-left: 100px;
     float: left;
     width: 400px;
     height: 400px;
@@ -31,7 +31,7 @@
 }
 
 .button {
-    background-color: #4CAF50;
+    background-color: #00ADEF;
     border: none;
     color: white;
     margin-right: 75px;
@@ -40,5 +40,17 @@
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    font-size:20px;
+    font-size:40px;
+}
+
+.video{
+    border: 5px solid #000000;
+    margin-top: 60px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    float: left;
+    width: 400px;
+    height: 250px;
+
+
 }
