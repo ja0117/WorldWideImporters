@@ -7,6 +7,9 @@
         <th>
         <a class="click" href="categories.php">Categorieën</a>
         </th>
+            <th>
+                <a class="click" href="about.php">Over ons</a>
+            </th>
         <th>
         <a class="click" href="shoppingcart.php"><i class="fas fa-shopping-cart"></i> Winkelmand</a>
 </th>

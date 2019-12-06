@@ -10,10 +10,15 @@
 <body>
 
 <div><h2> Over ons </h2></div>
-<div style="text-align: center">
-<img src="https://transfixit.nl/wp-content/uploads/2019/03/website-under-construction-landing-page-vector-20519213.jpg" alt="Under Construction">
+
+<div class="motto">
+    “Wij zijn WWI. We zijn trots op onze producten en geloven in kwaliteit. In ieder huis vindt een
+    product van WWI zijn thuis. Ondanks onze grootte zien klanten ons als kleinschalig en
+    betrokken. Persoonlijk klantcontact staat bij ons hoog in het vaandel.”
 </div>
-<div>
+
+<div class="overonsimg">
+<img src="images/wwilogo.png">
 </div>
 
 <div>
