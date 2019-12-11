@@ -66,7 +66,7 @@ if (isset($_GET["product"])) {
 <html lang="en">
 
 <?php include 'includes/head.php' ?>
-
+<body>
 <?php
 $products = "SELECT si.StockItemID, StockItemName, UnitPrice, StockGroupID
     FROM stockitems si
@@ -76,7 +76,7 @@ $resultProducts = mysqli_query($conn, $products);
 ?>
 
 
-<body>
+
 
   <?php include 'includes/nav.php' ?>
 
@@ -97,7 +97,7 @@ $resultProducts = mysqli_query($conn, $products);
 
       <div class="col-lg-9">
         <div class="card mt-4">
-          <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+          <img class="card-img-top img-fluid" src="" alt="">
           <div class="card-body">
             <h3 class="card-title"><?= $name ?></h3>
             <h4>$<?= $price ?></h4>
@@ -114,7 +114,6 @@ $resultProducts = mysqli_query($conn, $products);
   <?php include 'includes/footer.php' ?>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
