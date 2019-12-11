@@ -88,16 +88,21 @@ $resultProducts = mysqli_query($conn, $products);
       <div class="col-lg-3">
         <h1 class="my-4">Categorie Filler</h1>
         <div class="list-group">
-          <a href="#" class="list-group-item active">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
+            <?php
+        $sql = "SELECT StockGroupID, StockGroupName FROM stockgroups ORDER BY StockGroupID";
+        $result = mysqli_query($conn, $sql);
+
+        foreach ($result as $row) { ?>
+          <a href="./CategoryPage.php?category=<?= $row['StockGroupID'];?>" class="list-group-item"><?= $row["StockGroupName"]; ?></a>
+        <?php } ?>
         </div>
       </div>
+        
       <!-- /.col-lg-3 -->
-
+        
       <div class="col-lg-9">
-        <div class="card mt-4">
-          <img class="card-img-top img-fluid" src="" alt="">
+        <div class="card mt-4 mb-10">
+          <img class="card-img-top img-fluid" src="images/<?=$category?>.jpg" alt="">
           <div class="card-body">
             <h3 class="card-title"><?= $name ?></h3>
             <h4>$<?= $price ?></h4>
@@ -110,6 +115,13 @@ $resultProducts = mysqli_query($conn, $products);
     
     </div>
   </div>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+        
 
   <?php include 'includes/footer.php' ?>
 
