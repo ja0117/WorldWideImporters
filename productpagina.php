@@ -93,8 +93,24 @@ $resultProducts = mysqli_query($conn, $products);
         <div class="card mt-4 mb-10">
           <img class="card-img-top img-fluid" src="images/<?=$category?>.jpg" alt="">
           <div class="card-body">
-            <h3 class="card-title"><?= $name ?></h3>
-            <h4>$<?= $price ?></h4>
+            <h2 class="card-title"><?= $name ?></h2>
+              <h3 style="font-size: 100%">
+              <?php
+               if ($voorraad >= 250){
+                   print("Op voorraad!");
+               }
+               if($voorraad > 0 && $voorraad < 250){
+                   print("Bijna uitverkocht!");
+               }
+               if ($voorraad == 0){
+                   print("Niet op voorraad");
+               };
+               ?>
+              </h3>
+              <h4 style="color: red"><strike> <?php echo "€" . $prijselders ?> </strike></h4>
+              <h3>Incl. BTW € <?php echo number_format((float) $price * $btw , 2, '.', '')?> </h3>
+            <h3>Excl. BTW €<?= $price ?></h3>
+              <h4><?php $description ?> </h4>
             <p class="card-text"><?= $description ?></p>
             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
             4.0 stars
