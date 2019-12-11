@@ -1,3 +1,7 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 <?php
 
 include_once("databasecon.php");
@@ -10,101 +14,91 @@ include("shoppingCartCode.php");
 
 <!-- HTML head -->
 <?php include 'includes/head.php'; ?>
-
-<!-- Header & Nav bar -->
-<?php include 'includes/headernav.php'; ?>
-
-<head>
-  <link rel="stylesheet" href="style/shoppingcart.css">
-</head>
-
 <body>
+<?php include 'includes/nav.php' ?>
 
-    <div class="shopping-cart">
-      <!-- Title -->
-      <div class="title">
-        Winkelmand
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Winkelmand</h1>
+     </div>
+</section>
 
-      </div>
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Product</th>
+                            <th scope="col" class="text-center">Aantal</th>
+                            <th scope="col" class="text-right">Prijs</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $subtotaal = 0;
+                    foreach ($_SESSION["shoppingCart"] as $values) {
+                    $subtotaal = $subtotaal + $values["item_productprice"];
+                    ?>
+                    <form method="post">
+                        <tr>
+                        <input type="hidden" name="hidden_productid" value="<?= $values["item_productid"] ?>">
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td><?= $values["item_productname"] ?></td>
+                            <td>In stock</td>
+                            <td><input class="form-control" type="text" value="<?=$values["item_quantity"]?>" /></td>
+                            <td class="text-right">€<?= $values["item_productprice"] ?></td>
+                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                        </tr>
+                        </form>
+                        <?php
+                        }
+                        ?>
 
-        <?php
-        $subtotaal = 0;
-        foreach ($_SESSION["shoppingCart"] as $values) {
-        $subtotaal = $subtotaal + $values["item_productprice"];
-        ?>
-        <form method="post">
-            <!-- Product #1 -->
-            <table width="100%">
-                <tr>
-                    <input type="hidden" name="hidden_productid" value="<?= $values["item_productid"] ?>">
-                    <div class="image">
-                        <th>
-                            <img src="images/<?php print substr($values["item_productname"], 0, 3) ?>.jpg" width="128"
-                                 height="128"/>
-                        </th>
-                    </div>
-
-
-                    <div class="description">
-                        <th>
-                            <input type="text" size="45" value="<?= $values["item_productname"] ?>" readonly>
-                        </th>
-                    </div>
-
-
-                    <div class="quantity">
-
-                        <th>
-                            <input type="submit" name="increaseQuantity" value="+">
-                        </th>
-                        <th>
-                            <input type="text" size="2" name="name" value="<?= $values["item_quantity"] ?>" readonly>
-                        </th>
-                        <th>
-                            <input type="submit" name="decreaseQuantity" value="-">
-                        </th>
-                        <th>
-                            <input type="text" size="6" value="€<?= $values["item_productprice"] ?>" readonly>
-                            <input type="hidden" name="hidden_productprice" value="$<?= $values["item_singlePrice"] ?>">
-                        </th>
-                    </div>
-
-                </tr>
-            </table>
-
-        </form>
-        <?php
-        }
-        if ($subtotaal == 0){ ?>
-        <span style="text-align: center; font-size: 250%"> Uw mandje is nog leeg! </span> <?php
-        }
-        else{ ?>
-        <hr>
-            <div style="text-align: right">
-        <span style= "text-align right; font-size: 250%">Subtotaal:   </span>
-        <span style="text-align: right; font-size: 300%">€ <?php echo number_format((float)$subtotaal, 2, ',', '');;?> </span>
+                        
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Sub-Totaal</td>
+                            <td class="text-right">€<?= $subtotaal ?></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>BTW</td>
+                            <td class="text-right">€ Komt nog</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><strong>346,90 €</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-
-            <form method="post" action="Betaling.php">
-                <input class="button" type="hidden" name="load" value="<?php echo $subtotaal?>"/>
-                <input class="naarbestpag" type="submit" name="order" value="Door naar bestelpagina">
-            </form>
-        <?php
-
-
-        }
-        ?>
-  
-
-
-  <?php ?>
-  </div>
-</body>
-<hr>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <button class="btn btn-block btn-light">Verder Winkelend</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Betalen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Footer -->
-<?php include 'includes/footer.php'; ?>
-
-
-</html>
+<?php include 'includes/footer.php' ?>

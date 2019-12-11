@@ -1,19 +1,29 @@
-<?php include_once("databasecon.php"); ?>
+<<?php include_once("databasecon.php"); ?>
 
-<!DOCTYPE html>
-<html>
+
 
 <!-- HTML head -->
 <?php include 'includes/head.php'; ?>
 
-<!-- Nav bar -->
-<?php include 'includes/headernav.php';
-?>
+<!-- Header & Nav bar -->
+<?php include 'includes/headernav.php'; ?>
+<?php include 'shoppingCartCode.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<?php include 'includes/head.php' ?>
 
 <body>
 
-<div class="page-container">
-<div>
+  <!-- Navigation -->
+  <?php include 'includes/nav.php' ?>
+
+  <div class="container">
+
+    <div class="row">
+
+     
+
 <!-- The dropdown from which you can select how many products you want to load per page. Form is submitted upon selection  -->
 <form method="post">
     <!--The PHP compares each option with the current display amount setting and displays the corresponding one as selected  -->
@@ -147,22 +157,24 @@ foreach ($result2 as $loadedItem){
 }
 $paginas = ceil($totaalgeladen / $loadAmount);
 foreach ($result as $row) { ?>
-    <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
-        <div class="card">
-            <img style="width:250px; height:250px" src="images/<?=$category?>.jpg">
-            <div class="container">
-                <h4><b><?= $row["StockItemName"];?></b></h4>
-                <div id="itemPrice">
-                    <?php
-                    $btw = 1 + $row["TaxRate"] / 100;
-                    ?>
-                    <span style="text-decoration: line-through;"><?php print("€" . $row["RecommendedRetailPrice"] . "<br>");?></span>
-                    <?php
-                    print("&#8364;" . $row["UnitPrice"] * $btw); ?>
-                </div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><img class="card-img-top" src="images/<?php print substr(str_replace('"', '',$row["StockItemName"]), 0, 3) ?>.jpg" alt=""></a>
+                <div class="card-body">
+                <h4 class="card-title">
+                <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
+            </h4>
+            <h5><?= $row["RecommendedRetailPrice"] * $btw ?></h5>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
             </div>
-        </div>
-    </a>
+          </div>
+          
+    
 <?php }; ?>
 </div>
 
