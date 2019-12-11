@@ -29,7 +29,7 @@
         <?php
             $statement = mysqli_prepare($conn, "SELECT T.StockItemID, StockItemName, TaxRate, COUNT(T.StockItemID), UnitPrice
             FROM stockitems S JOIN stockitemtransactions T ON S.StockItemID = T.StockItemID
-            GROUP BY T.StockItemID ORDER BY COUNT(T.StockItemID) desc LIMIT 5");
+            GROUP BY T.StockItemID ORDER BY COUNT(T.StockItemID) desc LIMIT 9");
             mysqli_stmt_execute($statement);
             $result = mysqli_stmt_get_result($statement);
             foreach ($result as $row) {
