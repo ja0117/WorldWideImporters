@@ -22,6 +22,6 @@ if (session_status() === PHP_SESSION_NONE) {
   <link href = "./fontIcons/fontAwesome/css/all.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="./bootstrap/css/shop-homepage.css" rel="stylesheet">
+  <!-- <link href="./bootstrap/css/shop-homepage.css" rel="stylesheet"> -->
 
 </head>

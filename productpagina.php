@@ -66,7 +66,7 @@ if (isset($_GET["product"])) {
 <html lang="en">
 
 <?php include 'includes/head.php' ?>
-
+<body>
 <?php
 $products = "SELECT si.StockItemID, StockItemName, UnitPrice, StockGroupID
     FROM stockitems si
@@ -76,7 +76,7 @@ $resultProducts = mysqli_query($conn, $products);
 ?>
 
 
-<body>
+
 
   <?php include 'includes/nav.php' ?>
 
@@ -85,19 +85,13 @@ $resultProducts = mysqli_query($conn, $products);
 
     <div class="row">
 
-      <div class="col-lg-3">
-        <h1 class="my-4">Categorie Filler</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item active">Category 1</a>
-          <a href="#" class="list-group-item">Category 2</a>
-          <a href="#" class="list-group-item">Category 3</a>
-        </div>
-      </div>
+     <?php include 'includes/categorySidebar.php' ?>
+        
       <!-- /.col-lg-3 -->
-
+        
       <div class="col-lg-9">
-        <div class="card mt-4">
-          <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+        <div class="card mt-4 mb-10">
+          <img class="card-img-top img-fluid" src="images/<?=$category?>.jpg" alt="">
           <div class="card-body">
             <h3 class="card-title"><?= $name ?></h3>
             <h4>$<?= $price ?></h4>
@@ -110,11 +104,17 @@ $resultProducts = mysqli_query($conn, $products);
     
     </div>
   </div>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+  </br>
+        
 
   <?php include 'includes/footer.php' ?>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
