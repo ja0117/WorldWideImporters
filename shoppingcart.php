@@ -48,10 +48,11 @@ include("shoppingCartCode.php");
                         <input type="hidden" name="hidden_productid" value="<?= $values["item_productid"] ?>">
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
                             <td><?= $values["item_productname"] ?></td>
-                            <td>In stock</td>
                             <td><input class="form-control" type="text" value="<?=$values["item_quantity"]?>" /></td>
+                            <td> <button type ="submit" name ="increaseQuantity" class="btn btn-succes"> <i class="fas fa-plus"> </i> </button> </td>
                             <td class="text-right">€<?= $values["item_productprice"] ?></td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            <td> <button type ="submit" name ="decreaseQuantity" class="btn btn-succes"> <i class="fas fa-minus"> </i> </button> </td>
+                            <td class="text-right"><button type ="submit" name="remove" class="btn btn-sm btn-danger"> <i class="fa fa-trash"> </i> </button> </td>
                         </tr>
                         </form>
                         <?php

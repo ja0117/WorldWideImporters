@@ -7,7 +7,7 @@
 
 <?php include 'shoppingCartCode.php'; ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">1
 
 <?php include 'includes/head.php' ?>
 
