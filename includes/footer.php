@@ -1,5 +1,9 @@
-<a href="about.php">
-<footer>
-    Copyright &copy; 2019, Wide World Importers
-</footer>
-</a>
+
+<div class="fixed-bottom ">
+    <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">WWI &copy; Webshop 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+</div>
