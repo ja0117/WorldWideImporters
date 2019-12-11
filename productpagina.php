@@ -119,6 +119,16 @@ $resultProducts = mysqli_query($conn, $products);
       </div>
     
     </div>
+      <div align="right">
+          <form method="post" action="">
+              <input type="hidden" name="quantity" value=1>
+              <input type="hidden" name="hidden_productid" value="<?php echo $itemID; ?>" >
+              <input type="hidden" name="hidden_productname" value="<?= str_replace('"', '',$row['StockItemName']) ?>">
+              <input type="hidden" name="hidden_productname" value="<?php echo str_replace('"', ' ', $name); ?>">
+              <input type="hidden" name="hidden_productprice" value="<?php echo $price * $btw; ?>">
+              <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="button">
+          </form>
+      </div>
   </div>
   </br>
   </br>
