@@ -6,9 +6,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
          
-          <li class="nav-item">
-            <a class="nav-link" href="categories.php">Categorieën</a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="about.php">Over ons</a>
           </li>
