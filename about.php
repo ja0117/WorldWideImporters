@@ -3,6 +3,7 @@
 
 <!-- HTML head -->
 <?php include 'includes/head.php'; ?>
+<?php include 'includes/nav.php'; ?>
 
 <body>
 
