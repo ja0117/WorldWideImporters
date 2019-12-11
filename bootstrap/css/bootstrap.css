@@ -106,7 +106,7 @@ article, aside, figcaption, figure, header, hgroup, main, nav, section {
 }
 
 footer{
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
 }
