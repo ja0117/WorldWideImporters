@@ -4,8 +4,6 @@
 <!-- HTML head -->
 <?php include 'includes/head.php'; ?>
 
-<!-- Header & Nav bar -->
-<?php include 'includes/headernav.php'; ?>
 <head>
     <link rel="stylesheet" href="style/betaling.css">
 </head>
@@ -15,7 +13,7 @@
 
 <div class="page-container">
 
-<form method="post" action="idealbetaling.php">
+<form method="post" action="">
     <div class="factuur"><h2>Factuurgegevens</h2><br>
         <span class="Voornaam">Voornaam:<br>
         <input class="links" type="text" name="Vnaam" required></span>

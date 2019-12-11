@@ -5,8 +5,6 @@
 <!-- HTML head -->
 <?php include 'includes/head.php'; ?>
 
-<!-- Header & Nav bar -->
-<?php include 'includes/headernav.php'; ?>
 <?php include 'shoppingCartCode.php'; ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -30,9 +30,6 @@
 <!-- HTML head -->
 <?php include 'includes/head.php'; ?>
 
-<!-- Header & Nav bar -->
-<?php include 'includes/headernav.php'; ?>
-
 <body>
 
 <div style="font-size: 150%">
