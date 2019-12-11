@@ -55,21 +55,17 @@ if (isset($_GET["product"])) {
     }
 
 }
-else{
-}
+
 
 ?>
-<!DOCTYPE html>
-<html>
-<!-- HTML head -->
-<?php include 'includes/head.php'; ?>
 
-<!-- Header & Nav bar -->
-<?php include 'includes/headernav.php'; ?>
-<head>
-    <link rel="stylesheet" href="style/productpage.css">
-    <link rel="stylesheet" href="style/imagezoom.css">
-</head>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<?php include 'includes/head.php' ?>
 
 <?php
 $products = "SELECT si.StockItemID, StockItemName, UnitPrice, StockGroupID
@@ -79,87 +75,48 @@ $products = "SELECT si.StockItemID, StockItemName, UnitPrice, StockGroupID
 $resultProducts = mysqli_query($conn, $products);
 ?>
 
+
 <body>
-<?php if (isset($_GET["product"]) && mysqli_num_rows($result) > 0) { ?>
-    <div class="row">
-    <div class="column">
-    <div class="image">
-        <img style="width:400px; height:400px" src="images/<?=$category?>.jpg">
-    </div>
-    </div>
-    <div class="column">
-    <div class="naam">
-    <?php
-    print($name . "<br>")
-    ?>
-        <span style="font-size: 75%">
-            <?php        if($voorraad >= 1){
-            print($voorraad . " stuks op voorraad! <br>");
-             }
-              else{
-            print("Product niet meer op voorraad! <br>");
-        }
-        ?>
-        </span>
-    </div>
 
-    <div class="prijs">
-        <?php
-        print("<br> Adviesprijs: €" . $prijselders . "<br>");
-        print("Onze prijs: €" .$price * $btw ."<br>");
-        ?>
-    </div>
+  <?php include 'includes/nav.php' ?>
 
-    <div class="desc">
-        <?php
-        print("Gewicht: " .$gewicht ."kg <br>" );
-        print($description);
-        ?>
-    </div>
-    <div align="right">
-        <form method="post" action="">
-            <input type="hidden" name="quantity" value=1>
-            <input type="hidden" name="hidden_productid" value="<?php echo $itemID; ?>" >
-            <input type="hidden" name="hidden_productname" value="<?php echo str_replace('"', ' ', $name); ?>">
-            <input type="hidden" name="hidden_productprice" value="<?php echo $price * $btw; ?>">
-            <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="button">
-        </form>
-    </div>
-    </div>
-    </div>
-    
+  <!-- Page Content -->
+  <div class="container">
 
     <div class="row">
-    <div class="column">
-    <div class="video">
-        <?php
-        $url = 'https://www.youtube.com/watch?v=sNwKjnKgB8s';
-        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
-        $id = $matches[1];
-        $width = '400px';
-        $height = '250px';
-        ?>
-        <iframe id="ytplayer" type="text/html" width="<?php echo $width ?>" height="<?php echo $height ?>"
-                src="https://www.youtube.com/embed/<?php echo $id ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
-                frameborder="0" allowfullscreen></iframe>
 
-    </div>
-    </div>
-    </div>
-    </div>
+      <div class="col-lg-3">
+        <h1 class="my-4">Categorie Filler</h1>
+        <div class="list-group">
+          <a href="#" class="list-group-item active">Category 1</a>
+          <a href="#" class="list-group-item">Category 2</a>
+          <a href="#" class="list-group-item">Category 3</a>
+        </div>
+      </div>
+      <!-- /.col-lg-3 -->
 
+      <div class="col-lg-9">
+        <div class="card mt-4">
+          <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+          <div class="card-body">
+            <h3 class="card-title"><?= $name ?></h3>
+            <h4>$<?= $price ?></h4>
+            <p class="card-text"><?= $description ?></p>
+            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+            4.0 stars
+          </div>
+        </div>       
+      </div>
     
+    </div>
+  </div>
 
-    
-<?php }
-else { ?>
+  <?php include 'includes/footer.php' ?>
 
-<h1>Dit product bestaat helaas niet.</h1>
-<?php } ?>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
-<?php include 'includes/footer.php'; ?>
-
 
 </html>
