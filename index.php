@@ -43,19 +43,18 @@
                 <h4 class="card-title">
                 <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
             </h4>
-            <h5><?= $row["UnitPrice"] * $btw ?></h5>
+            <h5><?= "€" . number_format((float) $row["UnitPrice"] * $btw , 2, ',', '') ?></h5>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-            <form method="post">
-                    <?php print("Prijs: " . $row["UnitPrice"] * $btw); ?>
-                    <input type="hidden" name="hidden_productid" value="<?= $row['StockItemID']; ?>">
-                    <input type="hidden" name="hidden_productname" value="<?= str_replace('"', '',$row['StockItemName']) ?>">
-                    <input type="hidden" name="hidden_productprice" value="<?= $row["UnitPrice"] * $btw ?>">
-                    <input type="hidden" name="quantity" value="1">
-                    <input type="submit" name="add_to_cart" class="btn btn-primary" value="toevoegen aan winkelmand">
-                    </form>
+
               </div>
               <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                  <form method="post">
+                      <input type="hidden" name="hidden_productid" value="<?= $row['StockItemID']; ?>">
+                      <input type="hidden" name="hidden_productname" value="<?= str_replace('"', '',$row['StockItemName']) ?>">
+                      <input type="hidden" name="hidden_productprice" value="<?= $row["UnitPrice"] * $btw ?>">
+                      <input type="hidden" name="quantity" value="1">
+                      <input type="submit" name="add_to_cart" class="btn btn-primary" value="Toevoegen aan winkelmand">
+                  </form>
               </div>
             </div>
           </div>
