@@ -1,4 +1,4 @@
-<<?php include_once("databasecon.php"); ?>
+<?php include_once("databasecon.php"); ?>
 
 
 
@@ -7,7 +7,7 @@
 
 <?php include 'shoppingCartCode.php'; ?>
 <!DOCTYPE html>
-<html lang="en">1
+<html lang="en">
 
 <?php include 'includes/head.php' ?>
 
