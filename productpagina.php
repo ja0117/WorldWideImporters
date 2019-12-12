@@ -108,7 +108,7 @@ $resultProducts = mysqli_query($conn, $products);
                ?>
               </h3>
               <h4 style="color: red"><strike> <?php echo "€" . $prijselders ?> </strike></h4>
-              <h3>Incl. BTW € <?php echo number_format((float) $price * $btw , 2, '.', '')?> </h3>
+              <h3>Incl. BTW € <?php echo number_format((float) $price * $btw , 2, ',', '')?> </h3>
             <h3>Excl. BTW €<?= $price ?></h3>
               <h4><?php $description ?> </h4>
             <p class="card-text"><?= $description ?></p>
