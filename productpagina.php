@@ -129,7 +129,56 @@ $resultProducts = mysqli_query($conn, $products);
               <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="button">
           </form>
       </div>
+
+      <!-- Related products -->
+      <?php
+    
+        $relatedProductsQuery = "SELECT Product.StockItemID, StockItemName, UnitPrice, Category.StockGroupID
+                                FROM stockitems Product
+                                JOIN stockitemstockgroups Category ON Product.StockItemID = Category.StockItemID
+                                AND Category.StockGroupID = $category
+                                LIMIT 4";
+
+        $relatedProductsResult = mysqli_query($conn, $relatedProductsQuery)
+
+      ?>
+
+      <br>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Gerelateerde producten enzo</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
   </div>
+</div>
+      <div class="row">
+               <br>
+      
+      <?php 
+      foreach ($relatedProductsResult as $row) {
+            $btw = $row["TaxRate"] / 100 + 1;
+            ?>
+
+            <div class=" col-sm-3 mb-4">
+                <div class="card h-100">
+                    <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><img class="card-img-top"  src="images/<?php print substr(str_replace('"', '',$row["StockItemName"]), 0, 3) ?>.jpg" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
+                        </h4>
+                        <h5><?= $row["UnitPrice"] * $btw ?></h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                    </div>
+                </div>
+            </div>
+
+
+        <?php }; ?>
+      
+      
+        </div>
   </br>
   </br>
   </br>
