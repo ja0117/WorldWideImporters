@@ -4895,6 +4895,11 @@ input[type="button"].btn-block {
   flex-shrink: 0;
   width: 100%;
 }
+.card-img-top{
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
 
 .card-img,
 .card-img-top {
