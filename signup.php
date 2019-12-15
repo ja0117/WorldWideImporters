@@ -25,12 +25,14 @@ $successMessage = "";
             $errorMessage = "De wachtwoorden komen niet overeen!";
         }
         else {
-            $hashPass = password_hash($_POST["wachtwoord2"], PASSWORD_DEFAULT);
+            // HAshpass werkt nog niet!! wachtwoorden worden plain opgeslagen
+            $hashPass = password_hash(strtolower($_POST["wachtwoord2"]), PASSWORD_DEFAULT);
+            $hashPass = strtolower($_POST["wachtwoord2"]);
             $statement = mysqli_prepare($conn, "INSERT INTO useraccounts (voornaam, achternaam, straatnaam, huisnr, landnaam, plaats, postcode, email, telefoonnummer, hashed_password) VALUES (?,?,?,?,?,?,?,?,?,?)");
             if ($statement == false)
                 die("<pre>".mysqli_error($conn).PHP_EOL.$statement."</pre>");
             // Variabelen binden aan de INSERT query
-            mysqli_stmt_bind_param($statement, 'ssssssssss', $_POST["voornaam"], $_POST["achternaam"], $_POST["straatnaam"], $_POST["huisnr"], $_POST["landnaam"], $_POST["plaats"],$_POST["postcode"],$_POST["email"],$_POST["telefoon"],$hashPass);
+            mysqli_stmt_bind_param($statement, 'ssssssssss', $_POST["voornaam"], $_POST["achternaam"], $_POST["straatnaam"], $_POST["huisnr"], $_POST["landnaam"], $_POST["plaats"],$_POST["postcode"],strtolower($_POST["email"]),$_POST["telefoon"],$hashPass);
             mysqli_stmt_execute($statement);
             $result = mysqli_stmt_get_result($statement);
             $successMessage = "Uw account is aangemaakt!";

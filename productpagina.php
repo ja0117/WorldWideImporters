@@ -2,7 +2,6 @@
 include("databasecon.php");
 include("shoppingCartCode.php");
 
-
 if (isset($_GET["product"])) {
     $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemID = ?");
     $statement2 = mysqli_prepare($conn, "SELECT QuantityOnHand FROM stockitemholdings WHERE StockItemID = ?");
@@ -51,6 +50,20 @@ if (isset($_GET["product"])) {
                 $gewicht = $row["TypicalWeightPerUnit"];
                 $prijselders = $row["RecommendedRetailPrice"];
             }
+        }
+    }
+
+    if (isset($_POST["reviewtext"])) {
+        if (empty($_POST["reviewtext"])) {
+
+        }
+        else {
+            $insertcommentstatement = mysqli_prepare($conn, "INSERT INTO usercomments (userid, usercomment, stockitemid) VALUES (?,?,?)");
+            if ($insertcommentstatement == false)
+                die("<pre>".mysqli_error($conn).PHP_EOL.$statement."</pre>");
+            mysqli_stmt_bind_param($insertcommentstatement, 'isi', $_SESSION["loggedin"][0]["userid"], $_POST["reviewtext"], $_GET["product"]);
+            mysqli_stmt_execute($insertcommentstatement);
+            $result = mysqli_stmt_get_result($insertcommentstatement);
         }
     }
 
@@ -144,6 +157,66 @@ $resultProducts = mysqli_query($conn, $products);
       ?>
 
       <br>
+
+
+
+
+      <hr>
+      <!-- Comment section voor reviews -->
+      <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+              <h1 class="text-center">Product reviews</h1>
+              <hr>
+              <?php if (isset($_SESSION["loggedin"][0])) { ?>
+                  <form method="post">
+                      <div class="input-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">Laat een reactie achter</span>
+                          </div>
+                          <textarea name="reviewtext" class="form-control" aria-label="With textarea"></textarea>
+                      </div>
+                      <input type="submit" class="btn btn-primary float-right" value="Plaats reactie">
+                      <br>
+                  </form>
+              <?php } else { ?>
+                  <div class="input-group">
+                      <div class="input-group-prepend">
+                          <span class="input-group-text">Laat een reactie achter</span>
+                      </div>
+                      <textarea class="form-control" aria-label="With textarea" style="cursor: not-allowed;" disabled>U moet ingelogd zijn om een reactie te kunnen plaatsen.</textarea>
+                  </div>
+                  <input type="submit" class="btn btn-warning float-right" style="cursor: not-allowed;" value="Plaats reactie" disabled>
+                  <br>
+              <?php } ?>
+
+
+              <?php
+
+              $statement = mysqli_prepare($conn, "SELECT * FROM usercomments WHERE stockitemid = ?");
+              mysqli_stmt_bind_param($statement, 'i', $_GET["product"]);
+              mysqli_stmt_execute($statement);
+              $result = mysqli_stmt_get_result($statement);
+
+              foreach ($result as $row) { ?>
+                  <br>
+                  <div class="card">
+                      <div class="card-header text-center">
+                          USB missile launcher (Green)
+                      </div>
+                      <div class="card-body">
+                          <blockquote class="blockquote mb-0">
+                              <p><?php print($row["usercomment"]); ?></p>
+                              <footer class="blockquote-footer">Geplaatst door <cite title="Source Title">Joshua Altena</cite></footer>
+                          </blockquote>
+                      </div>
+                  </div>
+              <?php } ?>
+          </div>
+      </div>
+
+
+
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Gerelateerde producten enzo</h1>
@@ -185,8 +258,6 @@ $resultProducts = mysqli_query($conn, $products);
   </br>
   </br>
   </br>
-        
-
   <?php include 'includes/footer.php' ?>
 
   <!-- Bootstrap core JavaScript -->

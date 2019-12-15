@@ -43,19 +43,37 @@ include("loginscript.php");
     </div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">    <div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
       <a class="navbar-brand" href="index.php"><img class="rounded-corners" src="images/wwilogo.png" alt="Logo" style="width:60%;"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-            <li>
-                <a class="nav-link" href="signup.php">Aanmelden</a>
-            </li>
-            <li>
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Inloggen</a>
-            </li>
+          <?php if (isset($_SESSION["loggedin"][0])) { ?>
+          <ul class="navbar-nav ml-auto mx-auto">
+              <li>
+                  <h3 class="navbar-text">Welkom <?php print(ucfirst($_SESSION["loggedin"][0]["voornaam"])); ?></h3>
+              </li>
+          </ul>
+          <?php } ?>
+          <ul class="navbar-nav ml-auto">
+            <?php if (!isset($_SESSION["loggedin"][0])) { ?>
+                <li>
+                    <a class="nav-link" href="signup.php">Aanmelden</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Inloggen</a>
+                </li>
+            <?php }
+                else { ?>
+                <li>
+                    <form style="margin: 0; padding: 0;" name="logoutform" method="post">
+                        <a onclick="document.logoutform.submit();" style="cursor: pointer;" class="nav-link text-danger">Uitloggen</a>
+                        <input type="hidden" value="true" name="uitloggen">
+                    </form>
+                </li>
+            <?php } ?>
             <li class="nav-item">
                 <a class="nav-link" href="about.php">Over ons</a>
             </li>
