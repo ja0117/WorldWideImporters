@@ -43,7 +43,7 @@
                 <p6 class="card-title">
                 <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
             </p6>
-            <h5><?= "€" . number_format((float) $row["UnitPrice"] * $btw , 2, ',', '') ?></h5>
+            <h4><?= "€" . number_format((float) $row["UnitPrice"] * $btw , 2, ',', '') ?></h4>
 
               </div>
               <div class="card-footer">
@@ -52,7 +52,7 @@
                       <input type="hidden" name="hidden_productname" value="<?= str_replace('"', '',$row['StockItemName']) ?>">
                       <input type="hidden" name="hidden_productprice" value="<?= $row["UnitPrice"] * $btw ?>">
                       <input type="hidden" name="quantity" value="1">
-                      <center><button type="submit" name="add_to_cart" class="btn btn-primary"><i class="fas fa-shopping-cart"></i></button></center>
+                      <input type="submit" name="add_to_cart" class="btn btn-primary" value="Toevoegen aan winkelmand">
                   </form>
               </div>
             </div>
@@ -60,7 +60,7 @@
 
 <?php } ?>
             <?php
-            $statement = mysqli_prepare($conn, "SELECT T.StockItemID, StockItemName, DiscountPercentage, TaxRate, S.UnitPrice
+            $statement = mysqli_prepare($conn, "SELECT T.StockItemID, StockItemName, DiscountPercentage, TaxRate, S.UnitPrice, EndDate
             FROM stockitems S JOIN specialdeals T ON S.StockItemID = T.StockItemID LIMIT 9");
             mysqli_stmt_execute($statement);
             $result = mysqli_stmt_get_result($statement);
@@ -72,11 +72,10 @@
                     <div class="card h-100">
                         <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><img class="card-img-top" src="images/<?php print substr(str_replace('"', '',$row["StockItemName"]), 0, 3) ?>.jpg" alt=""></a>
                         <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
-                            </h4>
-                            <h5><?= "€" . number_format((float) ($row["S.UnitPrice"] * $btw), 2, ',', '') ?></h5>
-                            <h4><?= "€" . number_format((float) ($row["S.UnitPrice"] * $btw)*($row["DiscountPercentage"]/100+1), 2, ',', '') ?></h4>
+                            <p6 class="card-title"><a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a></p6>
+                                <h4 style="color: red"><strike style="color: black"><?= "€" . number_format((float)($row['UnitPrice'] * $btw), 2, ',', '') ?></strike> -<?php print(number_format((float)($row['DiscountPercentage']), 0, ',', '')).'%'?>
+                                    <h4><?= "€" . number_format((float)($row['UnitPrice'] * $btw)*(1-$row["DiscountPercentage"]/100), 2, ',', '') ?></h4>
+                                        <p6 class="badge badge-danger">Geldig tot <?php print($row['EndDate']);?></p6>
 
                         </div>
                         <div class="card-footer">
