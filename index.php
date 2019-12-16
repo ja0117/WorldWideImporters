@@ -51,6 +51,7 @@
                       <input type="hidden" name="hidden_productid" value="<?= $row['StockItemID']; ?>">
                       <input type="hidden" name="hidden_productname" value="<?= str_replace('"', '',$row['StockItemName']) ?>">
                       <input type="hidden" name="hidden_productprice" value="<?= $row["UnitPrice"] * $btw ?>">
+                      <input type="hidden" name="hidden_taxrate" value="<?= $row['TaxRate']; ?>">
                       <input type="hidden" name="quantity" value="1">
                       <input type="submit" name="add_to_cart" class="btn btn-primary" value="Toevoegen aan winkelmand">
                   </form>

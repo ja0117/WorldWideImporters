@@ -170,7 +170,8 @@
 
 
         //     Get the category ID from the URL. This ID has been passed through the card link on the category page
-        $category = $_GET['category'];
+        //     Default categorie 1 ingeladen wanneer categorie ontbreekt in de URL
+        $category = isset($_GET['category']) ? $_GET['category'] : "1";
 
         //$categoryName = "SELECT StockGroupName FROM stockgroups WHERE StockGroupID = $category";
 

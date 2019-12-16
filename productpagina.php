@@ -2,24 +2,27 @@
 include("databasecon.php");
 include("shoppingCartCode.php");
 
-if (isset($_GET["product"])) {
+// Als het product niet geset is in de URL, default waarde van 1 mee geven (product id 1 wordt ingeladen)
+$product = isset($_GET["product"]) ? $_GET["product"] : "1";
+
+if ($product) {
     $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemID = ?");
     $statement2 = mysqli_prepare($conn, "SELECT QuantityOnHand FROM stockitemholdings WHERE StockItemID = ?");
     $statement3 = mysqli_prepare($conn, "SELECT StockGroupID FROM stockitemstockgroups WHERE StockItemID = ?");
 
-    mysqli_stmt_bind_param($statement, 'i', $_GET["product"]);
+    mysqli_stmt_bind_param($statement, 'i', $product);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
 
-    mysqli_stmt_bind_param($statement2, 'i', $_GET["product"]);
+    mysqli_stmt_bind_param($statement2, 'i', $product);
     mysqli_stmt_execute($statement2);
     $result2 = mysqli_stmt_get_result($statement2);
 
-     mysqli_stmt_bind_param($statement3, 'i', $_GET["product"]);
+     mysqli_stmt_bind_param($statement3, 'i', $product);
      mysqli_stmt_execute($statement3);
      $result3 = mysqli_stmt_get_result($statement3);
 
-    if (isset($_GET["product"])) {
+    if (isset($product)) {
         if (mysqli_num_rows($result3) > 0) {
             while ($row3 = mysqli_fetch_assoc($result3)) {
                 $category = $row3["StockGroupID"];
@@ -30,7 +33,7 @@ if (isset($_GET["product"])) {
 
 
 
-    if (isset($_GET["product"])) {
+    if (isset($product)) {
         if (mysqli_num_rows($result2) > 0) {
             while ($row2 = mysqli_fetch_assoc($result2)) {
                 $voorraad = $row2["QuantityOnHand"];
@@ -39,7 +42,7 @@ if (isset($_GET["product"])) {
     }
 
 
-    if (isset($_GET["product"])) {
+    if (isset($product)) {
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $itemID = $row["StockItemID"];
@@ -63,7 +66,7 @@ if (isset($_GET["product"])) {
             $insertcommentstatement = mysqli_prepare($conn, "INSERT INTO usercomments (userid, usercomment, stockitemid) VALUES (?,?,?)");
             if ($insertcommentstatement == false)
                 die("<pre>".mysqli_error($conn).PHP_EOL.$statement."</pre>");
-            mysqli_stmt_bind_param($insertcommentstatement, 'isi', $_SESSION["loggedin"][0]["userid"], $_POST["reviewtext"], $_GET["product"]);
+            mysqli_stmt_bind_param($insertcommentstatement, 'isi', $_SESSION["loggedin"][0]["userid"], $_POST["reviewtext"], $product);
             mysqli_stmt_execute($insertcommentstatement);
             $result = mysqli_stmt_get_result($insertcommentstatement);
         }
@@ -196,7 +199,7 @@ $resultProducts = mysqli_query($conn, $products);
               <?php
 
               $statement = mysqli_prepare($conn, "SELECT * FROM usercomments JOIN useraccounts ON useraccounts.id = usercomments.userid WHERE stockitemid = ?");
-              mysqli_stmt_bind_param($statement, 'i', $_GET["product"]);
+              mysqli_stmt_bind_param($statement, 'i', $product);
               mysqli_stmt_execute($statement);
               $result = mysqli_stmt_get_result($statement);
 
