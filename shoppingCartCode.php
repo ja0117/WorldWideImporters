@@ -15,7 +15,8 @@ if (isset($_POST["add_to_cart"])) {
         "item_productname"  =>    $_POST["hidden_productname"],
         "item_quantity"     =>    $_POST["quantity"],
         "item_productprice" =>    $_POST["hidden_productprice"],
-        "item_singlePrice"   =>    $_POST["hidden_productprice"]
+        "item_singlePrice"  =>    $_POST["hidden_productprice"],
+        "item_taxrate"      =>    $_POST["hidden_taxrate"]
     );
     $exists = false;
 

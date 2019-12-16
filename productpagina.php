@@ -46,6 +46,7 @@ if (isset($_GET["product"])) {
                 $name = $row["StockItemName"];
                 $price = $row["UnitPrice"];
                 $description = $row["MarketingComments"];
+                $btw1 = $row["TaxRate"] / 100;
                 $btw = 1 + $row["TaxRate"] / 100;
                 $gewicht = $row["TypicalWeightPerUnit"];
                 $prijselders = $row["RecommendedRetailPrice"];
@@ -140,6 +141,7 @@ $resultProducts = mysqli_query($conn, $products);
               <input type="hidden" name="hidden_productname" value="<?= str_replace('"', '',$row['StockItemName']) ?>">
               <input type="hidden" name="hidden_productname" value="<?php echo str_replace('"', ' ', $name); ?>">
               <input type="hidden" name="hidden_productprice" value="<?php echo $price * $btw; ?>">
+              <input type="hidden" name="hidden_taxrate" value="<?php echo $btw1?>">
               <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="button">
           </form>
       </div>

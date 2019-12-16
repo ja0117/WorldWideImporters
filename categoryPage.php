@@ -21,7 +21,7 @@
     <div class="row">
 
 
-            <span>
+            <div style="padding-right: 100%; padding-top: 10px">
         <!-- The dropdown from which you can select how many products you want to load per page. Form is submitted upon selection  -->
         <form method="post">
             <!--The PHP compares each option with the current display amount setting and displays the corresponding one as selected  -->
@@ -61,7 +61,9 @@
             <!--All the javascript does is wait until an option has been selected and submits the form when it is -->
             <noscript><input type="submit" value="Submit"></noscript>
         </form>
-            </span>
+            </div>
+
+
 
 
 

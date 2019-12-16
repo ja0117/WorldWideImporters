@@ -42,8 +42,12 @@ include("shoppingCartCode.php");
                     <tbody>
                     <?php
                     $subtotaal = 0;
+                    $totaalbtw = 0;
+                    $btwproduct = 0;
                     foreach ($_SESSION["shoppingCart"] as $values) {
                     $subtotaal = $subtotaal + $values["item_productprice"];
+                    $btwproduct = $values["item_productprice"] * $values["item_taxrate"];
+                    $totaalbtw = $totaalbtw + $btwproduct;
                     ?>
                     <form method="post">
                         <tr>
@@ -77,7 +81,7 @@ include("shoppingCartCode.php");
                             <td></td>
                             <td></td>
                             <td>BTW</td>
-                            <td class="text-right">€ Komt nog</td>
+                            <td class="text-right"><?php print("€"); echo $totaalbtw?></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -85,7 +89,7 @@ include("shoppingCartCode.php");
                             <td></td>
                             <td></td>
                             <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>346,90 €</strong></td>
+                            <td class="text-right"><strong> <?php print("€"); print($subtotaal + $totaalbtw) ?> </strong></td>
                         </tr>
                     </tbody>
                 </table>
