@@ -193,7 +193,7 @@ $resultProducts = mysqli_query($conn, $products);
 
               <?php
 
-              $statement = mysqli_prepare($conn, "SELECT * FROM usercomments WHERE stockitemid = ?");
+              $statement = mysqli_prepare($conn, "SELECT * FROM usercomments JOIN useraccounts ON useraccounts.id = usercomments.userid WHERE stockitemid = ?");
               mysqli_stmt_bind_param($statement, 'i', $_GET["product"]);
               mysqli_stmt_execute($statement);
               $result = mysqli_stmt_get_result($statement);
@@ -207,7 +207,7 @@ $resultProducts = mysqli_query($conn, $products);
                       <div class="card-body">
                           <blockquote class="blockquote mb-0">
                               <p><?php print($row["usercomment"]); ?></p>
-                              <footer class="blockquote-footer">Geplaatst door <cite title="Source Title">Joshua Altena</cite></footer>
+                              <footer class="blockquote-footer">Geplaatst door <cite title="Source Title"><?php echo $row["voornaam"] . " " . $row["achternaam"] ?> </cite></footer>
                           </blockquote>
                       </div>
                   </div>
