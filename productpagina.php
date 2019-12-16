@@ -49,6 +49,7 @@ if (isset($_GET["product"])) {
                 $btw = 1 + $row["TaxRate"] / 100;
                 $gewicht = $row["TypicalWeightPerUnit"];
                 $prijselders = $row["RecommendedRetailPrice"];
+
             }
         }
     }
@@ -228,7 +229,6 @@ $resultProducts = mysqli_query($conn, $products);
       
       <?php 
       foreach ($relatedProductsResult as $row) {
-            $btw = $row["TaxRate"] / 100 + 1;
             ?>
 
             <div class=" col-sm-3 mb-4">
