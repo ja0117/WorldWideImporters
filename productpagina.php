@@ -202,7 +202,7 @@ $resultProducts = mysqli_query($conn, $products);
                   <br>
                   <div class="card">
                       <div class="card-header text-center">
-                          USB missile launcher (Green)
+                          <?php echo $name ?>
                       </div>
                       <div class="card-body">
                           <blockquote class="blockquote mb-0">
