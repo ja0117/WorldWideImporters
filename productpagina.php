@@ -147,7 +147,7 @@ $resultProducts = mysqli_query($conn, $products);
               <input type="hidden" name="hidden_productid" value="<?php echo $itemID; ?>" >
               <input type="hidden" name="hidden_productname" value="<?= str_replace('"', '',$row['StockItemName']) ?>">
               <input type="hidden" name="hidden_productname" value="<?php echo str_replace('"', ' ', $name); ?>">
-              <input type="hidden" name="hidden_productprice" value="<?php echo $price * $btw; ?>">
+              <input type="hidden" name="hidden_productprice" value="<?php echo $price; ?>">
               <input type="hidden" name="hidden_taxrate" value="<?php echo $btw1?>">
               <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="button">
           </form>
@@ -156,7 +156,7 @@ $resultProducts = mysqli_query($conn, $products);
       <!-- Related products -->
       <?php
     
-        $relatedProductsQuery = "SELECT Product.StockItemID, StockItemName, UnitPrice, Category.StockGroupID
+        $relatedProductsQuery = "SELECT Product.StockItemID, StockItemName, UnitPrice, MarketingComments, Category.StockGroupID
                                 FROM stockitems Product
                                 JOIN stockitemstockgroups Category ON Product.StockItemID = Category.StockItemID
                                 AND Category.StockGroupID = $category
@@ -256,8 +256,8 @@ $resultProducts = mysqli_query($conn, $products);
                         <h4 class="card-title">
                             <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
                         </h4>
-                        <h5><?= $row["UnitPrice"] * $btw ?></h5>
-                        <p class="card-text"><?php echo $description ?> </p>
+                        <h5> €<?= number_format((float) $row["UnitPrice"] * $btw , 2, ',', '')  ?></h5>
+                        <p class="card-text"><?php echo $row["MarketingComments"] ?> </p>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

@@ -176,7 +176,7 @@
         //$categoryName = "SELECT StockGroupName FROM stockgroups WHERE StockGroupID = $category";
 
         // It then fetches all products that are in the category with the ID fetched from the URL
-        $products = "SELECT  Product.StockItemID, Product.UnitPrice, Product.TaxRate, StockItemName, RecommendedRetailPrice
+        $products = "SELECT  Product.StockItemID, Product.UnitPrice, Product.TaxRate, StockItemName, RecommendedRetailPrice, MarketingComments
     FROM stockitems Product
     JOIN stockitemstockgroups Cat ON Product.StockItemID = Cat.StockItemID
     WHERE StockGroupID = $category 
@@ -208,8 +208,8 @@
                         <h4 class="card-title">
                             <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
                         </h4>
-                        <h5><?= $row["UnitPrice"] * $btw ?></h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                        <h5>€<?= number_format((float) $row["UnitPrice"] * $btw , 2, ',', '')  ?></h5>
+                        <p class="card-text"><?php echo $row["MarketingComments"] ?> </p>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>

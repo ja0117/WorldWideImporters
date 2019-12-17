@@ -91,7 +91,7 @@ else{
                             <td></td>
                             <td></td>
                             <td>Sub-Totaal</td>
-                            <td class="text-right">€<?= $subtotaal ?></td>
+                            <td class="text-right">€<?= number_format((float) $subtotaal , 2, ',', '') ?></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -99,7 +99,7 @@ else{
                             <td></td>
                             <td></td>
                             <td>BTW</td>
-                            <td class="text-right"><?php print("€"); echo $totaalbtw?></td>
+                            <td class="text-right"><?php print("€"); echo number_format((float) $totaalbtw , 2, ',', '')?></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -107,7 +107,7 @@ else{
                             <td></td>
                             <td></td>
                             <td><strong>Totaal</strong></td>
-                            <td class="text-right"><strong> <?php print("€"); print($subtotaal + $totaalbtw) ?> </strong></td>
+                            <td class="text-right"><strong> <?php print("€"); echo number_format((float) $subtotaal + $totaalbtw , 2, ',', '') ?> </strong></td>
                         </tr>
                     </tbody>
                 </table>
