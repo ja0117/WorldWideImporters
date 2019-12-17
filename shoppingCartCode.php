@@ -81,3 +81,32 @@ if (isset($_POST["remove"])) {
     }
 }
 
+// If the "betalen" button is submitted
+if(isset($_POST["submitOrder"]))
+{
+    $_SESSION["orderCost"] = $_POST["totalCost"];
+}
+
+if(isset($_POST["submitStatus"]))
+{
+    $_SESSION["orderStatus"] = $_POST["submitStatus"];
+
+    if($_SESSION["orderStatus"] == "Success")
+    {
+        // Make a new array to push the shopping cart items into so that the shopping cart session can be emptied if the payment succeeds
+        $_SESSION["orderedProductInfo"] = array();
+
+        foreach($_SESSION["shoppingCart"] as $cartItems)
+        {
+            array_push($_SESSION["orderedProductInfo"], $cartItems);
+        }
+        unset($_SESSION["shoppingCart"]);
+
+    }
+
+
+    header("Location: orderComplete.php");
+
+}
+
+
