@@ -239,8 +239,7 @@ $resultProducts = mysqli_query($conn, $products);
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Gerelateerde producten enzo</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+    <h1 class="display-4">Gerelateerde producten</h1>
   </div>
 </div>
       <div class="row">
@@ -258,7 +257,7 @@ $resultProducts = mysqli_query($conn, $products);
                             <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
                         </h4>
                         <h5><?= $row["UnitPrice"] * $btw ?></h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                        <p class="card-text"><?php echo $description ?> </p>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
