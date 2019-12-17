@@ -4,28 +4,42 @@
 <!-- HTML head -->
 <?php include 'includes/head.php'; ?>
 <?php include 'includes/nav.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<body>
+<!-- Page Content -->
+<div class="container">
 
-<div><h2> Over ons </h2></div>
 
-<div class="motto">
-    “Wij zijn WWI. We zijn trots op onze producten en geloven in kwaliteit. In ieder huis vindt een
-    product van WWI zijn thuis. Ondanks onze grootte zien klanten ons als kleinschalig en
-    betrokken. Persoonlijk klantcontact staat bij ons hoog in het vaandel.”
-</div>
+        <!-- Title -->
+            <h1 class="mt-4">About us</h1>
 
-<div class="overonsimg">
-<img src="images/wwilogo.png">
-</div>
+            <hr>
 
-<div>
-</div>
+            <!-- Preview Image -->
+            <img class="img-fluid rounded" src="images/wwilogo.png"" alt="">
 
-<div>
-</div>
+            <hr>
+
+            <!-- Post Content -->
+            <p class="lead">    “Wij zijn WWI. We zijn trots op onze producten en geloven in kwaliteit. In ieder huis vindt een
+                product van WWI zijn thuis. Ondanks onze grootte zien klanten ons als kleinschalig en
+                betrokken. Persoonlijk klantcontact staat bij ons hoog in het vaandel.”
+                ?</p>
+
+
+
+
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
+</html>
 
 <!-- Footer -->
 <?php include 'includes/footer.php'; ?>
