@@ -7,6 +7,35 @@
 include_once("databasecon.php");
 include("shoppingCartCode.php");
 
+$orderStatus = $_SESSION["orderStatus"];
+
+function displayOrderMessage($orderMessage)
+{
+    switch($orderMessage)
+    {
+        case "Success":
+            echo "Order geslaagd!";
+        break;
+
+        // case "Pending":
+        //     echo "Order geslaagd";
+        // break;
+
+        case "Cancel":
+            echo "Order geannuleerd!";
+        break;
+
+        case "Error":
+            echo "Order mislukt!";
+        break;
+
+        default:
+        echo "Uw Order overzicht";
+    }
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -19,24 +48,10 @@ include("shoppingCartCode.php");
 
 <section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">Winkelmand</h1>
+        <!-- Might put a switch case here for displaying the appropriate status message depending on whether the payment succeeded or not -->
+        <h1 class="jumbotron-heading"><?php displayOrderMessage($orderStatus); ?></h1>
      </div>
 </section>
-
-<?php
-if(empty($_SESSION["shoppingCart"]))
-{?>
-    <section class="jumbotron text-center">
-    <div class="container">
-        <h3 class="jumbotron-heading">Uw winkelmand is leeg!</h3>
-     </div>
-</section>
-
-<?php
-}
-else{
-    ?>
-
 
 <div class="container mb-4">
     <div class="row">
@@ -59,7 +74,7 @@ else{
                     $subtotaal = 0;
                     $totaalbtw = 0;
                     $btwproduct = 0;
-                    foreach ($_SESSION["shoppingCart"] as $values) {
+                    foreach ($_SESSION["orderedProductInfo"] as $values) {
                     $subtotaal = $subtotaal + $values["item_productprice"];
                     $btwproduct = $values["item_productprice"] * $values["item_taxrate"] / 100;
                     $totaalbtw = $totaalbtw + $btwproduct;
@@ -69,12 +84,8 @@ else{
                         <input type="hidden" name="hidden_productid" value="<?= $values["item_productid"] ?>">
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
                             <td><?= $values["item_productname"] ?></td>
-                            <td> <button type ="submit" name ="increaseQuantity" class="btn btn-succes"> <i class="fas fa-plus-square"> </i> </button> </td>
                             <td><?=$values["item_quantity"]?></td>
-                            <td> <button type ="submit" name ="decreaseQuantity" class="btn btn-succes"> <i class="fas fa-minus-square"> </i> </button> </td>
-
                             <td class="text-right">€<?= $values["item_productprice"] ?></td>
-                            <td class="text-right"><button type ="submit" name="remove" class="btn btn-sm btn-danger"> <i class="fa fa-trash"> </i> </button> </td>
 
                             <!-- Hidden total cost -->
 
@@ -117,13 +128,20 @@ else{
             <div class="row">
                 <div class="col-sm-12  col-md-6">
                     <form action="index.php">
-                        <button type="submit" class="btn btn-block btn-light">Verder Winkelen</button>
+                        <button type="submit" class="btn btn-block btn-primary">Verder Winkelen</button>
                     </form>
                 </div>
 
                 <div class="col-sm-12 col-md-6 text-right">
                 <form method="post" action="idealPayment.php">
-                    <button type="submit" name="submitOrder" class="btn btn-lg btn-block btn-success text-uppercase">Betalen</button>
+                    <?php
+                    // Only show try again button of order has not succeeded
+                    if($orderStatus !== "Success")
+                    {?>
+                        <button type="submit" name="submitOrder" class="btn btn-lg btn-block btn-success text-uppercase">Opnieuw proberen</button>
+                    <?php
+                    }?>
+
                     <input type="hidden" name="totalCost" value="<?= $totaalbtw + $subtotaal ?>">
                 </form>
                 </div>
@@ -131,9 +149,6 @@ else{
         </div>
     </div>
 </div>
-<?php
-}
-?>
 
 <!-- Footer -->
 <?php include 'includes/footer.php' ?>
