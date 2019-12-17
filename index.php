@@ -40,7 +40,7 @@
                 ?>
                 <!--A link to its own page is created based on its ID      -->
                 <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
+                <div class="card h-100">
                 <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><img class="card-img-top" src="images/<?php print substr(str_replace('"', '',$row["StockItemName"]), 0, 3) ?>.jpg" alt=""></a>
                 <div class="card-body">
                 <p6 class="card-title">
@@ -77,7 +77,7 @@
                 ?>
                 <!--A link to its own page is created based on its ID      -->
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
+                    <div class="card h-100" style="height: 420px">
                         <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><img class="card-img-top" src="images/<?php print substr(str_replace('"', '',$row["StockItemName"]), 0, 3) ?>.jpg" alt=""></a>
                         <div class="card-body">
                             <p6 class="card-title"><a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a></p6>
