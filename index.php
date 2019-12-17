@@ -25,6 +25,9 @@
       <?php include 'includes/carousel.php' ?>
 
         <div class="row">
+            <div class="col-auto"><p class="badge badge-danger" style="width: 825px">Populaire producten</p></div>
+        </div>
+        <div class="row">
 
         <?php
             $statement = mysqli_prepare($conn, "SELECT T.StockItemID, StockItemName, TaxRate, COUNT(T.StockItemID), UnitPrice
@@ -60,7 +63,11 @@
           </div>
 
 <?php } ?>
-            <?php
+            <div class="col-auto"><p class="badge badge-danger" style="width: 825px;">Producten in de aanbieding</p></div>
+            </div>
+            <div class="row">
+
+        <?php
             $statement = mysqli_prepare($conn, "SELECT T.StockItemID, StockItemName, DiscountPercentage, TaxRate, S.UnitPrice, EndDate
             FROM stockitems S JOIN specialdeals T ON S.StockItemID = T.StockItemID LIMIT 9");
             mysqli_stmt_execute($statement);
