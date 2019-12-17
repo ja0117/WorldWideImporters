@@ -18,9 +18,9 @@ if ($product) {
     mysqli_stmt_execute($statement2);
     $result2 = mysqli_stmt_get_result($statement2);
 
-     mysqli_stmt_bind_param($statement3, 'i', $product);
-     mysqli_stmt_execute($statement3);
-     $result3 = mysqli_stmt_get_result($statement3);
+    mysqli_stmt_bind_param($statement3, 'i', $product);
+    mysqli_stmt_execute($statement3);
+    $result3 = mysqli_stmt_get_result($statement3);
 
     if (isset($product)) {
         if (mysqli_num_rows($result3) > 0) {
@@ -29,8 +29,6 @@ if ($product) {
             }
         }
     }
-
-
 
 
     if (isset($product)) {
@@ -49,7 +47,7 @@ if ($product) {
                 $name = $row["StockItemName"];
                 $price = $row["UnitPrice"];
                 $description = $row["MarketingComments"];
-                $btw1 = $row["TaxRate"] / 100;
+                $btw1 = $row["TaxRate"];
                 $btw = 1 + $row["TaxRate"] / 100;
                 $gewicht = $row["TypicalWeightPerUnit"];
                 $prijselders = $row["RecommendedRetailPrice"];
@@ -61,20 +59,26 @@ if ($product) {
     if (isset($_POST["reviewtext"])) {
         if (empty($_POST["reviewtext"])) {
 
-        }
-        else {
+        } else {
             $insertcommentstatement = mysqli_prepare($conn, "INSERT INTO usercomments (userid, usercomment, stockitemid) VALUES (?,?,?)");
             if ($insertcommentstatement == false)
-                die("<pre>".mysqli_error($conn).PHP_EOL.$statement."</pre>");
+                die("<pre>" . mysqli_error($conn) . PHP_EOL . $statement . "</pre>");
             mysqli_stmt_bind_param($insertcommentstatement, 'isi', $_SESSION["loggedin"][0]["userid"], $_POST["reviewtext"], $product);
             mysqli_stmt_execute($insertcommentstatement);
             $result = mysqli_stmt_get_result($insertcommentstatement);
         }
     }
 
+    if (isset($_SESSION["loggedin"][0]) && isset($_POST["deletecomment"])) {
+        $deletecommentstatement = mysqli_prepare($conn, "DELETE FROM usercomments WHERE commentid = ?");
+        if ($deletecommentstatement == false)
+            die("<pre>" . mysqli_error($conn) . PHP_EOL . $statement . "</pre>");
+        mysqli_stmt_bind_param($deletecommentstatement, 'i', $_POST["deletecomment"]);
+        mysqli_stmt_execute($deletecommentstatement);
+        $result = mysqli_stmt_get_result($deletecommentstatement);
+    }
+
 }
-
-
 ?>
 
 
@@ -208,6 +212,16 @@ $resultProducts = mysqli_query($conn, $products);
                   <div class="card">
                       <div class="card-header text-center">
                           <?php echo $name ?>
+                          <div class="float-right">
+                              <?php if (isset($_SESSION["loggedin"][0]) && $row["email"] == $_SESSION["loggedin"][0]["email"]) { ?>
+                                  <form name="deletecommentform" action="" method="post">
+                                      <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                      <input type="hidden" value="<?php echo $row['commentid'];?>" name="deletecomment">
+                                  </form>
+                              <?php } else { ?>
+                                  <button class="btn btn-secondary" style="cursor: not-allowed;"><i class="fas fa-trash"></i></button>
+                              <?php } ?>
+                          </div>
                       </div>
                       <div class="card-body">
                           <blockquote class="blockquote mb-0">
