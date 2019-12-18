@@ -79,7 +79,7 @@ include("loginscript.php");
               <form action="search.php" method="get" style="margin:0; padding: 0;">
               <div class="input-group mb-2">
                  <li class="nav-item">
-                     <input class="form-control rounded-left" type="text" name="searchBox" placeholder="product zoeken">
+                     <input class="form-control rounded-left" type="text" name="searchBox" placeholder="Product zoeken...">
                 </li>
                     <input type="submit" class="btn btn-primary rounded-right" value="Zoek">
               </div>

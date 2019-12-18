@@ -21,7 +21,7 @@
     <div class="row">
 
 
-            <div style="padding-right: 50%; padding-top: 10px">
+            <div class="col-md-12">
         <!-- The dropdown from which you can select how many products you want to load per page. Form is submitted upon selection  -->
          <div class="form-group">
         <form method="post">
