@@ -51,6 +51,7 @@ if ($product) {
                 $btw = 1 + $row["TaxRate"] / 100;
                 $gewicht = $row["TypicalWeightPerUnit"];
                 $prijselders = $row["RecommendedRetailPrice"];
+                $gekoeld = $row["IsChillerStock"];
 
             }
         }
@@ -124,6 +125,13 @@ $resultProducts = mysqli_query($conn, $products);
                if ($voorraad == 0){
                    print("Niet op voorraad");
                };
+
+               if ($gekoeld == 1){
+                   echo "<br> <br>";
+                   ?>
+                   <a class="ui-tooltip" title="Dit product is gekoeld om u te verzekeren van de hoogste kwaliteit producten."><span style="cursor: help;">Product is gekooeld!</span></a>
+                   <?php
+               }
                ?>
               </h3>
               <h4 style="color: red"><strike> <?php echo "€" . $prijselders ?> </strike></h4>
