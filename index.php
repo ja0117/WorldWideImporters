@@ -25,7 +25,11 @@
       <?php include 'includes/carousel.php' ?>
 
         <div class="row">
-            <div class="col-auto"><p class="badge badge-danger" style="width: 825px">Populaire producten</p></div>
+            <div class="col">
+        <div class="jumbotron bg-secondary">
+        <h1 class="display-4 text-white text-center">Populaire producten</h1>
+
+        </div>
         </div>
         <div class="row">
 

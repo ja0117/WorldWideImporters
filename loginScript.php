@@ -34,6 +34,8 @@ if(isset($_POST["gebruikersemail"]) && isset($_POST["wachtwoord"])) {
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
 
+
+
         // Result als Array weer kunnen geven
         $result2 = mysqli_fetch_array($result);
         $hashed = $result2["hashed_password"];
@@ -52,6 +54,7 @@ if(isset($_POST["gebruikersemail"]) && isset($_POST["wachtwoord"])) {
                 "postcode" => $result2["postcode"],
                 "telefoonnummer" => $result2["telefoonnummer"]
             );
+
             array_push($_SESSION["loggedin"], $logindata);
         } else {
             $errorCode = "Het wachtwoord is onjuist!";

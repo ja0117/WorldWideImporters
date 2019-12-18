@@ -4,6 +4,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+include 'databasecon.php';
+
 if (empty($_SESSION["shoppingCart"])) {
     $_SESSION["shoppingCart"] = array();
 }
@@ -100,6 +102,8 @@ if(isset($_POST["submitStatus"]))
         {
             array_push($_SESSION["orderedProductInfo"], $cartItems);
         }
+
+
         unset($_SESSION["shoppingCart"]);
 
     }

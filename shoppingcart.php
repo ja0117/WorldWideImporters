@@ -6,6 +6,9 @@
 
 include_once("databasecon.php");
 include("shoppingCartCode.php");
+include 'loginScript.php';
+
+
 
 ?>
 
@@ -14,7 +17,9 @@ include("shoppingCartCode.php");
 
 <!-- HTML head -->
 <?php include 'includes/head.php'; ?>
+
 <body>
+
 <?php include 'includes/nav.php' ?>
 
 <section class="jumbotron text-center">
@@ -22,6 +27,8 @@ include("shoppingCartCode.php");
         <h1 class="jumbotron-heading">Winkelmand</h1>
      </div>
 </section>
+
+
 
 <?php
 if(empty($_SESSION["shoppingCart"]))

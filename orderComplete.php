@@ -9,12 +9,69 @@ include("shoppingCartCode.php");
 
 $orderStatus = $_SESSION["orderStatus"];
 
+
+if(!empty($_SESSION["loggedin"][0]["userid"]))
+{
+
+// If the user is logged in and a userID has been found, pass it along
+foreach($_SESSION["orderedProductInfo"] as $keys => $products)
+        {
+            $today = date("Ymd");
+            $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
+
+            $customerID = $_SESSION["loggedin"][0]["userid"];
+            $orderID = md5(uniqid(mt_rand(), true)) . $customerID;
+            $stockItemID = $products["item_productid"];
+            $description =  $products["item_productname"];
+            $quantity = $products["item_quantity"];
+            $productPrice= $products["item_productprice"];
+
+
+
+            $placeCustomerOrder = "INSERT INTO customerorders(OrderID, CustomerID, StockItemID, Description, Quantity, UnitPrice)
+            VALUES ($orderID, $customerID, $stockItemID, '$description', $quantity, '$productPrice')";
+
+            if ($conn->query($placeCustomerOrder) === TRUE) {
+                echo "Record updated successfully";
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }
+
+
+        }
+}
+
+// If no user id is found, leave the customerID field NULL
+else{
+    foreach($_SESSION["orderedProductInfo"] as $keys => $products){
+
+
+    $orderID = time() . mt_rand();
+    $stockItemID = $products["item_productid"];
+    $description = $products["item_productname"];
+    $quantity = $products["item_quantity"];
+    $productPrice= $products["item_productprice"];
+
+    $placeGuestOrder = "INSERT INTO customerorders(OrderID, StockItemID, CustomerID, Description, Quantity, UnitPrice)
+    VALUES ($orderID, $stockItemID, NULL, '$description', $quantity, '$productPrice')";
+
+    if ($conn->query($placeGuestOrder) === TRUE) {
+        echo "Record updated successfully";
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+}
+
+}
+
 function displayOrderMessage($orderMessage)
 {
     switch($orderMessage)
     {
         case "Success":
             echo "Order geslaagd!";
+
+
         break;
 
         // case "Pending":
