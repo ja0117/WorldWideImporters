@@ -26,8 +26,8 @@
 
         <div class="row">
             <div class="col">
-        <div class="jumbotron bg-secondary">
-        <h1 class="display-4 text-white text-center">Populaire producten</h1>
+        <div class="jumbotron bg-danger">
+        <h1 class="display-6 text-white text-center">Populaire producten</h1>
 
         </div>
         </div>
