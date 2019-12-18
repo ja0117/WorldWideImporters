@@ -129,7 +129,7 @@ $resultProducts = mysqli_query($conn, $products);
                if ($gekoeld == 1){
                    echo "<br> <br>";
                    ?>
-                   <a class="ui-tooltip" title="Dit product is gekoeld om u te verzekeren van de hoogste kwaliteit producten."><span style="cursor: help;">Product is gekooeld!</span></a>
+                   <a class="ui-tooltip" title="Dit product is gekoeld om u te verzekeren van de hoogste kwaliteit producten."><span style="cursor: help;">Product is gekoeld!</span></a>
                    <?php
                }
                ?>
