@@ -81,9 +81,6 @@ if ($product) {
 }
 ?>
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -270,17 +267,12 @@ $resultProducts = mysqli_query($conn, $products);
       
       
         </div>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  </br>
-  <?php include 'includes/footer.php' ?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
+<?php include 'includes/footer.php' ?>
 
 </html>

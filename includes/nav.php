@@ -52,9 +52,7 @@ include("loginscript.php");
       <div class="collapse navbar-collapse" id="navbarResponsive">
           <?php if (isset($_SESSION["loggedin"][0])) { ?>
           <ul class="navbar-nav ml-auto mx-auto">
-              <li>
-                  <h3 class="navbar-text">Welkom <?php print(ucfirst($_SESSION["loggedin"][0]["voornaam"])); ?></h3>
-              </li>
+              
           </ul>
           <?php } ?>
           <ul class="navbar-nav ml-auto">
@@ -74,9 +72,6 @@ include("loginscript.php");
                     </form>
                 </li>
             <?php } ?>
-            <li class="nav-item">
-                <a class="nav-link" href="about.php">Over ons</a>
-            </li>
           <li class="nav-item">
             <a class="nav-link" href="shoppingcart.php">Winkelmand <i class="fas fa-shopping-cart"></i> <?php print($shoppincartItems); ?></a>
           </li>
