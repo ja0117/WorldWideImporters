@@ -25,17 +25,29 @@ $successMessage = "";
             $errorMessage = "De wachtwoorden komen niet overeen!";
         }
         else {
-            // HAshpass werkt nog niet!! wachtwoorden worden plain opgeslagen
-            $hashPass = password_hash(strtolower($_POST["wachtwoord2"]), PASSWORD_DEFAULT);
-            $hashPass = strtolower($_POST["wachtwoord2"]);
-            $statement = mysqli_prepare($conn, "INSERT INTO useraccounts (voornaam, achternaam, straatnaam, huisnr, landnaam, plaats, postcode, email, telefoonnummer, hashed_password) VALUES (?,?,?,?,?,?,?,?,?,?)");
-            if ($statement == false)
-                die("<pre>".mysqli_error($conn).PHP_EOL.$statement."</pre>");
-            // Variabelen binden aan de INSERT query
-            mysqli_stmt_bind_param($statement, 'ssssssssss', $_POST["voornaam"], $_POST["achternaam"], $_POST["straatnaam"], $_POST["huisnr"], $_POST["landnaam"], $_POST["plaats"],$_POST["postcode"],strtolower($_POST["email"]),$_POST["telefoon"],$hashPass);
-            mysqli_stmt_execute($statement);
-            $result = mysqli_stmt_get_result($statement);
-            $successMessage = "Uw account is aangemaakt!";
+            $stmtDupeEmail = mysqli_prepare($conn, "SELECT count(email) email FROM useraccounts WHERE email = ?");
+            mysqli_stmt_bind_param($stmtDupeEmail, 's', $_POST['email']);
+            mysqli_stmt_execute($stmtDupeEmail);
+            $result = mysqli_stmt_get_result($stmtDupeEmail);
+            $result = mysqli_fetch_array($result);
+            //print_r($result);
+            if ($result['email'] > 0) {
+                $errorMessage = "Dit emailadres bestaat al.";
+            }
+            else {
+                // HAshpass werkt nog niet!! wachtwoorden worden plain opgeslagen
+                //$hashPass = password_hash(strtolower($_POST["wachtwoord2"]), PASSWORD_DEFAULT);
+                $hashPass = strtolower($_POST["wachtwoord2"]);
+                $statement = mysqli_prepare($conn, "INSERT INTO useraccounts (voornaam, achternaam, straatnaam, huisnr, landnaam, plaats, postcode, email, telefoonnummer, hashed_password) VALUES (?,?,?,?,?,?,?,?,?,?)");
+                if ($statement == false)
+                    die("<pre>" . mysqli_error($conn) . PHP_EOL . $statement . "</pre>");
+                // Variabelen binden aan de INSERT query
+                $email = strtolower($_POST["email"]);
+                mysqli_stmt_bind_param($statement, 'ssssssssss', $_POST["voornaam"], $_POST["achternaam"], $_POST["straatnaam"], $_POST["huisnr"], $_POST["landnaam"], $_POST["plaats"], $_POST["postcode"], $email , $_POST["telefoon"], $hashPass);
+                mysqli_stmt_execute($statement);
+                $result = mysqli_stmt_get_result($statement);
+                $successMessage = "Uw account is aangemaakt!";
+            }
         }
     }
 ?>
