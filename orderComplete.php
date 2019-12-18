@@ -5,7 +5,7 @@
 <?php
 
 
-session_start();
+
 $orderStatus = $_SESSION["orderStatus"];
 
 if($orderStatus === "Success")
