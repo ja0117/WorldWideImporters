@@ -1,5 +1,5 @@
 <div class="col-lg-3">
-        <h1 class="my-4">Categorie Filler</h1>
+        <h1 class="my-4">Categorieën</h1>
         <div class="list-group">
             <?php
         $sql = "SELECT StockGroupID, StockGroupName FROM stockgroups ORDER BY StockGroupID";

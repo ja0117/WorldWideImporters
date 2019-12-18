@@ -21,11 +21,13 @@
     <div class="row">
 
 
-            <div style="padding-right: 100%; padding-top: 10px">
+            <div style="padding-right: 50%; padding-top: 10px">
         <!-- The dropdown from which you can select how many products you want to load per page. Form is submitted upon selection  -->
+         <div class="form-group">
         <form method="post">
             <!--The PHP compares each option with the current display amount setting and displays the corresponding one as selected  -->
-            <select class="select-css" name="load" onchange='this.form.submit()'>>
+            <label for="">Aantal producten per pagina</label>
+            <select class="form-control" name="load" onchange='this.form.submit()'>>
 
                 <?php $aantal = 25;
                 if (isset($_POST['load'])){
@@ -42,10 +44,10 @@
             <noscript><input type="submit" value="Submit"></noscript>
         </form>
 
-
         <form method="post">
             <!--The PHP compares each option with the current display amount setting and displays the corresponding one as selected  -->
-            <select class="select-css" name="orderby" onchange='this.form.submit()'>>
+            <label for="">Sorteren op prijs</label>
+            <select class="form-control" name="orderby" onchange='this.form.submit()'>>
 
                 <?php $orderBy = "";
                 if (isset($_POST['orderby'])){
@@ -53,14 +55,14 @@
                 }
                 ?>
 
-                <option value= "oplopend" <?php if ($orderBy == "oplopend") echo 'selected="selected" '; ?>>Prijs Laag-Hoog</option>
-                <option value="aflopend" <?php if ($orderBy == "aflopend") echo 'selected="selected" '; ?>>Prijs Hoog-Laag</option>
-                
+                <option value= "oplopend" <?php if ($orderBy == "oplopend") echo 'selected="selected" '; ?>>Laag-Hoog</option>
+                <option value="aflopend" <?php if ($orderBy == "aflopend") echo 'selected="selected" '; ?>>Hoog-Laag</option>
             </select>
             <br>
             <!--All the javascript does is wait until an option has been selected and submits the form when it is -->
             <noscript><input type="submit" value="Submit"></noscript>
         </form>
+         </div>
             </div>
 
 
