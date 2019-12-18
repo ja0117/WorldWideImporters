@@ -146,7 +146,7 @@ $resultProducts = mysqli_query($conn, $products);
               <input type="hidden" name="hidden_productname" value="<?php echo str_replace('"', ' ', $name); ?>">
               <input type="hidden" name="hidden_productprice" value="<?php echo $price; ?>">
               <input type="hidden" name="hidden_taxrate" value="<?php echo $btw1?>">
-              <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="button">
+              <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="btn btn-primary">
           </form>
       </div>
 
@@ -268,9 +268,7 @@ $resultProducts = mysqli_query($conn, $products);
       
         </div>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  </div>
 </body>
 
 <?php include 'includes/footer.php' ?>
