@@ -1,38 +1,20 @@
-<?php include './includes/head.php';
-include 'shoppingCartCode.php';
-
-$price = $_SESSION["orderCost"];
-
-
-$subtotaal = 0;
-$totaalbtw = 0;
-$btwproduct = 0;
-foreach ($_SESSION["shoppingCart"] as $values)
-{
-$subtotaal = $subtotaal + $values["item_productprice"];
-$btwproduct = $values["item_productprice"] * $values["item_taxrate"] / 100;
-$totaalbtw = $totaalbtw + $btwproduct;
-}
-$dePamirConstante = $subtotaal + $totaalbtw;
+<!-- saved from url=(0038)https://www.ideal-checkout.nl/payment/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>iDEAL Checkout Simulator - iDEAL</title>
 
 
-//if($dePamirConstante != $price){
-//    header("Location: orderComplete.php");}
-
-
-
-?>
-
-
-<html>
-
+    <meta name="description" content="Met behulp van de iDEAL simulator kunt u de implementatie van iDEAL binnen uw website/webshop testen zonder hiervoor eerst een iDEAL account te moeten aanschaffen.">
+    <meta name="keywords" content="iDEAL, iDEAL Simulator, iDEAL Lite, iDEAL Basic">
+    <meta name="robots" content="noindex/follow">
+    <link rel="stylesheet" href="./betaling_files/payment.css" type="text/css">
+</head>
 <body cz-shortcut-listen="true">
-<div class="header"><h1>iDEAL Payment <br><em>iDEAL inc</em></h1></div>
+<div class="header"><h1>iDEAL Checkout Simulator v1.0.5.0.1903<br><em>iDEAL</em></h1></div>
 <div class="content">
-    <p align="center" style="width: 400px;"><img alt="" border="0" src="ideal/betaling_files/ideal.png"></p>
+    <p align="center" style="width: 400px;"><img alt="" border="0" src="./betaling_files/ideal.png"></p>
     <p align="center">&nbsp;</p>
 
-    <form method="post">
+    <form action="success.html" method="post">
         <input name="form" type="hidden" value="payment">
         <input name="url_success" type="hidden" value="https://www.ideal-checkout.nl/demo/idealcheckout-betaalformulier/idealcheckout/return.php?transaction_id=f7Di1F5HqWSATjcXeLY8l0Bz1MpbMU41&amp;transaction_code=0dJ2MjrqaproZ4w9vBPaQRtGmCczWqXf&amp;status=SUCCESS">
         <input name="url_pending" type="hidden" value="https://www.ideal-checkout.nl/demo/idealcheckout-betaalformulier/idealcheckout/return.php?transaction_id=f7Di1F5HqWSATjcXeLY8l0Bz1MpbMU41&amp;transaction_code=0dJ2MjrqaproZ4w9vBPaQRtGmCczWqXf&amp;status=PENDING">
@@ -53,14 +35,11 @@ $dePamirConstante = $subtotaal + $totaalbtw;
             </tr>
             <tr>
                 <td width="150"><b>Amount:</b></td>
-                <td>€ <?= number_format((float) $dePamirConstante , 2, ',', '')?> </td>
+                <td>€ 10,00</td>
             </tr>
             <tr>
                 <td width="150"><b>Status:</b></td>
-                <td><input name="submitStatus" type="submit" value="Success" style="margin-right: 10px;">
-                <input name="submitStatus" type="submit" value="Pending" style="margin-right: 10px;">
-                <input name="submitStatus" type="submit" value="Cancel" style="margin-right: 10px;">
-                <input name="submitStatus" type="submit" value="Error" style="margin-right: 10px;"></td>
+                <td><input name="status" type="submit" value="Success" style="margin-right: 10px;"><input name="status" type="submit" value="Pending" style="margin-right: 10px;"><input name="status" type="submit" value="Cancel" style="margin-right: 10px;"><input name="status" type="submit" value="Error" style="margin-right: 10px;"></td>
             </tr>
             </tbody></table>
     </form></div>
