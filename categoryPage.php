@@ -55,7 +55,7 @@
 
                 <option value= "oplopend" <?php if ($orderBy == "oplopend") echo 'selected="selected" '; ?>>Prijs Laag-Hoog</option>
                 <option value="aflopend" <?php if ($orderBy == "aflopend") echo 'selected="selected" '; ?>>Prijs Hoog-Laag</option>
-                <option value="100" <?php if ($orderBy == "100") echo 'selected="selected" '; ?>>100</option>
+                
             </select>
             <br>
             <!--All the javascript does is wait until an option has been selected and submits the form when it is -->
