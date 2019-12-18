@@ -20,21 +20,23 @@ include("loginscript.php");
             </div>
             <div class="modal-body">
                 <h5 class="modal-title text-warning"><?php echo $errorCode;?></h5><br>
-                <form action="#" method="post">
+
+                <form action="" method="post" class="needs-validation-login" novalidate>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control" placeholder="Email" name="gebruikersemail">
+                        <input type="text" class="form-control" placeholder="Email" name="gebruikersemail" required>
                     </div>
                     <div class="input-group mb-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon2"><i class="fas fa-lock"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Wachtwoord" name="wachtwoord">
+                        <input type="password" class="form-control" placeholder="Wachtwoord" name="wachtwoord" required>
                     </div>
                     <input type="submit" class="btn btn-success float-lg-right" value="Inloggen">
                 </form>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -42,6 +44,27 @@ include("loginscript.php");
         </div>
     </div>
 </div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation-login');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">

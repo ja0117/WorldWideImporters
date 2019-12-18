@@ -58,7 +58,7 @@ $successMessage = "";
     </div>
     <div class="row">
         <div class="col-md-4 mx-auto">
-            <div class="myform form ">
+            <div class="myform form">
                 <form action="" method="post" name="login" class="needs-validation" novalidate>
                     <div class="form-group">
                         <input type="text" name="voornaam"  class="form-control my-input" id="voornaam" placeholder="Voornaam" required="true">
