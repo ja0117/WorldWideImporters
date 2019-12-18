@@ -2620,7 +2620,7 @@ fieldset:disabled a.btn {
 .btn-primary {
   color: #fff;
   background-color: #007bff;
-  border-color: #007bff;
+  border: 1px solid black;
 }
 
 .btn-primary:hover {
@@ -4917,7 +4917,7 @@ input[type="button"].btn-block {
 .card-deck .card {
   margin-bottom: 15px;
 }
-
+tavb
 @media (min-width: 576px) {
   .card-deck {
     display: -ms-flexbox;
