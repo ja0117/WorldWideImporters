@@ -1,11 +1,9 @@
-<?php include_once("databasecon.php"); ?>
 
 
 
-<!-- HTML head -->
-<?php include 'includes/head.php'; ?>
 
-<?php include 'shoppingCartCode.php'; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

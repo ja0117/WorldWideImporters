@@ -1,6 +1,5 @@
 <?php
-include("databasecon.php");
-include("shoppingCartCode.php");
+include 'databasecon.php';
 
 // Als het product niet geset is in de URL, default waarde van 1 mee geven (product id 1 wordt ingeladen)
 $product = isset($_GET["product"]) ? $_GET["product"] : "1";
@@ -106,9 +105,9 @@ $resultProducts = mysqli_query($conn, $products);
     <div class="row">
 
      <?php include 'includes/categorySidebar.php' ?>
-        
+
       <!-- /.col-lg-3 -->
-        
+
       <div class="col-lg-9">
         <div class="card mt-4 mb-10">
           <img class="card-img-top img-fluid" src="images/<?=$category?>.jpg" alt="">
@@ -142,9 +141,9 @@ $resultProducts = mysqli_query($conn, $products);
             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
             4.0 stars
           </div>
-        </div>       
+        </div>
       </div>
-    
+
     </div>
       <div align="right">
           <form method="post" action="">
@@ -160,7 +159,7 @@ $resultProducts = mysqli_query($conn, $products);
 
       <!-- Related products -->
       <?php
-    
+
         $relatedProductsQuery = "SELECT Product.StockItemID, StockItemName, UnitPrice, MarketingComments, Category.StockGroupID
                                 FROM stockitems Product
                                 JOIN stockitemstockgroups Category ON Product.StockItemID = Category.StockItemID
@@ -249,8 +248,8 @@ $resultProducts = mysqli_query($conn, $products);
 </div>
       <div class="row">
                <br>
-      
-      <?php 
+
+      <?php
       foreach ($relatedProductsResult as $row) {
             ?>
 
@@ -272,8 +271,8 @@ $resultProducts = mysqli_query($conn, $products);
 
 
         <?php }; ?>
-      
-      
+
+
         </div>
 
   </div>

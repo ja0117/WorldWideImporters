@@ -52,6 +52,7 @@ if (isset($_POST["decreaseQuantity"])) {
                 $values["item_quantity"] -= 1;
                 $values["item_productprice"] -= $values["item_singlePrice"];
                 $_SESSION["shoppingCart"][$index] = $values;
+            break;
             } else {
                 unset($_SESSION["shoppingCart"][$index]);
             }
@@ -67,6 +68,7 @@ if (isset($_POST["increaseQuantity"])) {
                 $values["item_quantity"] += 1;
                 $values["item_productprice"] += $values["item_singlePrice"];
                 $_SESSION["shoppingCart"][$index] = $values;
+            break;
             } else {
                 unset($_SESSION["shoppingCart"][$index]);
             }
