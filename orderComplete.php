@@ -4,23 +4,28 @@
 <!------ Include the above in your HEAD tag ---------->
 <?php
 
-include_once("databasecon.php");
-include("shoppingCartCode.php");
+
 
 $orderStatus = $_SESSION["orderStatus"];
 
+if($orderStatus === "Success")
+{
+
+
+
+$generatedOrderID = uniqid();
 
 if(!empty($_SESSION["loggedin"][0]["userid"]))
 {
 
+
 // If the user is logged in and a userID has been found, pass it along
 foreach($_SESSION["orderedProductInfo"] as $keys => $products)
         {
-            $today = date("Ymd");
-            $rand = strtoupper(substr(uniqid(sha1(time())),0,4));
+
 
             $customerID = $_SESSION["loggedin"][0]["userid"];
-            $orderID = md5(uniqid(mt_rand(), true)) . $customerID;
+            $orderID = $generatedOrderID . $customerID;
             $stockItemID = $products["item_productid"];
             $description =  $products["item_productname"];
             $quantity = $products["item_quantity"];
@@ -29,7 +34,7 @@ foreach($_SESSION["orderedProductInfo"] as $keys => $products)
 
 
             $placeCustomerOrder = "INSERT INTO customerorders(OrderID, CustomerID, StockItemID, Description, Quantity, UnitPrice)
-            VALUES ($orderID, $customerID, $stockItemID, '$description', $quantity, '$productPrice')";
+            VALUES ('$orderID', $customerID, $stockItemID, '$description', $quantity, '$productPrice')";
 
             if ($conn->query($placeCustomerOrder) === TRUE) {
                 echo "Record updated successfully";
@@ -46,7 +51,7 @@ else{
     foreach($_SESSION["orderedProductInfo"] as $keys => $products){
 
 
-    $orderID = time() . mt_rand();
+    $orderID = $generatedOrderID;
     $stockItemID = $products["item_productid"];
     $description = $products["item_productname"];
     $quantity = $products["item_quantity"];
@@ -62,6 +67,7 @@ else{
     }
 }
 
+}
 }
 
 function displayOrderMessage($orderMessage)

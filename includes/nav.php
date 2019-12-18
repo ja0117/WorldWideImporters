@@ -102,6 +102,9 @@ include("loginscript.php");
                         <input type="hidden" value="true" name="uitloggen">
                     </form>
                 </li>
+                <li>
+                    <a class="nav-link" href="myPurchases.php">Uw Bestellingen</a>
+                </li>
             <?php } ?>
           <li class="nav-item">
             <a class="nav-link" href="shoppingcart.php">Winkelmand <i class="fas fa-shopping-cart"></i> <?php print($shoppincartItems); ?></a>

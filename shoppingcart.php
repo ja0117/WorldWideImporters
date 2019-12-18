@@ -6,7 +6,6 @@
 
 include_once("databasecon.php");
 include("shoppingCartCode.php");
-include 'loginScript.php';
 
 
 
