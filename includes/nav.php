@@ -9,6 +9,7 @@
 include("loginscript.php");
 ?>
 <!-- Log in Modal -->
+
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog" role="document">
         <div class="modal-content">
@@ -45,6 +46,7 @@ include("loginscript.php");
     </div>
 </div>
 
+
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function() {
@@ -73,11 +75,17 @@ include("loginscript.php");
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-          <?php if (isset($_SESSION["loggedin"][0])) { ?>
           <ul class="navbar-nav ml-auto mx-auto">
-              
+              <form action="search.php" method="get" style="margin:0; padding: 0;">
+              <div class="input-group mb-2">
+                 <li class="nav-item">
+                     <input class="form-control rounded-left" type="text" name="searchBox" placeholder="product zoeken">
+                </li>
+                    <input type="submit" class="btn btn-primary rounded-right" value="Zoek">
+              </div>
+              </form>
+
           </ul>
-          <?php } ?>
           <ul class="navbar-nav ml-auto">
             <?php if (!isset($_SESSION["loggedin"][0])) { ?>
                 <li>
