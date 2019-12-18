@@ -53,7 +53,7 @@ $dePamirConstante = $subtotaal + $totaalbtw;
             </tr>
             <tr>
                 <td width="150"><b>Amount:</b></td>
-                <td>€ <?= $dePamirConstante ?> </td>
+                <td>€ <?= number_format((float) $dePamirConstante , 2, ',', '')?> </td>
             </tr>
             <tr>
                 <td width="150"><b>Status:</b></td>
