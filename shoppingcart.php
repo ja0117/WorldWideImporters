@@ -119,6 +119,8 @@ else{
                         <button type="submit" class="btn btn-block btn-light">Verder Winkelen</button>
                     </form>
                 </div>
+            </div>
+        </div>
 
                 <div class="col-sm-12 col-md-6 text-right">
                 <form method="post" action="idealPayment.php">
@@ -128,11 +130,14 @@ else{
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
 <?php
 }
 ?>
 
+
+
 <!-- Footer -->
-<?php include 'includes/footer.php' ?>
+<!-- -->
+</body>
+</html>
