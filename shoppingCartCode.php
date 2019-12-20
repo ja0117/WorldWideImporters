@@ -104,6 +104,7 @@ if(isset($_POST["submitStatus"]))
         {
             array_push($_SESSION["orderedProductInfo"], $cartItems);
         }
+        print_r($_SESSION["orderedProductInfo"]);
 
 
         unset($_SESSION["shoppingCart"]);

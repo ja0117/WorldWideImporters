@@ -1,5 +1,4 @@
-<?php include './includes/head.php';
-include 'shoppingCartCode.php';
+<?php include 'includes/head.php';
 
 $price = $_SESSION["orderCost"];
 

@@ -1,11 +1,10 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <?php
 
+include 'includes/head.php';
 
-session_start();
+
+
 $orderStatus = $_SESSION["orderStatus"];
 
 if($orderStatus === "Success")
@@ -23,7 +22,7 @@ if(!empty($_SESSION["loggedin"][0]["userid"]))
 foreach($_SESSION["orderedProductInfo"] as $keys => $products)
         {
 
-
+            print($_SESSION["loggedin"][0]["userid"]);
             $customerID = $_SESSION["loggedin"][0]["userid"];
             $orderID = $generatedOrderID . $customerID;
             $stockItemID = $products["item_productid"];
@@ -58,7 +57,7 @@ else{
     $productPrice= $products["item_productprice"];
 
     $placeGuestOrder = "INSERT INTO customerorders(OrderID, StockItemID, CustomerID, Description, Quantity, UnitPrice)
-    VALUES ($orderID, $stockItemID, NULL, '$description', $quantity, '$productPrice')";
+    VALUES ('$orderID', $stockItemID, NULL, '$description', $quantity, '$productPrice')";
 
     if ($conn->query($placeGuestOrder) === TRUE) {
         echo "Record updated successfully";
