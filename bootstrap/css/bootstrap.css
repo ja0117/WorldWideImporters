@@ -2620,7 +2620,6 @@ fieldset:disabled a.btn {
 .btn-primary {
   color: #fff;
   background-color: #007bff;
-  border: 1px solid black;
 }
 
 .btn-primary:hover {
@@ -4859,7 +4858,7 @@ input[type="button"].btn-block {
 
 .card-footer {
   text-align: center;
-  padding-top: 15px;
+  padding: 10px;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
