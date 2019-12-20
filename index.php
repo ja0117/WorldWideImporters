@@ -19,7 +19,7 @@
         <div class="row">
         <div class="col">
             <div class="jumbotron bg-danger">
-                <h1 class="display-6 text-white text-center">Populaire producten</h1>
+                <h1 class="display-6 text-white text-center">Populaire producten!</h1>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
 <?php } ?>
             <div class="col">
                 <div class="jumbotron bg-danger">
-                    <h1 class="display-6 text-white text-center">Producten producten in de aanbieding</h1>
+                    <h1 class="display-6 text-white text-center">Producten in de aanbieding!</h1>
                 </div>
             </div>
             </div>
