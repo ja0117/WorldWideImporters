@@ -1,10 +1,4 @@
-
-
-
-
-
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <?php include 'includes/head.php' ?>
@@ -23,13 +17,13 @@
       <?php include 'includes/carousel.php' ?>
 
         <div class="row">
-            <div class="col">
-        <div class="jumbotron bg-danger">
-        <h1 class="display-6 text-white text-center">Populaire producten</h1>
-
+        <div class="col">
+            <div class="jumbotron bg-danger">
+                <h1 class="display-6 text-white text-center">Populaire producten</h1>
+            </div>
         </div>
-        </div>
-        <div class="row">
+    </div>
+      <div class="row">
 
         <?php
             $statement = mysqli_prepare($conn, "SELECT T.StockItemID, StockItemName, TaxRate, COUNT(T.StockItemID), UnitPrice
@@ -51,7 +45,7 @@
             <h4><?= "€" . number_format((float) $row["UnitPrice"] * $btw , 2, ',', '') ?></h4>
 
               </div>
-              <div class="card-footer">
+              <div class="card-footer" style="margin-top: 0px">
                   <form method="post">
                       <input type="hidden" name="hidden_productid" value="<?= $row['StockItemID']; ?>">
                       <input type="hidden" name="hidden_productname" value="<?= str_replace('"', '',$row['StockItemName']) ?>">
@@ -65,7 +59,11 @@
           </div>
 
 <?php } ?>
-            <div class="col-auto"><p class="badge badge-danger" style="width: 825px;">Producten in de aanbieding</p></div>
+            <div class="col">
+                <div class="jumbotron bg-danger">
+                    <h1 class="display-6 text-white text-center">Producten producten in de aanbieding</h1>
+                </div>
+            </div>
             </div>
             <div class="row">
 
