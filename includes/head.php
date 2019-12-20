@@ -5,8 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include_once("databasecon.php");
 include("shoppingCartCode.php");
-include 'loginScript.php';
-
 
 ?>
 

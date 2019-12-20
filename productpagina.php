@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<?php include 'includes/head.php' ?>
+
 <?php
 include 'databasecon.php';
 
@@ -56,7 +61,7 @@ if ($product) {
         }
     }
 
-    if (isset($_POST["reviewtext"])) {
+    if (isset($_SESSION["loggedin"][0]) && isset($_POST["reviewtext"])) {
         if (empty($_POST["reviewtext"])) {
 
         } else {
@@ -81,10 +86,6 @@ if ($product) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<?php include 'includes/head.php' ?>
 <body>
 <?php
 $products = "SELECT si.StockItemID, StockItemName, UnitPrice, StockGroupID
@@ -93,21 +94,11 @@ $products = "SELECT si.StockItemID, StockItemName, UnitPrice, StockGroupID
 
 $resultProducts = mysqli_query($conn, $products);
 ?>
-
-
-
-
-  <?php include 'includes/nav.php' ?>
-
+  <?php include 'includes/nav.php'; ?>
   <!-- Page Content -->
   <div class="container">
-
     <div class="row">
-
      <?php include 'includes/categorySidebar.php' ?>
-
-      <!-- /.col-lg-3 -->
-
       <div class="col-lg-9">
         <div class="card mt-4 mb-10">
           <img class="card-img-top img-fluid" src="images/<?=$category?>.jpg" alt="">
@@ -143,7 +134,6 @@ $resultProducts = mysqli_query($conn, $products);
           </div>
         </div>
       </div>
-
     </div>
       <div align="right">
           <form method="post" action="">
@@ -156,7 +146,6 @@ $resultProducts = mysqli_query($conn, $products);
               <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="btn btn-primary">
           </form>
       </div>
-
       <!-- Related products -->
       <?php
 
@@ -169,12 +158,7 @@ $resultProducts = mysqli_query($conn, $products);
         $relatedProductsResult = mysqli_query($conn, $relatedProductsQuery)
 
       ?>
-
       <br>
-
-
-
-
       <hr>
       <!-- Comment section voor reviews -->
       <div class="jumbotron jumbotron-fluid">
