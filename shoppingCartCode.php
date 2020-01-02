@@ -4,6 +4,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+include 'databasecon.php';
+
 if (empty($_SESSION["shoppingCart"])) {
     $_SESSION["shoppingCart"] = array();
 }
@@ -15,7 +17,8 @@ if (isset($_POST["add_to_cart"])) {
         "item_productname"  =>    $_POST["hidden_productname"],
         "item_quantity"     =>    $_POST["quantity"],
         "item_productprice" =>    $_POST["hidden_productprice"],
-        "item_singlePrice"   =>    $_POST["hidden_productprice"]
+        "item_singlePrice"  =>    $_POST["hidden_productprice"],
+        "item_taxrate"      =>    $_POST["hidden_taxrate"]
     );
     $exists = false;
 
@@ -49,6 +52,7 @@ if (isset($_POST["decreaseQuantity"])) {
                 $values["item_quantity"] -= 1;
                 $values["item_productprice"] -= $values["item_singlePrice"];
                 $_SESSION["shoppingCart"][$index] = $values;
+            break;
             } else {
                 unset($_SESSION["shoppingCart"][$index]);
             }
@@ -64,6 +68,7 @@ if (isset($_POST["increaseQuantity"])) {
                 $values["item_quantity"] += 1;
                 $values["item_productprice"] += $values["item_singlePrice"];
                 $_SESSION["shoppingCart"][$index] = $values;
+            break;
             } else {
                 unset($_SESSION["shoppingCart"][$index]);
             }
@@ -79,4 +84,36 @@ if (isset($_POST["remove"])) {
         }
     }
 }
+
+// If the "betalen" button is submitted
+if(isset($_POST["submitOrder"]))
+{
+    $_SESSION["orderCost"] = $_POST["totalCost"];
+}
+
+if(isset($_POST["submitStatus"]))
+{
+    $_SESSION["orderStatus"] = $_POST["submitStatus"];
+
+    if($_SESSION["orderStatus"] == "Success")
+    {
+        // Make a new array to push the shopping cart items into so that the shopping cart session can be emptied if the payment succeeds
+        $_SESSION["orderedProductInfo"] = array();
+
+        foreach($_SESSION["shoppingCart"] as $cartItems)
+        {
+            array_push($_SESSION["orderedProductInfo"], $cartItems);
+        }
+        print_r($_SESSION["orderedProductInfo"]);
+
+
+        unset($_SESSION["shoppingCart"]);
+
+    }
+
+
+    header("Location: orderComplete.php");
+
+}
+
 

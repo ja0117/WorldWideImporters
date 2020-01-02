@@ -1,5 +1,4 @@
-
-<?php $valueVorigePagina = $_POST["totaalPrijs"]; ?>
+<!-- saved from url=(0038)https://www.ideal-checkout.nl/payment/ -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>iDEAL Checkout Simulator - iDEAL</title>
 
@@ -7,15 +6,15 @@
     <meta name="description" content="Met behulp van de iDEAL simulator kunt u de implementatie van iDEAL binnen uw website/webshop testen zonder hiervoor eerst een iDEAL account te moeten aanschaffen.">
     <meta name="keywords" content="iDEAL, iDEAL Simulator, iDEAL Lite, iDEAL Basic">
     <meta name="robots" content="noindex/follow">
-    <link rel="stylesheet" href="ideal/betaling_files/payment.css" type="text/css">
+    <link rel="stylesheet" href="./betaling_files/payment.css" type="text/css">
 </head>
 <body cz-shortcut-listen="true">
-<div class="header"><h1>iDEAL Payment <br><em>iDEAL inc</em></h1></div>
+<div class="header"><h1>iDEAL Checkout Simulator v1.0.5.0.1903<br><em>iDEAL</em></h1></div>
 <div class="content">
-    <p align="center" style="width: 400px;"><img alt="" border="0" src="ideal/betaling_files/ideal.png"></p>
+    <p align="center" style="width: 400px;"><img alt="" border="0" src="./betaling_files/ideal.png"></p>
     <p align="center">&nbsp;</p>
 
-    <form action="ideal/success.html" method="post">
+    <form action="success.html" method="post">
         <input name="form" type="hidden" value="payment">
         <input name="url_success" type="hidden" value="https://www.ideal-checkout.nl/demo/idealcheckout-betaalformulier/idealcheckout/return.php?transaction_id=f7Di1F5HqWSATjcXeLY8l0Bz1MpbMU41&amp;transaction_code=0dJ2MjrqaproZ4w9vBPaQRtGmCczWqXf&amp;status=SUCCESS">
         <input name="url_pending" type="hidden" value="https://www.ideal-checkout.nl/demo/idealcheckout-betaalformulier/idealcheckout/return.php?transaction_id=f7Di1F5HqWSATjcXeLY8l0Bz1MpbMU41&amp;transaction_code=0dJ2MjrqaproZ4w9vBPaQRtGmCczWqXf&amp;status=PENDING">
@@ -36,7 +35,7 @@
             </tr>
             <tr>
                 <td width="150"><b>Amount:</b></td>
-                <td>€ <?php print($valueVorigePagina) ?> </td>
+                <td>€ 10,00</td>
             </tr>
             <tr>
                 <td width="150"><b>Status:</b></td>

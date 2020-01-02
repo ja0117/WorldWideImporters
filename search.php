@@ -1,73 +1,77 @@
+<?php include_once("databasecon.php"); ?>
 <?php
-    include("databasecon.php");
+if (isset($_GET["searchBox"])) {
+    // Check if searchbox is numeric, If so: it's a Articlenumber
+    if (!is_numeric($_GET["searchBox"])) {
 
-    if (isset($_GET["searchBox"])) {
+        $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemName LIKE ?");
+        $trimmed = trim($_GET["searchBox"]);
+        $likevar = "%" . $trimmed . "%";
 
-        // Check if searchbox is numeric, If so: it's a Articlenumber
-        if (!is_numeric($_GET["searchBox"])) {
-
-            $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemName LIKE ?");
-            $trimmed = trim($_GET["searchBox"]);
-            $likevar = "%" . $trimmed . "%";
-
-            mysqli_stmt_bind_param($statement, 's', $likevar);
-            mysqli_stmt_execute($statement);
-            $result = mysqli_stmt_get_result($statement);
-        }
-        else {
-            $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemID = ?");
-
-            mysqli_stmt_bind_param($statement, 's', $_GET["searchBox"]);
-            mysqli_stmt_execute($statement);
-            $result = mysqli_stmt_get_result($statement);
-        }
+        mysqli_stmt_bind_param($statement, 's', $likevar);
+        mysqli_stmt_execute($statement);
+        $resultsearch = mysqli_stmt_get_result($statement);
     }
+    else {
+        $statement = mysqli_prepare($conn, "SELECT * FROM stockitems WHERE StockItemID = ?");
+
+        mysqli_stmt_bind_param($statement, 's', $_GET["searchBox"]);
+        mysqli_stmt_execute($statement);
+        $resultsearch = mysqli_stmt_get_result($statement);
+    }
+}
 ?>
-
-<!DOCTYPE html>
-<html>
-
 <!-- HTML head -->
-<?php include 'includes/head.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- Header & Nav bar -->
-<?php include 'includes/headernav.php'; ?>
+<?php include 'includes/head.php' ?>
 
 <body>
+<?php include 'includes/nav.php'; ?>
+<div class="container">
 
-<div style="font-size: 150%">
-<?php
-print("Je hebt gezocht op: " . $_GET["searchBox"]);
-?>
-</div>
+    <div class="row">
+        <?php include 'includes/categorySidebar.php'; ?>
+        <?php include 'includes/carousel.php';?>
 
-<div>
-    <?php
-        if (isset($_GET["searchBox"]) && mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                $btw = 1 + $row["TaxRate"] / 100;
+
+        <div style="font-size: 150%">
+        <?php
+        print("Resultaten voor: <b>" . $_GET["searchBox"] . "</b>");
+        ?>
+        </div>
+        <div class="row">
+            <?php
+            if (isset($_GET["searchBox"]) && mysqli_num_rows($resultsearch) > 0) {
+                foreach ($resultsearch as $row) {
+                $btw = $row["TaxRate"] / 100 + 1;
                 ?>
-
-                <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
-                <div class="card">
-                    <img style="width:250px; height:250px" src="images/<?php print substr($row["StockItemName"], 0, 3) ?>.jpg">
-                    <div class="container">
-                        <?php print($row["StockItemName"]); ?> <br>
-                        <div id="itemPrice">
-                            <?php print("&#8364;" . $row["UnitPrice"] * $btw. ",-"); ?>
+                <!--A link to its own page is created based on its ID      -->
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
+                                <img class="card-img-top"  src="images/<?php print substr(str_replace('"', '',$row["StockItemName"]), 0, 3) ?>.jpg" alt="">
+                            </a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
+                                </h4>
+                                <h5>€<?= number_format((float) $row["UnitPrice"] * $btw , 2, ',', '')  ?></h5>
+                                <p class="card-text"><?php echo $row["MarketingComments"] ?> </p>
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-                </a>
-                <?php
-            }
-        }
-        else {
-            ?>
-            <h1>No search results.</h1>
-            <?php
-        }
-        ?>
+                <?php } ?>
+            <?php } else { ?>
+                <h1>Geen resultaten gevonden.</h1>
+            <?php } ?>
+        </div>
+    </div>
+</div>
 </div>
 
 </body>
