@@ -43,6 +43,12 @@ foreach($_SESSION["orderedProductInfo"] as $keys => $products)
                 echo "Error updating record: " . $conn->error;
             }
 
+            if ($conn->query($updateStockItemHoldings) === TRUE) {
+                echo "Record updated successfully";
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }
+
 
         }
 }
@@ -60,19 +66,25 @@ else{
 
 
 
-    $updateStockItemHoldings = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - $quantity WHERE StockItemID = $stockItemID";
+    $updateStockItemHoldings = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - $quantity WHERE StockItemID = $stockItemID ;";
 
 
     $placeGuestOrder = "INSERT INTO customerorders(OrderID, StockItemID, CustomerID, Description, Quantity, UnitPrice)
-    VALUES ('$orderID', $stockItemID, NULL, '$description', $quantity, '$productPrice')";
+    VALUES ('$orderID', $stockItemID, NULL, '$description', $quantity, '$productPrice') ;";
 
 
 
+
+    if ($conn->query($updateStockItemHoldings) === TRUE) {
+        // echo "Record updated successfully";
+    } else {
+        // echo "Error updating record: " . $conn->error;
+    }
 
     if ($conn->query($placeGuestOrder) === TRUE) {
-        echo "Record updated successfully";
+        // echo "Record updated successfully";
     } else {
-        echo "Error updating record: " . $conn->error;
+        // echo "Error updating record: " . $conn->error;
     }
 }
 
