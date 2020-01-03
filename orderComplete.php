@@ -35,6 +35,8 @@ foreach($_SESSION["orderedProductInfo"] as $keys => $products)
             $placeCustomerOrder = "INSERT INTO customerorders(OrderID, CustomerID, StockItemID, Description, Quantity, UnitPrice)
             VALUES ('$orderID', $customerID, $stockItemID, '$description', $quantity, '$productPrice')";
 
+            $updateStockItemHoldings = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - $quantity WHERE StockItemID = $stockItemID";
+
             if ($conn->query($placeCustomerOrder) === TRUE) {
                 echo "Record updated successfully";
             } else {
@@ -56,8 +58,16 @@ else{
     $quantity = $products["item_quantity"];
     $productPrice= $products["item_productprice"];
 
+
+
+    $updateStockItemHoldings = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - $quantity WHERE StockItemID = $stockItemID";
+
+
     $placeGuestOrder = "INSERT INTO customerorders(OrderID, StockItemID, CustomerID, Description, Quantity, UnitPrice)
     VALUES ('$orderID', $stockItemID, NULL, '$description', $quantity, '$productPrice')";
+
+
+
 
     if ($conn->query($placeGuestOrder) === TRUE) {
         echo "Record updated successfully";
