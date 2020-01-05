@@ -12,12 +12,7 @@ $subtotaal = $subtotaal + $values["item_productprice"];
 $btwproduct = $values["item_productprice"] * $values["item_taxrate"] / 100;
 $totaalbtw = $totaalbtw + $btwproduct;
 }
-$dePamirConstante = $subtotaal + $totaalbtw;
-
-
-//if($dePamirConstante != $price){
-//    header("Location: orderComplete.php");}
-
+$totaalbedrag = $subtotaal + $totaalbtw;
 
 
 ?>
@@ -53,7 +48,7 @@ $dePamirConstante = $subtotaal + $totaalbtw;
                 </tr><br>
                 <tr>
                     <td width="150"><b>Amount:</b></td>
-                    <td>€ <?= number_format((float) $dePamirConstante , 2, ',', '')?> </td>
+                    <td>€ <?= number_format((float) $totaalbedrag , 2, ',', '')?> </td>
                 </tr><br>
                 <b>Status:</b>
                 <input class="btn btn-primary" name="submitStatus" type="submit" value="Success" style="margin-right: 10px; background-color: green">

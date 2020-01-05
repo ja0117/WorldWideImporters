@@ -10,7 +10,7 @@
                 <p class="m-0 text-center text-white">WWI &copy; 2019</p>
             </div>
             <div class="col">
-                <p class="m-0 text-right"> <a href="klantenservice.php" class="text-white">Klantenservice</a></p>
+                <p class="m-0 text-right"> </p>
             </div>
         </div>
     </div>
