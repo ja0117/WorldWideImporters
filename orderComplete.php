@@ -12,7 +12,7 @@ if($orderStatus === "Success")
 
 
 
-$generatedOrderID = uniqid();
+$generatedOrderID = random_int(100000000, 999999999);
 
 if(!empty($_SESSION["loggedin"][0]["userid"]))
 {
@@ -22,29 +22,30 @@ if(!empty($_SESSION["loggedin"][0]["userid"]))
 foreach($_SESSION["orderedProductInfo"] as $keys => $products)
         {
 
-            print($_SESSION["loggedin"][0]["userid"]);
+//            print($_SESSION["loggedin"][0]["userid"]);
+            $orderLineIDQuery = $conn->query("SELECT * FROM customerorders");
+            $orderLineID = mysqli_num_rows($orderLineIDQuery);
+
             $customerID = $_SESSION["loggedin"][0]["userid"];
-            $orderID = $generatedOrderID . $customerID;
+            $orderID = $generatedOrderID;
             $stockItemID = $products["item_productid"];
             $description =  $products["item_productname"];
             $quantity = $products["item_quantity"];
             $productPrice= $products["item_productprice"];
 
-
-
-            $placeCustomerOrder = "INSERT INTO customerorders(OrderID, CustomerID, StockItemID, Description, Quantity, UnitPrice)
-            VALUES ('$orderID', $customerID, $stockItemID, '$description', $quantity, '$productPrice')";
+            $placeCustomerOrder = "INSERT INTO customerorders(OrderLineID, OrderID, CustomerID, StockItemID, Description, Quantity, UnitPrice)
+            VALUES ($orderLineID, '$orderID', $customerID, $stockItemID, '$description', $quantity, '$productPrice')";
 
             $updateStockItemHoldings = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - $quantity WHERE StockItemID = $stockItemID";
 
             if ($conn->query($placeCustomerOrder) === TRUE) {
-                echo "Record updated successfully";
+//                echo "Record updated successfully";
             } else {
                 echo "Error updating record: " . $conn->error;
             }
 
             if ($conn->query($updateStockItemHoldings) === TRUE) {
-                echo "Record updated successfully";
+//                echo "Record updated successfully";
             } else {
                 echo "Error updating record: " . $conn->error;
             }
@@ -57,6 +58,8 @@ foreach($_SESSION["orderedProductInfo"] as $keys => $products)
 else{
     foreach($_SESSION["orderedProductInfo"] as $keys => $products){
 
+        $orderLineIDQuery = $conn->query("SELECT * FROM customerorders");
+        $orderLineID = mysqli_num_rows($orderLineIDQuery)   ;
 
     $orderID = $generatedOrderID;
     $stockItemID = $products["item_productid"];
@@ -69,8 +72,8 @@ else{
     $updateStockItemHoldings = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - $quantity WHERE StockItemID = $stockItemID ;";
 
 
-    $placeGuestOrder = "INSERT INTO customerorders(OrderID, StockItemID, CustomerID, Description, Quantity, UnitPrice)
-    VALUES ('$orderID', $stockItemID, NULL, '$description', $quantity, '$productPrice') ;";
+    $placeGuestOrder = "INSERT INTO customerorders(OrderLineID, OrderID, StockItemID, CustomerID, Description, Quantity, UnitPrice)
+    VALUES ($orderLineID, '$orderID', $stockItemID, NULL, '$description', $quantity, '$productPrice') ;";
 
 
 
@@ -78,13 +81,13 @@ else{
     if ($conn->query($updateStockItemHoldings) === TRUE) {
         // echo "Record updated successfully";
     } else {
-        // echo "Error updating record: " . $conn->error;
+         echo "Error updating record: " . $conn->error;
     }
 
     if ($conn->query($placeGuestOrder) === TRUE) {
         // echo "Record updated successfully";
     } else {
-        // echo "Error updating record: " . $conn->error;
+         echo "Error updating record: " . $conn->error;
     }
 }
 
