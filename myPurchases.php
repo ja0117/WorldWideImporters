@@ -12,7 +12,6 @@ $result = mysqli_stmt_get_result($myOrders);
 
 <section class="jumbotron text-center">
     <div class="container">
-        <!-- Might put a switch case here for displaying the appropriate status message depending on whether the payment succeeded or not -->
         <h1 class="jumbotron-heading">Uw orders</h1>
      </div>
 </section>
@@ -47,7 +46,6 @@ $result = mysqli_stmt_get_result($myOrders);
                             <!-- Hidden total cost -->
 
                         </tr>
-                        </form>
                         <?php
                         }
                         ?>

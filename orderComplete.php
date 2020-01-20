@@ -3,26 +3,15 @@
 
 include 'includes/head.php';
 
-
-
 $orderStatus = $_SESSION["orderStatus"];
 
-if($orderStatus === "Success")
-{
+if($orderStatus === "Success") {
 
+    $generatedOrderID = random_int(100000000, 999999999);
 
-
-$generatedOrderID = random_int(100000000, 999999999);
-
-if(!empty($_SESSION["loggedin"][0]["userid"]))
-{
-
-
-// If the user is logged in and a userID has been found, pass it along
-foreach($_SESSION["orderedProductInfo"] as $keys => $products)
-        {
-
-//            print($_SESSION["loggedin"][0]["userid"]);
+    if(!empty($_SESSION["loggedin"][0]["userid"])) {
+        // You can only order when logged in
+        foreach($_SESSION["orderedProductInfo"] as $keys => $products) {
             $orderLineIDQuery = $conn->query("SELECT * FROM customerorders");
             $orderLineID = mysqli_num_rows($orderLineIDQuery);
 
@@ -49,64 +38,15 @@ foreach($_SESSION["orderedProductInfo"] as $keys => $products)
             } else {
                 echo "Error updating record: " . $conn->error;
             }
-
-
         }
-}
-
-// If no user id is found, leave the customerID field NULL
-else{
-    foreach($_SESSION["orderedProductInfo"] as $keys => $products){
-
-        $orderLineIDQuery = $conn->query("SELECT * FROM customerorders");
-        $orderLineID = mysqli_num_rows($orderLineIDQuery)   ;
-
-    $orderID = $generatedOrderID;
-    $stockItemID = $products["item_productid"];
-    $description = $products["item_productname"];
-    $quantity = $products["item_quantity"];
-    $productPrice= $products["item_productprice"];
-
-
-
-    $updateStockItemHoldings = "UPDATE stockitemholdings SET QuantityOnHand = QuantityOnHand - $quantity WHERE StockItemID = $stockItemID ;";
-
-
-    $placeGuestOrder = "INSERT INTO customerorders(OrderLineID, OrderID, StockItemID, CustomerID, Description, Quantity, UnitPrice)
-    VALUES ($orderLineID, '$orderID', $stockItemID, NULL, '$description', $quantity, '$productPrice') ;";
-
-
-
-
-    if ($conn->query($updateStockItemHoldings) === TRUE) {
-        // echo "Record updated successfully";
-    } else {
-         echo "Error updating record: " . $conn->error;
-    }
-
-    if ($conn->query($placeGuestOrder) === TRUE) {
-        // echo "Record updated successfully";
-    } else {
-         echo "Error updating record: " . $conn->error;
     }
 }
 
-}
-}
-
-function displayOrderMessage($orderMessage)
-{
-    switch($orderMessage)
-    {
+function displayOrderMessage($orderMessage) {
+    switch($orderMessage) {
         case "Success":
             echo "Order geslaagd!";
-
-
         break;
-
-        // case "Pending":
-        //     echo "Order geslaagd";
-        // break;
 
         case "Cancel":
             echo "Order geannuleerd!";
@@ -121,8 +61,6 @@ function displayOrderMessage($orderMessage)
     }
 }
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -135,8 +73,11 @@ function displayOrderMessage($orderMessage)
 
 <section class="jumbotron text-center">
     <div class="container">
-        <!-- Might put a switch case here for displaying the appropriate status message depending on whether the payment succeeded or not -->
-        <h1 class="jumbotron-heading"><?php displayOrderMessage($orderStatus); ?></h1>
+        <h1 class="jumbotron-heading"><?php if($orderStatus == "Success" && empty($_SESSION["loggedin"][0]["userid"])) {
+            echo "Je hebt een account nodig om te bestellen";
+            } else {
+                (displayOrderMessage($orderStatus));
+            }; ?></h1>
      </div>
 </section>
 
@@ -220,9 +161,18 @@ function displayOrderMessage($orderMessage)
                 </div>
 
                 <div class="col-sm-12 col-md-6 text-right">
+                <form method="post" action="signup.php">
+                    <?php
+                    // If not logged in, prompt user to make an account to be able to order
+                    if($orderStatus == "Success" && empty($_SESSION["loggedin"][0]["userid"]))
+                    {?>
+                        <button type="submit" class="btn btn-lg btn-block btn-success text-uppercase">Maak een account aan</button>
+                    <?php
+                    }?>
+                </form>
+
                 <form method="post" action="idealPayment.php">
                     <?php
-                    // Only show try again button of order has not succeeded
                     if($orderStatus !== "Success")
                     {?>
                         <button type="submit" name="submitOrder" class="btn btn-lg btn-block btn-success text-uppercase">Opnieuw proberen</button>
