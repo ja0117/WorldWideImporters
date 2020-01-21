@@ -6,7 +6,7 @@
     }
 
     //
-include("loginscript.php"); ?>
+include("loginScript.php"); ?>
 <!-- Log in Modal -->
 
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

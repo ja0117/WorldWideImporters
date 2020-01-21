@@ -84,6 +84,7 @@ if ($product) {
     }
 
 }
+
 ?>
 
 <body>
@@ -101,7 +102,7 @@ $resultProducts = mysqli_query($conn, $products);
      <?php include 'includes/categorySidebar.php' ?>
       <div class="col-lg-9">
         <div class="card mt-4 mb-10">
-          <img class="card-img-top img-fluid" src="images/<?=$category?>.jpg" alt="">
+          <img class="card-img-top img-fluid" src="images/<?= (str_replace($stringReplace, '',$name)) ?>.jpg" alt="">
           <div class="card-body">
             <h2 class="card-title"><?= $name ?></h2>
               <h3 style="font-size: 100%">
@@ -139,8 +140,8 @@ $resultProducts = mysqli_query($conn, $products);
           <form method="post" action="">
               <input type="hidden" name="quantity" value=1>
               <input type="hidden" name="hidden_productid" value="<?php echo $itemID; ?>" >
-              <input type="hidden" name="hidden_productname" value="<?= str_replace('"', '',$row['StockItemName']) ?>">
-              <input type="hidden" name="hidden_productname" value="<?php echo str_replace('"', ' ', $name); ?>">
+              <input type="hidden" name="hidden_productname" value="<?= str_replace($stringReplace, '',$row['StockItemName']) ?>">
+              <input type="hidden" name="hidden_productname" value="<?php echo str_replace($stringReplace, ' ', $name); ?>">
               <input type="hidden" name="hidden_productprice" value="<?php echo $price; ?>">
               <input type="hidden" name="hidden_taxrate" value="<?php echo $btw1?>">
               <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" class="btn btn-primary">
@@ -239,7 +240,7 @@ $resultProducts = mysqli_query($conn, $products);
 
             <div class=" col-sm-3 mb-4">
                 <div class="card h-100">
-                    <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><img class="card-img-top"  src="images/<?php print substr(str_replace('"', '',$row["StockItemName"]), 0, 3) ?>.jpg" alt=""></a>
+                    <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><img class="card-img-top"  src="images/<?php print (str_replace($stringReplace, '',$row["StockItemName"])) ?>.jpg" alt=""></a>
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>"><?= $row["StockItemName"] ?></a>
