@@ -110,7 +110,7 @@ function displayOrderMessage($orderMessage) {
                     <form method="post">
                         <tr>
                         <input type="hidden" name="hidden_productid" value="<?= $values["item_productid"] ?>">
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td> </td>
                             <td><?= $values["item_productname"] ?></td>
                             <td><?=$values["item_quantity"]?></td>
                             <td class="text-right">€<?= $values["item_productprice"] ?></td>

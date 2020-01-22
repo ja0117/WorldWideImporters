@@ -38,7 +38,7 @@ $result = mysqli_stmt_get_result($myOrders);
 
                     ?>
                         <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td> </td>
                             <td><?= $values["Description"] ?></td>
                             <td><?=$values["Quantity"]?></td>
                             <td><?=$values["OrderID"]?></td>

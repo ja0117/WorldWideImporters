@@ -52,7 +52,7 @@ if (isset($_GET["searchBox"])) {
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <a href="productpagina.php?product=<?php print($row['StockItemID']); ?>">
-                                <img class="card-img-top"  src="images/<?php print (str_replace($stringReplace, '',$row["StockItemName"])) ?>.jpg" alt="">
+                                <img class="card-img-top"  src="images/<?php print (str_replace($stringReplace, '-',$row["StockItemName"])) ?>.jpg" alt="">
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title">

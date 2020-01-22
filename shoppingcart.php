@@ -66,7 +66,7 @@ else{
                     <form method="post">
                         <tr>
                         <input type="hidden" name="hidden_productid" value="<?= $values["item_productid"] ?>">
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td> </td>
                             <td><?= $values["item_productname"] ?></td>
                             <td> <button type ="submit" name ="increaseQuantity" class="btn btn-succes"> <i class="fas fa-plus-square"> </i> </button> </td>
                             <td><?=$values["item_quantity"]?></td>
