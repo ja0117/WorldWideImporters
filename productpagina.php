@@ -102,7 +102,7 @@ $resultProducts = mysqli_query($conn, $products);
      <?php include 'includes/categorySidebar.php' ?>
       <div class="col-lg-9">
         <div class="card mt-4 mb-10">
-          <img class="card-img-top img-fluid" src="images/<?= (str_replace($stringReplace, '',$name)) ?>.jpg" alt="">
+          <img class="card-img-top img-fluid" src="images/<?= (str_replace($stringReplace, '-',$name)) ?>.jpg" alt="">
           <div class="card-body">
             <h2 class="card-title"><?= $name ?></h2>
               <h3 style="font-size: 100%">

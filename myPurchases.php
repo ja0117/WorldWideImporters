@@ -25,7 +25,7 @@ $result = mysqli_stmt_get_result($myOrders);
                         <tr>
                             <th scope="col"> </th>
                             <th scope="col">Product</th>
-                            <th scope="col" >Aantal</th>
+                            <th scope="col">Aantal</th>
                             <th scope="col">Bestelnummer</th>
                         </tr>
                     </thead>
@@ -42,8 +42,6 @@ $result = mysqli_stmt_get_result($myOrders);
                             <td><?= $values["Description"] ?></td>
                             <td><?=$values["Quantity"]?></td>
                             <td><?=$values["OrderID"]?></td>
-
-                            <!-- Hidden total cost -->
 
                         </tr>
                         <?php
